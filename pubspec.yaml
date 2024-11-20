@@ -1,0 +1,76 @@
+name: transcriptapp
+description: Transcript is an all-in-one student evaluation system for schools and universities.
+publish_to: 'none'
+version: 0.1.0
+
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  #ui:
+  bform: ^0.4.3
+  carousel_slider: ^4.2.1
+  shimmer_animation: ^2.1.0+1
+  inani:
+    git: https://github.com/gabrielgits/inani.git
+  ftcontrol:
+    git: https://github.com/gabrielgits/ftcontrol.git
+
+
+  #utils:
+  share_plus: ^7.2.2
+  image_picker: ^1.0.7
+  equatable: ^2.0.5
+  easy_localization: ^3.0.7
+  url_launcher: ^6.1.14
+  expt:
+    git: https://github.com/gabrielgits/expt.git
+  alertshow:
+    git: https://github.com/gabrielgits/alertshow.git
+
+
+  #state management and dependency injection:
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+  get_it: ^7.7.0
+  go_router: ^14.1.4
+
+  #networking and storage:
+  feds:
+    git: https://github.com/gabrielgits/feds.git
+  fecs:
+    git: https://github.com/gabrielgits/fecs.git
+  dart_openai: ^5.1.0
+  cloud_firestore: ^5.0.0
+  freezed_annotation: ^2.4.1
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+  build_runner: ^2.4.11
+  mockito: ^5.4.4
+  riverpod_generator: ^2.4.0
+  riverpod_lint: ^2.3.10
+  freezed: ^2.5.2
+  json_serializable: ^6.8.0
+  json_annotation: ^4.9.0
+  
+
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/languages/
+    - assets/images/flags/
+    - assets/images/icons/
+    - assets/images/landing/
+    - assets/images/tchissola/
+    

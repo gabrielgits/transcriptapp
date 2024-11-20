@@ -1,0 +1,93 @@
+{
+  "msn": {
+    "welcome": "Welcome to Tchissola.\n The ultimate quiz game app that leverages the power of artificial intelligence to let you design and play your very own customized quiz challenges.",
+    "suggestions": "Here are some keywords suggestions to help you get started:",
+    "error": "Houston, we have a problem.",
+    "downloading": "Downloading quiz {quiz}. please wait...",
+    "deleting": "Deleting quiz {quiz}. please wait...",
+    "loadingList": "Loading all quiz. please wait..."
+  },
+  "btn": {
+    "send": "Send",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "get": "Get",
+    "shared": "Shared",
+    "search": "Search",
+    "cancel": "Cancel",
+    "skip": "Skip",
+    "delete": "Delete",
+    "download": "Download",
+    "close": "Close",
+    "goHome": "Go To Home",
+    "save": "Save"
+  },
+  "home": {
+    "subtitle": "Wellcome to ultima",
+    "options": "Options",
+    "signin": "Sign in",
+    "signout": "Sign out",
+    "profile": "My Profile",
+    "noAccount": "Hey, you don't have an account yet. You can create one right now.",
+    "newGame": "Create New Game",
+    "gameStatus": "Game Status",
+    "author": "Author",
+    "category": "Category"
+  },
+  "login": {
+    "title": "Login",
+    "subtitle": "Login to your account",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "btnLogin": "Login",
+    "btnSignUp": "Sign Up",
+    "google": "Signin with google",
+    "facebbok": "Signin with Facebook",
+    "or": "don't have an account",
+    "failed": "Login failed. Please try again."
+  },
+  "settings": {
+    "title": "Settings",
+    "languages": "Languages",
+    "loading": "Loading Settings"
+  },
+  "gameMaker": {
+    "title": "Create a new quiz",
+    "subtitle": "Tell me what's the quiz game about and I will create it for you.",
+    "subtitleError": "Sorry, some problem occurred when try create the quiz game. Please try again or change the title below:",
+    "name": "What is the game about?",
+    "button": "Create Now",
+    "buttonTryAgain": "Try Again",
+    "playDemo": "Play Demo Version",
+    "start": "PLAY DEMO",
+    "createAccount": "Create Account",
+    "test": "Test before save",
+    "dismiss": "DISMISS",
+    "demoview": "Game View - Demo",
+    "nameShort": "The game title can't be empty or too short",
+    "demoWarning": "This is just a demo game if you want to play full game you need to 'SAVE' before",
+    "save": "SAVE",
+    "notLoggedMessage": "You need to be logged in to save the game, do you want to login now?",
+    "notLogged": "Not Logged In"
+  },
+  "gameView": {
+    "title": "Game View",
+    "subtitle": "Play the quiz game",
+    "start": "PLAY",
+    "share": "Share",
+    "publish": "Publish",
+    "deleteAsk": "Do you want to delete this game?",
+    "tipUsed": "You already used this tip",
+    "skipUsed": "You already used this skip",
+    "dismiss": "DISMISS"
+  },
+  "landing": {
+    "title1": "The ultimate quiz game to challenge your brain.",
+    "title2": "Design and play your very own customized quiz challenges.",
+    "title3": "You just need the title and Tchissola will do the rest.",
+    "title4": "Share your quiz with friends and family.",
+    "btnStart": "Get Started"
+  }
+}
