@@ -1,13 +1,14 @@
+
+/*
 import 'package:expt/expt.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:transcriptapp/src/dependency.dart';
 import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
 import 'package:transcriptapp/src/features/auth/presenter/viewmodels/student_view_model.dart';
-import 'package:transcriptapp/src/features/home/domain/usecase/usecase_exams.dart';
 
 import 'controller_configs.dart';
 
-part 'controller_my_exams.g.dart';
+//part 'controller_my_exams.g.dart';
 
 @riverpod
 class ControllerMyStudents extends _$ControllerMyStudents {
@@ -36,4 +37,6 @@ class ControllerMyStudents extends _$ControllerMyStudents {
     state = AsyncData(result2);
     return result2;
   }
+
 }
+ */

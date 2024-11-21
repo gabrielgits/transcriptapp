@@ -11,7 +11,7 @@ class AppConstants {
 
   //url
   static const url = 'https://transcript.ao';
-  static const urlStorage = '${url}storage/';
+  static const urlStorage = '$url/storage/';
   static const urlApi = '$url/api/v1/';
 
   // keys

@@ -6,7 +6,6 @@ import 'package:transcriptapp/src/core/constants.dart';
 import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
 
 import '../widgets/app_bar_widget.dart';
-import '../widgets/mygames_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -57,7 +56,7 @@ class HomeView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: space),
-          const MygamesSlider(),
+          const Placeholder(),
           const SizedBox(height: space),
           BformButton(
             colors: [

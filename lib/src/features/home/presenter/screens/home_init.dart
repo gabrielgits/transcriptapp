@@ -29,8 +29,11 @@ class HomeInit extends ConsumerWidget {
           started: () async {
             await ref
                 .read(controllerConfigsProvider.notifier)
-                .createConfig()
-                .then((_) => context.pushReplacement('/home'));
+                .createConfig();
+            if (context.mounted) {
+             context.pushReplacement('/home');
+            }
+                
           },
         );
       },

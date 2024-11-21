@@ -226,12 +226,12 @@ class UsecaseNotifications {
       );
 
       return (
-        exception: ExptWebPost(),
+        exception: ExptWebNoExpt(),
         item: itemUpdated,
       );
     } catch (e) {
       return (
-        exception: ExptWebGet(e.toString(), 1),
+        exception: ExptWebPost(e.toString(), 1),
         item: NotificationModel.init(),
       );
     }
@@ -275,7 +275,7 @@ class UsecaseNotifications {
       final item = await repositoryRemote.getItem(id);
 
       return (
-        exception: ExptWebPost(),
+        exception: ExptWebNoExpt(),
         item: item,
       );
     } catch (e) {
