@@ -94,7 +94,7 @@ class UsecaseAuth {
       if (idSaved < 1) {
         return (
           student: StudentModel.init(),
-          exptWeb: ExptWebGet('Failed to save item', 1)
+          exptWeb: ExptWebPost('Failed to save item', 1)
         );
       }
       AppConstants.token = token;
@@ -137,7 +137,7 @@ class UsecaseAuth {
       if (idSaved < 1) {
         return (
           student: StudentModel.init(),
-          exptWeb: ExptWebGet('Failed to save item', 1)
+          exptWeb: ExptWebPost('Failed to save item', 1)
         );
       }
       AppConstants.token = token;
@@ -156,7 +156,7 @@ class UsecaseAuth {
       if (resultWeb['status'] == false) {
         return (
           exception:
-              ExptWebPost("Profile not found: ${resultWeb['message']}", 1),
+              ExptWebGet("Profile not found: ${resultWeb['message']}", 1),
           student: StudentModel.init(),
         );
       }
@@ -167,7 +167,7 @@ class UsecaseAuth {
       );
     } catch (e) {
       return (
-        exception: ExptWebPost(e.toString(), 2),
+        exception: ExptWebUnknown(e.toString(), 2),
         student: StudentModel.init(),
       );
     }

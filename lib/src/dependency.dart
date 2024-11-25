@@ -1,4 +1,3 @@
-import 'package:fecs/fecs.dart';
 import 'package:feds/feds.dart';
 import 'package:get_it/get_it.dart';
 import 'package:transcriptapp/src/core/infra/services/ia_service_openia.dart';
@@ -26,7 +25,6 @@ void setupAppStart() {
 
 void _setup() {
   getIt.registerSingleton<FedsLocal>(FedsLocalSharedPref());
-  getIt.registerSingleton<FecsData>(FecsDataFirebase());
   getIt.registerSingleton<IaService>(IaServiceOpenia(''));
 }
 

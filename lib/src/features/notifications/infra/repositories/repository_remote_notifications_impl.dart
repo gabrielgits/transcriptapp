@@ -1,4 +1,5 @@
-import 'package:fecs/fecs.dart';
+import 'package:feds/feds.dart';
+import 'package:transcriptapp/src/core/constants.dart';
 
 import '../../domain/models/notification_model.dart';
 import '../../domain/repositories/repository_remote_notifications.dart';
@@ -6,16 +7,20 @@ import '../../domain/repositories/repository_remote_notifications.dart';
 class RepositoryRemoteNotificationsImpl
     implements RepositoryRemoteNotifications {
   final String table = 'notifications';
-  final FecsData datasource;
+  final FedsRest datasource;
   RepositoryRemoteNotificationsImpl(this.datasource);
 
   @override
   Future<List<NotificationModel>> getList() async {
-    final response = await datasource.getAll(table);
-    List<NotificationModel> list = [];
+    final response = await datasource.get(
+      '${AppConstants.urlApi}/$table/',
+      token: AppConstants.token,
+    );
     if (response['status'] == false) {
       throw Exception(response['error']);
     }
+    List<NotificationModel> list = [];
+
     for (var item in response['data']) {
       list.add(NotificationModel.fromJson(item));
     }
@@ -24,7 +29,10 @@ class RepositoryRemoteNotificationsImpl
 
   @override
   Future<NotificationModel> getItem(int id) async {
-    final response = await datasource.get(table: table, id: id.toString());
+    final response = await datasource.get(
+      '${AppConstants.urlApi}/$table/$id',
+      token: AppConstants.token,
+    );
     if (response['status'] == false) {
       throw Exception(response['error']);
     }
@@ -33,7 +41,11 @@ class RepositoryRemoteNotificationsImpl
 
   @override
   Future<NotificationModel> postItem(Map<String, dynamic> jsonData) async {
-    final response = await datasource.post(table: table, body: jsonData);
+    final response = await datasource.post(
+      url: '${AppConstants.urlApi}/$table/',
+      body: jsonData,
+      token: AppConstants.token,
+    );
     if (response['status'] == false) {
       throw Exception(response['error']);
     }
@@ -42,9 +54,14 @@ class RepositoryRemoteNotificationsImpl
 
   @override
   Future<int> deleteItem(int id) async {
-    final response = await datasource.delete(id: id.toString(), table: table);
-
-    return int.parse(response);
+    final response = await datasource.delete(
+      '${AppConstants.urlApi}/$table/$id',
+      token: AppConstants.token,
+    );
+    if (response['status'] == false) {
+      throw Exception(response['error']);
+    }
+    return id;
   }
 
   @override
@@ -53,7 +70,7 @@ class RepositoryRemoteNotificationsImpl
     required Map<String, dynamic> jsonData,
   }) async {
     final response =
-        await datasource.put(id: id.toString(), table: table, body: jsonData);
+        await datasource.put(url: '${AppConstants.urlApi}/$table/$id', body: jsonData, token: AppConstants.token);
     if (response['status'] == false) {
       throw Exception(response['error']);
     }

@@ -53,7 +53,7 @@ class UsecaseConfigs {
       }
     } catch (e) {
       return (
-        exception: ExptDataLoad(e.toString(), 1),
+        exception: ExptDataUnknown(e.toString(), 1),
         item: ConfigModel.init(),
       );
     }

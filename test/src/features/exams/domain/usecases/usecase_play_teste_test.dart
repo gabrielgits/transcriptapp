@@ -60,6 +60,16 @@ void main() {
       expect(result.exptWeb, isA<ExptWebGet>());
     });
 
+        test('fetchListQuestions: should return exception when  getListQuestions throwsException', () async {
+      when(mockRepositoryRemoteExams.getListQuestions(any))
+          .thenThrow((_) async => throwsException);
+
+      final result = await usecasePlayTeste.fetchListQuestions(1);
+
+      expect(result.questions, isEmpty);
+      expect(result.exptWeb, isA<ExptWebUnknown>());
+    });
+
     test(
         'fetchListStudentAnswers: should return list of student answers when successful',
         () async {
@@ -111,6 +121,19 @@ void main() {
       expect(result.exptWeb, isA<ExptWebGet>());
     });
 
+        test('fetchListStudentAnswers: should return exception when fetchListStudentAnswers throwsException',
+        () async {
+      when(mockRepositoryRemoteExams.getListStudentAnswers(
+              studentId: anyNamed('studentId'), testeId: anyNamed('testeId')))
+          .thenThrow((_) async => throwsException);
+
+      final result = await usecasePlayTeste.fetchListStudentAnswers(
+          studentId: 1, testeId: 1);
+
+      expect(result.answers, isEmpty);
+      expect(result.exptWeb, isA<ExptWebUnknown>());
+    });
+
     test(
         'sendStudentAnswer: should return true when answer is sent successfully',
         () async {
@@ -142,6 +165,23 @@ void main() {
 
       expect(result.result, isFalse);
       expect(result.exptWeb, isA<ExptWebPost>());
+    });
+
+
+    test('sendStudentAnswer: should Exception when postStudentAnswer throwsException',
+        () async {
+      when(mockRepositoryRemoteExams.postStudentAnswer(any))
+          .thenThrow((_) async => throwsException);
+
+      final result = await usecasePlayTeste.sendStudentAnswer(
+        answerId: 1,
+        questionId: 1,
+        studentId: 1,
+        testeId: 1,
+      );
+
+      expect(result.result, isFalse);
+      expect(result.exptWeb, isA<ExptWebUnknown>());
     });
 
     test('startTeste: should return teste model when test starts successfully',
@@ -179,6 +219,18 @@ void main() {
 
       expect(result.teste, isA<TesteModel>());
       expect(result.exptWeb, isA<ExptWebPost>());
+    });
+
+    test('startTeste: should return exception when postTeste throwsException to start',
+        () async {
+      when(mockRepositoryRemoteExams.postTeste(
+              studentId: anyNamed('studentId'), examId: anyNamed('examId')))
+          .thenThrow((_) async => throwsException);
+
+      final result = await usecasePlayTeste.startTeste(studentId: 1, examId: 1);
+
+      expect(result.teste, isA<TesteModel>());
+      expect(result.exptWeb, isA<ExptWebUnknown>());
     });
   });
 }

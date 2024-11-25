@@ -36,6 +36,38 @@ void main() {
     expect(result.exception, isA<ExptDataNoExpt>());
   });
 
+  test('updateConfig should return exception on unsuccessful update', () async {
+    const config = ConfigModel(
+      id: 1,
+      name: 'Test Config',
+      studentId: 1,
+      token: '',
+    );
+    when(mockRepositoryLocal.updateConfig(config)).thenAnswer((_) async => 0);
+
+    final result = await usecaseConfigs.updateConfig(config);
+
+    expect(result.item, ConfigModel.init());
+    expect(result.exception, isA<ExptDataSave>());
+  });
+
+  test('updateConfig should return exception when updateConfig throwsException',
+      () async {
+    const config = ConfigModel(
+      id: 1,
+      name: 'Test Config',
+      studentId: 1,
+      token: '',
+    );
+    when(mockRepositoryLocal.updateConfig(config))
+        .thenThrow((_) async => throwsException);
+
+    final result = await usecaseConfigs.updateConfig(config);
+
+    expect(result.item, ConfigModel.init());
+    expect(result.exception, isA<ExptDataUnknown>());
+  });
+
   test('loadConfig should return config and ExptDataNoExpt on success',
       () async {
     const config = ConfigModel(
@@ -52,6 +84,27 @@ void main() {
     expect(result.exception, isA<ExptDataNoExpt>());
   });
 
+  test('loadConfig should return exception when getConfig fail', () async {
+    when(mockRepositoryLocal.getConfig(1))
+        .thenAnswer((_) async => ConfigModel.init());
+
+    final result = await usecaseConfigs.loadConfig();
+
+    expect(result.item, ConfigModel.init());
+    expect(result.exception, isA<ExptDataLoad>());
+  });
+
+  test('loadConfig should return exception when getConfig throwsException',
+      () async {
+    when(mockRepositoryLocal.getConfig(1))
+        .thenThrow((_) async => throwsException);
+
+    final result = await usecaseConfigs.loadConfig();
+
+    expect(result.item, ConfigModel.init());
+    expect(result.exception, isA<ExptDataUnknown>());
+  });
+
   test('saveConfig should return id and ExptDataNoExpt on success', () async {
     const config = ConfigModel(
       id: 1,
@@ -65,5 +118,37 @@ void main() {
 
     expect(result.id, 1);
     expect(result.exception, isA<ExptDataNoExpt>());
+  });
+
+  test('saveConfig should return exception when saveConfig fail', () async {
+    const config = ConfigModel(
+      id: 1,
+      name: 'Test Config',
+      studentId: 1,
+      token: '',
+    );
+    when(mockRepositoryLocal.saveConfig(config)).thenAnswer((_) async => 0);
+
+    final result = await usecaseConfigs.saveConfig(config);
+
+    expect(result.id, 0);
+    expect(result.exception, isA<ExptDataSave>());
+  });
+
+  test('saveConfig should return exception when saveConfig throwsException',
+      () async {
+    const config = ConfigModel(
+      id: 1,
+      name: 'Test Config',
+      studentId: 1,
+      token: '',
+    );
+    when(mockRepositoryLocal.saveConfig(config))
+        .thenThrow((_) async => throwsException);
+
+    final result = await usecaseConfigs.saveConfig(config);
+
+    expect(result.id, 0);
+    expect(result.exception, isA<ExptDataUnknown>());
   });
 }

@@ -61,7 +61,7 @@ class UsecaseNotifications {
       );
     } catch (e) {
       return (
-        exception: ExptDataLoad(e.toString(), 1),
+        exception: ExptDataUnknown(e.toString(), 1),
         list: List<NotificationModel>.empty(),
       );
     }
@@ -87,7 +87,7 @@ class UsecaseNotifications {
       );
     } catch (e) {
       return (
-        exception: ExptDataSave(e.toString()),
+        exception: ExptDataUnknown(e.toString()),
         item: NotificationModel.init()
       );
     }
@@ -113,7 +113,7 @@ class UsecaseNotifications {
       }
     } catch (e) {
       return (
-        exception: ExptDataLoad(e.toString(), 1),
+        exception: ExptDataUnknown(e.toString(), 1),
         item: NotificationModel.init(),
       );
     }
@@ -139,7 +139,7 @@ class UsecaseNotifications {
       }
     } catch (e) {
       return (
-        exception: ExptDataSave(e.toString(), 1),
+        exception: ExptDataUnknown(e.toString(), 1),
         id: 0,
       );
     }
@@ -164,7 +164,7 @@ class UsecaseNotifications {
       }
     } catch (e) {
       return (
-        exception: ExptDataDelete(e.toString(), 1),
+        exception: ExptDataUnknown(e.toString(), 1),
         id: 0,
       );
     }
@@ -182,7 +182,7 @@ class UsecaseNotifications {
       );
     } catch (e) {
       return (
-        exception: ExptDataDelete(e.toString(), 1),
+        exception: ExptDataUnknown(e.toString(), 1),
         count: 0,
       );
     }
@@ -206,7 +206,7 @@ class UsecaseNotifications {
         exptWeb: ExptWebNoExpt(),
       );
     } catch (e) {
-      return (exptData: ExptDataNoExpt(), exptWeb: ExptWebGet(e.toString(), 2));
+      return (exptData: ExptDataUnknown(e.toString(), 3), exptWeb: ExptWebUnknown(e.toString(), 2));
     }
   }
 
@@ -231,7 +231,7 @@ class UsecaseNotifications {
       );
     } catch (e) {
       return (
-        exception: ExptWebPost(e.toString(), 1),
+        exception: ExptWebUnknown(e.toString(), 1),
         item: NotificationModel.init(),
       );
     }
@@ -258,7 +258,7 @@ class UsecaseNotifications {
       );
     } catch (e) {
       return (
-        exception: ExptWebGet(e.toString(), 1),
+        exception: ExptWebUnknown(e.toString(), 1),
         list: List<NotificationModel>.empty(),
       );
     }
@@ -280,7 +280,7 @@ class UsecaseNotifications {
       );
     } catch (e) {
       return (
-        exception: ExptWebGet(e.toString(), 1),
+        exception: ExptWebUnknown(e.toString(), 1),
         item: NotificationModel.init(),
       );
     }

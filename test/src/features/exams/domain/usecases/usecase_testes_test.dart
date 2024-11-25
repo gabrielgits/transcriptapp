@@ -55,6 +55,16 @@ void main() {
       expect(result.exptWeb, isA<ExptWebGet>());
     });
 
+        test('fetchTestes: should return exception when getListTestes throwsException', () async {
+      when(mockRepositoryRemoteExams.getListTestes(any))
+          .thenThrow((_) async => throwsException);
+
+      final result = await usecaseTestes.fetchTestes(1);
+
+      expect(result.testes, isEmpty);
+      expect(result.exptWeb, isA<ExptWebUnknown>());
+    });
+
     test('fetchTesteDetails: should return teste details when successful',
         () async {
       when(mockRepositoryRemoteExams.getItemTeste(any))
@@ -77,6 +87,16 @@ void main() {
 
       expect(result.teste, isA<TesteModel>());
       expect(result.exptWeb, isA<ExptWebGet>());
+    });
+
+        test('fetchTesteDetails: should return exception when getItemTeste throwsException', () async {
+      when(mockRepositoryRemoteExams.getItemTeste(any))
+          .thenThrow((_) async =>throwsException);
+
+      final result = await usecaseTestes.fetchTesteDetails(1);
+
+      expect(result.teste, isA<TesteModel>());
+      expect(result.exptWeb, isA<ExptWebUnknown>());
     });
 
     test('updateTeste: should return updated teste when successful', () async {
@@ -105,6 +125,19 @@ void main() {
 
       expect(result.teste, isA<TesteModel>());
       expect(result.exptWeb, isA<ExptWebPost>());
+    });
+
+        test('updateTeste: should return exception when putTeste throwsException', () async {
+
+      when(mockRepositoryRemoteExams.putTeste(
+              id: anyNamed('id'), json: anyNamed('json')))
+          .thenThrow(
+              (_) async => throwsException);
+
+      final result = await usecaseTestes.updateTeste(id: 1, newTeste: newTeste);
+
+      expect(result.teste, isA<TesteModel>());
+      expect(result.exptWeb, isA<ExptWebUnknown>());
     });
   });
 }
