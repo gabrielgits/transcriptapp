@@ -21,10 +21,10 @@ StudentAnswerModel _$StudentAnswerModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$StudentAnswerModel {
   int get id => throw _privateConstructorUsedError;
-  StudentModel get student => throw _privateConstructorUsedError;
+  int get studentId => throw _privateConstructorUsedError;
   QuestionModel get question => throw _privateConstructorUsedError;
   AnswerModel get answer => throw _privateConstructorUsedError;
-  TesteModel get teste => throw _privateConstructorUsedError;
+  int get testeId => throw _privateConstructorUsedError;
 
   /// Serializes this StudentAnswerModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,15 +44,13 @@ abstract class $StudentAnswerModelCopyWith<$Res> {
   @useResult
   $Res call(
       {int id,
-      StudentModel student,
+      int studentId,
       QuestionModel question,
       AnswerModel answer,
-      TesteModel teste});
+      int testeId});
 
-  $StudentModelCopyWith<$Res> get student;
   $QuestionModelCopyWith<$Res> get question;
   $AnswerModelCopyWith<$Res> get answer;
-  $TesteModelCopyWith<$Res> get teste;
 }
 
 /// @nodoc
@@ -71,20 +69,20 @@ class _$StudentAnswerModelCopyWithImpl<$Res, $Val extends StudentAnswerModel>
   @override
   $Res call({
     Object? id = null,
-    Object? student = null,
+    Object? studentId = null,
     Object? question = null,
     Object? answer = null,
-    Object? teste = null,
+    Object? testeId = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      student: null == student
-          ? _value.student
-          : student // ignore: cast_nullable_to_non_nullable
-              as StudentModel,
+      studentId: null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
       question: null == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
@@ -93,21 +91,11 @@ class _$StudentAnswerModelCopyWithImpl<$Res, $Val extends StudentAnswerModel>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as AnswerModel,
-      teste: null == teste
-          ? _value.teste
-          : teste // ignore: cast_nullable_to_non_nullable
-              as TesteModel,
+      testeId: null == testeId
+          ? _value.testeId
+          : testeId // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
-  }
-
-  /// Create a copy of StudentAnswerModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StudentModelCopyWith<$Res> get student {
-    return $StudentModelCopyWith<$Res>(_value.student, (value) {
-      return _then(_value.copyWith(student: value) as $Val);
-    });
   }
 
   /// Create a copy of StudentAnswerModel
@@ -129,16 +117,6 @@ class _$StudentAnswerModelCopyWithImpl<$Res, $Val extends StudentAnswerModel>
       return _then(_value.copyWith(answer: value) as $Val);
     });
   }
-
-  /// Create a copy of StudentAnswerModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TesteModelCopyWith<$Res> get teste {
-    return $TesteModelCopyWith<$Res>(_value.teste, (value) {
-      return _then(_value.copyWith(teste: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -151,19 +129,15 @@ abstract class _$$StudentAnswerModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {int id,
-      StudentModel student,
+      int studentId,
       QuestionModel question,
       AnswerModel answer,
-      TesteModel teste});
+      int testeId});
 
-  @override
-  $StudentModelCopyWith<$Res> get student;
   @override
   $QuestionModelCopyWith<$Res> get question;
   @override
   $AnswerModelCopyWith<$Res> get answer;
-  @override
-  $TesteModelCopyWith<$Res> get teste;
 }
 
 /// @nodoc
@@ -180,20 +154,20 @@ class __$$StudentAnswerModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? student = null,
+    Object? studentId = null,
     Object? question = null,
     Object? answer = null,
-    Object? teste = null,
+    Object? testeId = null,
   }) {
     return _then(_$StudentAnswerModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      student: null == student
-          ? _value.student
-          : student // ignore: cast_nullable_to_non_nullable
-              as StudentModel,
+      studentId: null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
       question: null == question
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
@@ -202,10 +176,10 @@ class __$$StudentAnswerModelImplCopyWithImpl<$Res>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as AnswerModel,
-      teste: null == teste
-          ? _value.teste
-          : teste // ignore: cast_nullable_to_non_nullable
-              as TesteModel,
+      testeId: null == testeId
+          ? _value.testeId
+          : testeId // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -217,10 +191,10 @@ class _$StudentAnswerModelImpl
     implements _StudentAnswerModel {
   const _$StudentAnswerModelImpl(
       {required this.id,
-      required this.student,
+      required this.studentId,
       required this.question,
       required this.answer,
-      required this.teste});
+      required this.testeId});
 
   factory _$StudentAnswerModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudentAnswerModelImplFromJson(json);
@@ -228,17 +202,17 @@ class _$StudentAnswerModelImpl
   @override
   final int id;
   @override
-  final StudentModel student;
+  final int studentId;
   @override
   final QuestionModel question;
   @override
   final AnswerModel answer;
   @override
-  final TesteModel teste;
+  final int testeId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'StudentAnswerModel(id: $id, student: $student, question: $question, answer: $answer, teste: $teste)';
+    return 'StudentAnswerModel(id: $id, studentId: $studentId, question: $question, answer: $answer, testeId: $testeId)';
   }
 
   @override
@@ -247,10 +221,10 @@ class _$StudentAnswerModelImpl
     properties
       ..add(DiagnosticsProperty('type', 'StudentAnswerModel'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('student', student))
+      ..add(DiagnosticsProperty('studentId', studentId))
       ..add(DiagnosticsProperty('question', question))
       ..add(DiagnosticsProperty('answer', answer))
-      ..add(DiagnosticsProperty('teste', teste));
+      ..add(DiagnosticsProperty('testeId', testeId));
   }
 
   @override
@@ -259,17 +233,18 @@ class _$StudentAnswerModelImpl
         (other.runtimeType == runtimeType &&
             other is _$StudentAnswerModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.student, student) || other.student == student) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
             (identical(other.question, question) ||
                 other.question == question) &&
             (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.teste, teste) || other.teste == teste));
+            (identical(other.testeId, testeId) || other.testeId == testeId));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, student, question, answer, teste);
+      Object.hash(runtimeType, id, studentId, question, answer, testeId);
 
   /// Create a copy of StudentAnswerModel
   /// with the given fields replaced by the non-null parameter values.
@@ -291,10 +266,10 @@ class _$StudentAnswerModelImpl
 abstract class _StudentAnswerModel implements StudentAnswerModel {
   const factory _StudentAnswerModel(
       {required final int id,
-      required final StudentModel student,
+      required final int studentId,
       required final QuestionModel question,
       required final AnswerModel answer,
-      required final TesteModel teste}) = _$StudentAnswerModelImpl;
+      required final int testeId}) = _$StudentAnswerModelImpl;
 
   factory _StudentAnswerModel.fromJson(Map<String, dynamic> json) =
       _$StudentAnswerModelImpl.fromJson;
@@ -302,13 +277,13 @@ abstract class _StudentAnswerModel implements StudentAnswerModel {
   @override
   int get id;
   @override
-  StudentModel get student;
+  int get studentId;
   @override
   QuestionModel get question;
   @override
   AnswerModel get answer;
   @override
-  TesteModel get teste;
+  int get testeId;
 
   /// Create a copy of StudentAnswerModel
   /// with the given fields replaced by the non-null parameter values.

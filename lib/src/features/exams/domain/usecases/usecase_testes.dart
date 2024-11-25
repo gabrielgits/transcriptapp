@@ -11,14 +11,18 @@ class UsecaseTestes {
   Future<({List<TesteModel> testes, ExptWeb exptWeb})> fetchTestes(
       int studentId) async {
     try {
-      final testes = await repositoryRemote.getListTestes(studentId);
-      if (testes.isEmpty) {
+      final resultWeb = await repositoryRemote.getListTestes(studentId);
+      if (resultWeb['status'] == false) {
         return (
           testes: List<TesteModel>.empty(),
-          exptWeb: ExptWebPost('Empty testes list', 1),
+          exptWeb: ExptWebGet('Problem to get testes list: ${resultWeb['message']}', 1),
         );
       }
 
+      List<TesteModel> testes = [];
+      for (var testeJson in resultWeb['data']) {
+        testes.add(TesteModel.fromJson(testeJson));
+      }
       return (testes: testes, exptWeb: ExptWebNoExpt());
     } catch (e) {
       return (
@@ -30,14 +34,16 @@ class UsecaseTestes {
 
   Future<({TesteModel teste, ExptWeb exptWeb})> fetchTesteDetails(int id) async {
     try {
-      final teste = await repositoryRemote.getItemTeste(id);
-      if (teste.id == 0) {
+      final resultWeb = await repositoryRemote.getItemTeste(id);
+      if (resultWeb['status'] == false){
         return (
           teste: TesteModel.init(),
-          exptWeb: ExptWebPost('Teste not found', 1),
+          exptWeb: ExptWebGet(
+              'Problem to get teste: ${resultWeb["message"]}', 1),
         );
+        
       }
-
+      TesteModel teste = TesteModel.fromJson(resultWeb['data']);
       return (teste: teste, exptWeb: ExptWebNoExpt());
     } catch (e) {
       return (
@@ -52,14 +58,16 @@ class UsecaseTestes {
     required TesteModel newTeste,
   }) async {
     try {
-      final teste = await repositoryRemote.putTeste(id: id, newTeste: newTeste);
-      if (teste.id == 0) {
+      final resultWeb = await repositoryRemote.putTeste(id: id, json: newTeste.toJson());
+      if (resultWeb['status'] == false){
         return (
           teste: TesteModel.init(),
-          exptWeb: ExptWebPost('Teste not updated', 1),
+          exptWeb: ExptWebPost(
+              'Problem to update teste: ${resultWeb["message"]}', 1),
         );
       }
 
+      TesteModel teste = TesteModel.fromJson(resultWeb['data']);
       return (teste: teste, exptWeb: ExptWebNoExpt());
     } catch (e) {
       return (

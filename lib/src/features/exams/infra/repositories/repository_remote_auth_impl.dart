@@ -1,76 +1,106 @@
-import 'package:fecs/fecs.dart';
-import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
-import 'package:transcriptapp/src/features/auth/domain/repositories/repository_remote_auth.dart';
+import 'package:feds/feds.dart';
+import 'package:transcriptapp/src/core/constants.dart';
 
+import '../../domain/repositories/repository_remote_exams.dart';
 
-class RepositoryRemoteAuthImpl implements RepositoryRemoteAuth {
-  final FecsData datasource;
-  const RepositoryRemoteAuthImpl(this.datasource);
+class RepositoryRemoteExamsImpl implements RepositoryRemoteExams {
+  final FedsRest datasource;
+  const RepositoryRemoteExamsImpl(this.datasource);
 
-  final table = 'students';
-
-  Future<StudentModel> _saveStudent(Map<String, dynamic> data) async {
-    if (data['status'] == false) {
-      throw Exception(data['error']);
-    }
-    final responseCheck = await datasource.searchAll(
-      table: table,
-      field: 'phone',
-      isEqualTo: data['data']['phone'],
+  @override
+  Future<Map<String, dynamic>> getItemTeste(int id) async {
+    return await datasource.get(
+      '${AppConstants.urlApi}/testes/$id',
+      token: AppConstants.token,
     );
-
-    if (responseCheck['status'] == false) {
-      throw Exception(responseCheck['error']);
-    }
-
-    if (responseCheck['data'].isEmpty) {
-      final responsePost =
-          await datasource.post(table: table, body: data['data']);
-      if (responsePost['status'] == false) {
-        throw Exception(responsePost['error']);
-      }
-      final student = StudentModel.fromJson(data['data']);
-      return student.copyWith(id: responsePost['data'].id);
-    }
-
-    return StudentModel.fromJson(responseCheck['data'].first);
   }
 
   @override
-  Future<StudentModel> signinWithPhone({
-    required String phone,
-    required String password,
+  Future<Map<String, dynamic>> getListExams(int courseId) async {
+    return await datasource.get(
+      '${AppConstants.urlApi}/courses/$courseId/exams',
+      token: AppConstants.token,
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>> getListQuestions(int examId) async {
+    return await datasource.get(
+      '${AppConstants.urlApi}/exams/$examId/questions',
+      token: AppConstants.token,
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>> getListStudentAnswers({
+    required int studentId,
+    required int testeId,
   }) async {
-    final data = await datasource.signinWithEmail(
-      email: phone,
-      password: password,
+    return await datasource.get(
+      '${AppConstants.urlApi}/studentsanswers/student/$studentId/teste/$testeId',
+      token: AppConstants.token,
     );
-    return await _saveStudent(data);
   }
 
   @override
-  Future<bool> forgotPassword(String email) async {
-    return await datasource.recoveryPassword(email);
+  Future<Map<String, dynamic>> getListTestes(int studentId) async {
+    return await datasource.get(
+      '${AppConstants.urlApi}/students/$studentId/testes',
+      token: AppConstants.token,
+    );
   }
 
   @override
-  Future<bool> recoveryPassword({
-    required String code,
-    required String newPassword,
+  Future<Map<String, dynamic>> postStudentAnswer(
+      Map<String, dynamic> json) async {
+    return await datasource.post(
+      url: '${AppConstants.urlApi}/studentsanswers',
+      body: json,
+      token: AppConstants.token,
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>> postTeste({
+    required int studentId,
+    required int examId,
   }) async {
-    return await datasource.confirmPasswordReset(
-      code: code,
-      newPassword: newPassword,
+    return await datasource.post(
+      url: '${AppConstants.urlApi}/testes',
+      body: {'studentId': studentId, 'examId': examId},
+      token: AppConstants.token,
     );
   }
 
   @override
-  Future<bool> updatePassword(String newPassword) async {
-    return await datasource.changePassword(newPassword);
+  Future<Map<String, dynamic>> putExam({
+    required int id,
+    required Map<String, dynamic> json,
+  }) async {
+    return await datasource.put(
+      url: '${AppConstants.urlApi}/exams/$id',
+      body: json,
+      token: AppConstants.token,
+    );
   }
 
   @override
-  Future<bool> logout() async {
-    return await datasource.logout();
+  Future<Map<String, dynamic>> putTeste({
+    required int id,
+    required Map<String, dynamic> json,
+  }) async {
+    return await datasource.put(
+      url: '${AppConstants.urlApi}/testes/$id',
+      body: json,
+      token: AppConstants.token,
+    );
+  }
+
+  @override
+  Future<Map<String, dynamic>> getItemExam(int id) async {
+    return await datasource.get(
+      '${AppConstants.urlApi}/exams/$id',
+      token: AppConstants.token,
+    );
   }
 }

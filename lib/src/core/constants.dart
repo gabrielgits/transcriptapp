@@ -12,11 +12,12 @@ class AppConstants {
   //url
   static const url = 'https://transcript.ao';
   static const urlStorage = '$url/storage/';
-  static const urlApi = '$url/api/v1/';
+  static const urlApi = '$url/api/v1';
 
   // keys
   static const keyApi = 'binary';
   static const keyFirebase = 'binary';
+  static String token = '';
 
   // games
   static const totalQuestions = 15;

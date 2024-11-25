@@ -24,8 +24,8 @@ mixin _$TesteModel {
   String get status => throw _privateConstructorUsedError;
   double get score => throw _privateConstructorUsedError;
   double get points => throw _privateConstructorUsedError;
-  ExamModel get exam => throw _privateConstructorUsedError;
-  StudentModel get student => throw _privateConstructorUsedError;
+  int get examId => throw _privateConstructorUsedError;
+  int get studentId => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this TesteModel to a JSON map.
@@ -49,12 +49,9 @@ abstract class $TesteModelCopyWith<$Res> {
       String status,
       double score,
       double points,
-      ExamModel exam,
-      StudentModel student,
+      int examId,
+      int studentId,
       DateTime createdAt});
-
-  $ExamModelCopyWith<$Res> get exam;
-  $StudentModelCopyWith<$Res> get student;
 }
 
 /// @nodoc
@@ -76,8 +73,8 @@ class _$TesteModelCopyWithImpl<$Res, $Val extends TesteModel>
     Object? status = null,
     Object? score = null,
     Object? points = null,
-    Object? exam = null,
-    Object? student = null,
+    Object? examId = null,
+    Object? studentId = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -97,39 +94,19 @@ class _$TesteModelCopyWithImpl<$Res, $Val extends TesteModel>
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as double,
-      exam: null == exam
-          ? _value.exam
-          : exam // ignore: cast_nullable_to_non_nullable
-              as ExamModel,
-      student: null == student
-          ? _value.student
-          : student // ignore: cast_nullable_to_non_nullable
-              as StudentModel,
+      examId: null == examId
+          ? _value.examId
+          : examId // ignore: cast_nullable_to_non_nullable
+              as int,
+      studentId: null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
-  }
-
-  /// Create a copy of TesteModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ExamModelCopyWith<$Res> get exam {
-    return $ExamModelCopyWith<$Res>(_value.exam, (value) {
-      return _then(_value.copyWith(exam: value) as $Val);
-    });
-  }
-
-  /// Create a copy of TesteModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $StudentModelCopyWith<$Res> get student {
-    return $StudentModelCopyWith<$Res>(_value.student, (value) {
-      return _then(_value.copyWith(student: value) as $Val);
-    });
   }
 }
 
@@ -146,14 +123,9 @@ abstract class _$$TesteModelImplCopyWith<$Res>
       String status,
       double score,
       double points,
-      ExamModel exam,
-      StudentModel student,
+      int examId,
+      int studentId,
       DateTime createdAt});
-
-  @override
-  $ExamModelCopyWith<$Res> get exam;
-  @override
-  $StudentModelCopyWith<$Res> get student;
 }
 
 /// @nodoc
@@ -173,8 +145,8 @@ class __$$TesteModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? score = null,
     Object? points = null,
-    Object? exam = null,
-    Object? student = null,
+    Object? examId = null,
+    Object? studentId = null,
     Object? createdAt = null,
   }) {
     return _then(_$TesteModelImpl(
@@ -194,14 +166,14 @@ class __$$TesteModelImplCopyWithImpl<$Res>
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as double,
-      exam: null == exam
-          ? _value.exam
-          : exam // ignore: cast_nullable_to_non_nullable
-              as ExamModel,
-      student: null == student
-          ? _value.student
-          : student // ignore: cast_nullable_to_non_nullable
-              as StudentModel,
+      examId: null == examId
+          ? _value.examId
+          : examId // ignore: cast_nullable_to_non_nullable
+              as int,
+      studentId: null == studentId
+          ? _value.studentId
+          : studentId // ignore: cast_nullable_to_non_nullable
+              as int,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -218,8 +190,8 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
       required this.status,
       required this.score,
       required this.points,
-      required this.exam,
-      required this.student,
+      required this.examId,
+      required this.studentId,
       required this.createdAt});
 
   factory _$TesteModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -234,15 +206,15 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
   @override
   final double points;
   @override
-  final ExamModel exam;
+  final int examId;
   @override
-  final StudentModel student;
+  final int studentId;
   @override
   final DateTime createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TesteModel(id: $id, status: $status, score: $score, points: $points, exam: $exam, student: $student, createdAt: $createdAt)';
+    return 'TesteModel(id: $id, status: $status, score: $score, points: $points, examId: $examId, studentId: $studentId, createdAt: $createdAt)';
   }
 
   @override
@@ -254,8 +226,8 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('score', score))
       ..add(DiagnosticsProperty('points', points))
-      ..add(DiagnosticsProperty('exam', exam))
-      ..add(DiagnosticsProperty('student', student))
+      ..add(DiagnosticsProperty('examId', examId))
+      ..add(DiagnosticsProperty('studentId', studentId))
       ..add(DiagnosticsProperty('createdAt', createdAt));
   }
 
@@ -268,8 +240,9 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.score, score) || other.score == score) &&
             (identical(other.points, points) || other.points == points) &&
-            (identical(other.exam, exam) || other.exam == exam) &&
-            (identical(other.student, student) || other.student == student) &&
+            (identical(other.examId, examId) || other.examId == examId) &&
+            (identical(other.studentId, studentId) ||
+                other.studentId == studentId) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
@@ -277,7 +250,7 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, status, score, points, exam, student, createdAt);
+      runtimeType, id, status, score, points, examId, studentId, createdAt);
 
   /// Create a copy of TesteModel
   /// with the given fields replaced by the non-null parameter values.
@@ -301,8 +274,8 @@ abstract class _TesteModel implements TesteModel {
       required final String status,
       required final double score,
       required final double points,
-      required final ExamModel exam,
-      required final StudentModel student,
+      required final int examId,
+      required final int studentId,
       required final DateTime createdAt}) = _$TesteModelImpl;
 
   factory _TesteModel.fromJson(Map<String, dynamic> json) =
@@ -317,9 +290,9 @@ abstract class _TesteModel implements TesteModel {
   @override
   double get points;
   @override
-  ExamModel get exam;
+  int get examId;
   @override
-  StudentModel get student;
+  int get studentId;
   @override
   DateTime get createdAt;
 

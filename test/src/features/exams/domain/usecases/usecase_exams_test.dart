@@ -6,144 +6,93 @@ import 'package:transcriptapp/src/features/exams/domain/models/exam_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_exams.dart';
 
+
+@GenerateNiceMocks([MockSpec<RepositoryRemoteExams>()])
 import 'usecase_exams_test.mocks.dart';
 
-// Generate mocks using build_runner
-@GenerateMocks([RepositoryRemoteExams])
 void main() {
-  late MockRepositoryRemoteExams mockRepositoryRemote;
   late UsecaseExams usecaseExams;
+  late MockRepositoryRemoteExams mockRepositoryRemoteExams;
 
   setUp(() {
-    mockRepositoryRemote = MockRepositoryRemoteExams();
-    usecaseExams = UsecaseExams(mockRepositoryRemote);
+    mockRepositoryRemoteExams = MockRepositoryRemoteExams();
+    usecaseExams = UsecaseExams(mockRepositoryRemoteExams);
   });
 
-  test('fetchExams should return a list of exams and ExptWebNoExpt on success',
-      () async {
-    final exams = [
-      ExamModel(
-        id: 1,
-        status: 'Math Exam',
-        classe: 'Math',
-        createdAt: DateTime.now(),
-      ),
-    ];
-    when(mockRepositoryRemote.getListExams(1)).thenAnswer((_) async => exams);
+  group('UsecaseExams Tests', () {
+    test('fetchExams: should return list of exams when successful', () async {
+      when(mockRepositoryRemoteExams.getListExams(any))
+          .thenAnswer((_) async => {
+                'status': true,
+                'data': [
+                  {'id': 1,  'classe': '1A', 'createdAt': '2022-01-01', 'status': 'pending'},
+                  {'id': 2,  'classe': '2A', 'createdAt': '2022-01-01', 'status': 'pending'},
+                ]
+              });
 
-    final result = await usecaseExams.fetchExams(1);
+      final result = await usecaseExams.fetchExams(1);
 
-    expect(result.exams, exams);
-    expect(result.exptWeb, isA<ExptWebNoExpt>());
-  });
+      expect(result.exams, isA<List<ExamModel>>());
+      expect(result.exams.length, equals(2));
+      expect(result.exptWeb, isA<ExptWebNoExpt>());
+    });
 
-  test('fetchExams should return empty list and ExptWebPost on empty list',
-      () async {
-    when(mockRepositoryRemote.getListExams(1)).thenAnswer((_) async => []);
+    test('fetchExams: should return exception when failed', () async {
+      when(mockRepositoryRemoteExams.getListExams(any))
+          .thenAnswer((_) async => {'status': false, 'message': 'Error'});
 
-    final result = await usecaseExams.fetchExams(1);
+      final result = await usecaseExams.fetchExams(1);
 
-    expect(result.exams, isEmpty);
-    expect(result.exptWeb, isA<ExptWebPost>());
-  });
+      expect(result.exams, isEmpty);
+      expect(result.exptWeb, isA<ExptWebGet>());
+    });
 
-  test('fetchExamDetails should return exam and ExptWebNoExpt on success',
-      () async {
-    final exam = ExamModel(
-        id: 1,
-        status: 'Math Exam',
-        classe: 'Math',
-        createdAt: DateTime.now(),
-      );
-    when(mockRepositoryRemote.getItemExam(1)).thenAnswer((_) async => exam);
+    test('fetchExamDetails: should return exam details when successful', () async {
+      when(mockRepositoryRemoteExams.getItemExam(any))
+          .thenAnswer((_) async => {
+                'status': true,
+                'data': {'id': 1,  'classe': '1A', 'createdAt': '2022-01-01', 'status': 'pending'}
+              });
 
-    final result = await usecaseExams.fetchExamDetails(1);
+      final result = await usecaseExams.fetchExamDetails(1);
 
-    expect(result.exam, exam);
-    expect(result.exptWeb, isA<ExptWebNoExpt>());
-  });
+      expect(result.exam, isA<ExamModel>());
+      expect(result.exptWeb, isA<ExptWebNoExpt>());
+    });
 
-  test(
-      'fetchExamDetails should return init exam and ExptWebPost on exam not found',
-      () async {
-    when(mockRepositoryRemote.getItemExam(1))
-        .thenAnswer((_) async => ExamModel.init());
+    test('fetchExamDetails: should return exception when failed', () async {
+      when(mockRepositoryRemoteExams.getItemExam(any))
+          .thenAnswer((_) async => {'status': false, 'message': 'Not Found'});
 
-    final result = await usecaseExams.fetchExamDetails(1);
+      final result = await usecaseExams.fetchExamDetails(1);
 
-    expect(result.exam, isA<ExamModel>());
-    expect(result.exam.id, 0);
-    expect(result.exptWeb, isA<ExptWebPost>());
-  });
-/*
-  test('saveExam should return id and ExptWebNoExpt on success', () async {
-    when(mockRepositoryRemote.postExam(any)).thenAnswer((_) async => 1);
+      expect(result.exam, isA<ExamModel>());
+      expect(result.exptWeb, isA<ExptWebGet>());
+    });
 
-    final result =
-        await usecaseExams.saveExam(ExamModel(
-        id: 1,
-        status: 'Math Exam',
-        classe: 'Math',
-        createdAt: DateTime.now(),
-      ));
+    test('updateExam: should return updated exam when successful', () async {
+      final newExam = ExamModel(id: 1,  classe: '1A', createdAt: DateTime.now(), status: 'pending');
+      when(mockRepositoryRemoteExams.putExam(id: anyNamed('id'), json: anyNamed('json')))
+          .thenAnswer((_) async => {
+                'status': true,
+                'data': {'id': 1,  'classe': '1A', 'createdAt': '2022-01-01', 'status': 'pending'}
+              });
 
-    expect(result.id, 1);
-    expect(result.exptWeb, isA<ExptWebNoExpt>());
-  });
+      final result = await usecaseExams.updateExam(id: 1, newExam: newExam);
 
-  test('saveExam should return 0 and ExptWebPost on failure', () async {
-    when(mockRepositoryRemote.postExam(any)).thenAnswer((_) async => 0);
+      expect(result.exam, isA<ExamModel>());
+      expect(result.exptWeb, isA<ExptWebNoExpt>());
+    });
 
-    final result =
-        await usecaseExams.saveExam(ExamModel(
-        id: 1,
-        status: 'Math Exam',
-        classe: 'Math',
-        createdAt: DateTime.now(),
-      ));
+    test('updateExam: should return exception when update fails', () async {
+      final newExam = ExamModel(id: 1,  classe: '1A', createdAt: DateTime.now(), status: 'pending');
+      when(mockRepositoryRemoteExams.putExam(id: anyNamed('id'), json: anyNamed('json')))
+          .thenAnswer((_) async => {'status': false, 'message': 'Update Failed'});
 
-    expect(result.id, 0);
-    expect(result.exptWeb, isA<ExptWebPost>());
-  });
-  */
+      final result = await usecaseExams.updateExam(id: 1, newExam: newExam);
 
-  test('updateExam should return updated exam and ExptWebNoExpt on success',
-      () async {
-    final updatedExam = ExamModel(
-        id: 1,
-        status: 'Math Exam',
-        classe: 'Math 2',
-        createdAt: DateTime.now(),
-      );
-
-    when(mockRepositoryRemote.putExam(id: 1, newExam: updatedExam))
-        .thenAnswer((_) async => updatedExam);
-
-    final result = await usecaseExams.updateExam(id: 1, newExam: updatedExam);
-
-    expect(result.exam, updatedExam);
-    expect(result.exptWeb, isA<ExptWebNoExpt>());
-  });
-
-  test('updateExam should return init exam and ExptWebPost on failure',
-      () async {
-        
-         final updatedExam = ExamModel(
-        id: 1,
-        status: 'Math Exam',
-        classe: 'Math 2',
-        createdAt: DateTime.now(),
-      );
-
-    when(mockRepositoryRemote.putExam(id: 1, newExam: updatedExam))
-        .thenAnswer((_) async => ExamModel.init());
-
-    final result = await usecaseExams.updateExam(
-        id: 1, newExam: updatedExam,
-      );
-
-    expect(result.exam, isA<ExamModel>());
-    expect(result.exam.id, 0);
-    expect(result.exptWeb, isA<ExptWebPost>());
+      expect(result.exam, isA<ExamModel>());
+      expect(result.exptWeb, isA<ExptWebPost>());
+    });
   });
 }

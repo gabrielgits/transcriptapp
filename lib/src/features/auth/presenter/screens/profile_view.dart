@@ -24,6 +24,7 @@ class ProfileViewState extends State<ProfileView> {
       name: 'Sarah Abs',
       phone: 'sarah.abs@gmail.com',
       status: 1,
+      courseId: 0,
     );
 
     return Scaffold(

@@ -3,19 +3,11 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i5;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:transcriptapp/src/features/exams/domain/models/exam_model.dart'
-    as _i2;
-import 'package:transcriptapp/src/features/exams/domain/models/question_model.dart'
-    as _i6;
-import 'package:transcriptapp/src/features/exams/domain/models/student_answer_model.dart'
-    as _i7;
-import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart'
-    as _i3;
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart'
-    as _i4;
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -30,64 +22,40 @@ import 'package:transcriptapp/src/features/exams/domain/repositories/repository_
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeExamModel_0 extends _i1.SmartFake implements _i2.ExamModel {
-  _FakeExamModel_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
-class _FakeTesteModel_1 extends _i1.SmartFake implements _i3.TesteModel {
-  _FakeTesteModel_1(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [RepositoryRemoteExams].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRepositoryRemoteExams extends _i1.Mock
-    implements _i4.RepositoryRemoteExams {
-  MockRepositoryRemoteExams() {
-    _i1.throwOnMissingStub(this);
-  }
-
+    implements _i2.RepositoryRemoteExams {
   @override
-  _i5.Future<List<_i2.ExamModel>> getListExams(int? studentId) =>
+  _i3.Future<Map<String, dynamic>> getListExams(int? studentId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getListExams,
           [studentId],
         ),
-        returnValue: _i5.Future<List<_i2.ExamModel>>.value(<_i2.ExamModel>[]),
-      ) as _i5.Future<List<_i2.ExamModel>>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<_i2.ExamModel> getItemExam(int? id) => (super.noSuchMethod(
+  _i3.Future<Map<String, dynamic>> getItemExam(int? id) => (super.noSuchMethod(
         Invocation.method(
           #getItemExam,
           [id],
         ),
-        returnValue: _i5.Future<_i2.ExamModel>.value(_FakeExamModel_0(
-          this,
-          Invocation.method(
-            #getItemExam,
-            [id],
-          ),
-        )),
-      ) as _i5.Future<_i2.ExamModel>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<_i2.ExamModel> putExam({
+  _i3.Future<Map<String, dynamic>> putExam({
     required int? id,
-    required _i2.ExamModel? newExam,
+    required Map<String, dynamic>? json,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -95,51 +63,44 @@ class MockRepositoryRemoteExams extends _i1.Mock
           [],
           {
             #id: id,
-            #newExam: newExam,
+            #json: json,
           },
         ),
-        returnValue: _i5.Future<_i2.ExamModel>.value(_FakeExamModel_0(
-          this,
-          Invocation.method(
-            #putExam,
-            [],
-            {
-              #id: id,
-              #newExam: newExam,
-            },
-          ),
-        )),
-      ) as _i5.Future<_i2.ExamModel>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<List<_i3.TesteModel>> getListTestes(int? studentId) =>
+  _i3.Future<Map<String, dynamic>> getListTestes(int? studentId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getListTestes,
           [studentId],
         ),
-        returnValue: _i5.Future<List<_i3.TesteModel>>.value(<_i3.TesteModel>[]),
-      ) as _i5.Future<List<_i3.TesteModel>>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<_i3.TesteModel> getItemTeste(int? id) => (super.noSuchMethod(
+  _i3.Future<Map<String, dynamic>> getItemTeste(int? id) => (super.noSuchMethod(
         Invocation.method(
           #getItemTeste,
           [id],
         ),
-        returnValue: _i5.Future<_i3.TesteModel>.value(_FakeTesteModel_1(
-          this,
-          Invocation.method(
-            #getItemTeste,
-            [id],
-          ),
-        )),
-      ) as _i5.Future<_i3.TesteModel>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<_i3.TesteModel> putTeste({
+  _i3.Future<Map<String, dynamic>> putTeste({
     required int? id,
-    required _i3.TesteModel? newTeste,
+    required Map<String, dynamic>? json,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -147,45 +108,44 @@ class MockRepositoryRemoteExams extends _i1.Mock
           [],
           {
             #id: id,
-            #newTeste: newTeste,
+            #json: json,
           },
         ),
-        returnValue: _i5.Future<_i3.TesteModel>.value(_FakeTesteModel_1(
-          this,
-          Invocation.method(
-            #putTeste,
-            [],
-            {
-              #id: id,
-              #newTeste: newTeste,
-            },
-          ),
-        )),
-      ) as _i5.Future<_i3.TesteModel>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<List<_i6.QuestionModel>> getListQuestions(int? examId) =>
+  _i3.Future<Map<String, dynamic>> getListQuestions(int? examId) =>
       (super.noSuchMethod(
         Invocation.method(
           #getListQuestions,
           [examId],
         ),
         returnValue:
-            _i5.Future<List<_i6.QuestionModel>>.value(<_i6.QuestionModel>[]),
-      ) as _i5.Future<List<_i6.QuestionModel>>);
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<bool> postStudentAnswer(_i7.StudentAnswerModel? answer) =>
+  _i3.Future<Map<String, dynamic>> postStudentAnswer(
+          Map<String, dynamic>? json) =>
       (super.noSuchMethod(
         Invocation.method(
           #postStudentAnswer,
-          [answer],
+          [json],
         ),
-        returnValue: _i5.Future<bool>.value(false),
-      ) as _i5.Future<bool>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<List<_i7.StudentAnswerModel>> getListStudentAnswers({
+  _i3.Future<Map<String, dynamic>> getListStudentAnswers({
     required int? studentId,
     required int? testeId,
   }) =>
@@ -198,12 +158,14 @@ class MockRepositoryRemoteExams extends _i1.Mock
             #testeId: testeId,
           },
         ),
-        returnValue: _i5.Future<List<_i7.StudentAnswerModel>>.value(
-            <_i7.StudentAnswerModel>[]),
-      ) as _i5.Future<List<_i7.StudentAnswerModel>>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i5.Future<_i3.TesteModel> postTeste({
+  _i3.Future<Map<String, dynamic>> postTeste({
     required int? studentId,
     required int? examId,
   }) =>
@@ -216,16 +178,9 @@ class MockRepositoryRemoteExams extends _i1.Mock
             #examId: examId,
           },
         ),
-        returnValue: _i5.Future<_i3.TesteModel>.value(_FakeTesteModel_1(
-          this,
-          Invocation.method(
-            #postTeste,
-            [],
-            {
-              #studentId: studentId,
-              #examId: examId,
-            },
-          ),
-        )),
-      ) as _i5.Future<_i3.TesteModel>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 }

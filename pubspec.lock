@@ -372,12 +372,10 @@ packages:
   feds:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: eae3e94f1bf7d261b306a718b5ea5b1eaf15b317
-      url: "https://github.com/gabrielgits/feds.git"
-    source: git
-    version: "0.2.4"
+      path: "../packages/feds"
+      relative: true
+    source: path
+    version: "0.2.5"
   fetch_api:
     dependency: transitive
     description:

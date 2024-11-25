@@ -1,8 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
 
-import 'exam_model.dart';
 
 part 'teste_model.freezed.dart';
 part 'teste_model.g.dart';
@@ -15,8 +13,8 @@ class TesteModel with _$TesteModel {
     required String status,
     required double score,
     required double points,
-    required ExamModel exam,
-    required StudentModel student,
+    required int examId,
+    required int studentId,
     required DateTime createdAt,
   }) = _TesteModel;
 
@@ -26,8 +24,8 @@ class TesteModel with _$TesteModel {
       status: '',
       score: 0,
       points: 0,
-      exam: ExamModel.init(),
-      student: StudentModel.init(),
+      examId: 0,
+      studentId: 0,
       createdAt: DateTime.now(),
     );
   }

@@ -47,7 +47,7 @@ void _setupAuth() {
     RepositoryLocalAuthImpl(getIt<FedsLocal>()),
   );
   getIt.registerSingleton<RepositoryRemoteAuth>(
-    RepositoryRemoteAuthImpl(getIt<FecsData>()),
+    RepositoryRemoteAuthImpl(getIt<FedsRest>()),
   );
 
   getIt.registerSingleton(

@@ -1,75 +1,73 @@
-import 'package:fecs/fecs.dart';
-import '../../domain/models/student_model.dart';
+import 'package:feds/feds.dart';
+import 'package:transcriptapp/src/core/constants.dart';
 import '../../domain/repositories/repository_remote_auth.dart';
 
 class RepositoryRemoteAuthImpl implements RepositoryRemoteAuth {
-  final FecsData datasource;
+  final FedsRest datasource;
   const RepositoryRemoteAuthImpl(this.datasource);
 
-  final table = 'students';
-
-  Future<StudentModel> _saveStudent(Map<String, dynamic> data) async {
-    if (data['status'] == false) {
-      throw Exception(data['error']);
-    }
-    final responseCheck = await datasource.searchAll(
-      table: table,
-      field: 'phone',
-      isEqualTo: data['data']['phone'],
-    );
-
-    if (responseCheck['status'] == false) {
-      throw Exception(responseCheck['error']);
-    }
-
-    if (responseCheck['data'].isEmpty) {
-      final responsePost =
-          await datasource.post(table: table, body: data['data']);
-      if (responsePost['status'] == false) {
-        throw Exception(responsePost['error']);
-      }
-      final student = StudentModel.fromJson(data['data']);
-      return student.copyWith(id: responsePost['data'].id);
-    }
-
-    return StudentModel.fromJson(responseCheck['data'].first);
-  }
-
   @override
-  Future<StudentModel> signinWithPhone({
+  Future<Map<String, dynamic>> signinWithPhone({
     required String phone,
     required String password,
   }) async {
-    final data = await datasource.signinWithEmail(
-      email: phone,
-      password: password,
+    return await datasource.post(
+      url: '${AppConstants.urlApi}/login',
+      body: {'phone': phone, 'password': password},
     );
-    return await _saveStudent(data);
   }
 
   @override
-  Future<bool> forgotPassword(String email) async {
-    return await datasource.recoveryPassword(email);
+  Future<Map<String, dynamic>> forgotPassword(String phone) async {
+    return await datasource.post(
+      url: '${AppConstants.urlApi}/forgot-password',
+      body: {'phone': phone},
+    );
   }
 
   @override
-  Future<bool> recoveryPassword({
-    required String code,
+  Future<Map<String, dynamic>> updatePassword({
+    required String oldPassword,
     required String newPassword,
   }) async {
-    return await datasource.confirmPasswordReset(
-      code: code,
-      newPassword: newPassword,
+    return await datasource.put(
+      url: '${AppConstants.urlApi}/update-password',
+      body: {'oldPassword': oldPassword, 'newPassword': newPassword},
+      token: AppConstants.token,
     );
   }
 
   @override
-  Future<bool> updatePassword(String newPassword) async {
-    return await datasource.changePassword(newPassword);
+ Future<Map<String, dynamic>> logout() async {
+    return await datasource.post(
+      url: '${AppConstants.urlApi}/logout',
+      body: {},
+      token: AppConstants.token,
+    );
   }
 
   @override
-  Future<bool> logout() async {
-    return await datasource.logout();
+  Future<Map<String, dynamic>> signUp(Map<String, dynamic> json) async {
+    return await datasource.post(
+      url: '${AppConstants.urlApi}/signup',
+      body: json,
+    );
+  }
+  
+  @override
+  Future<Map<String, dynamic>> profile(int id) async {
+    return await datasource.get(
+      '${AppConstants.urlApi}/profile/$id',
+      token: AppConstants.token,
+    );
+  }
+  
+  @override
+  Future<Map<String, dynamic>> updateProfile({required int id, required Map<String, dynamic> json}) async {
+    return await datasource.put(
+      url: '${AppConstants.urlApi}/update-profile',
+      body: json,
+      token: AppConstants.token,
+    );
   }
 }

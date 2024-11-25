@@ -11,14 +11,18 @@ class UsecaseExams {
   Future<({List<ExamModel> exams, ExptWeb exptWeb})> fetchExams(
       int studentId) async {
     try {
-      final exams = await repositoryRemote.getListExams(studentId);
-      if (exams.isEmpty) {
+      final resultWeb = await repositoryRemote.getListExams(studentId);
+      if (resultWeb['status'] == false) {
         return (
           exams: List<ExamModel>.empty(),
-          exptWeb: ExptWebPost('Empty exams list', 1),
+          exptWeb: ExptWebGet(
+              'Problem to get exams list: ${resultWeb["message"]}', 1),
         );
       }
-
+      List<ExamModel> exams = [];
+      for (var examJson in resultWeb['data']) {
+        exams.add(ExamModel.fromJson(examJson));
+      }
       return (exams: exams, exptWeb: ExptWebNoExpt());
     } catch (e) {
       return (
@@ -30,15 +34,15 @@ class UsecaseExams {
 
   Future<({ExamModel exam, ExptWeb exptWeb})> fetchExamDetails(int id) async {
     try {
-      final exam = await repositoryRemote.getItemExam(id);
-      if (exam.id == 0) {
+      final resultWeb = await repositoryRemote.getItemExam(id);
+      if (resultWeb['status'] == false){
         return (
           exam: ExamModel.init(),
-          exptWeb: ExptWebPost('Exam not found', 1),
+          exptWeb: ExptWebGet(
+              'Problem to get exam: ${resultWeb["message"]}', 1),
         );
       }
-
-      return (exam: exam, exptWeb: ExptWebNoExpt());
+      return (exam: ExamModel.fromJson(resultWeb['data']), exptWeb: ExptWebNoExpt());
     } catch (e) {
       return (
         exam: ExamModel.init(),
@@ -52,15 +56,17 @@ class UsecaseExams {
     required ExamModel newExam,
   }) async {
     try {
-      final exam = await repositoryRemote.putExam(id: id, newExam: newExam);
-      if (exam.id == 0) {
+      final resultWeb = await repositoryRemote.putExam(id: id, json: newExam.toJson());
+            if (resultWeb['status'] == false){
         return (
           exam: ExamModel.init(),
-          exptWeb: ExptWebPost('Exam not updated', 1),
+          exptWeb: ExptWebPost(
+              'Exam not updated: ${resultWeb["message"]}', 1),
         );
       }
 
-      return (exam: exam, exptWeb: ExptWebNoExpt());
+
+      return (exam: ExamModel.fromJson(resultWeb['data']), exptWeb: ExptWebNoExpt());
     } catch (e) {
       return (
         exam: ExamModel.init(),
@@ -68,5 +74,4 @@ class UsecaseExams {
       );
     }
   }
-
 }

@@ -14,12 +14,17 @@ class UsecasePlayTeste {
   Future<({List<QuestionModel> questions, ExptWeb exptWeb})> fetchListQuestions(
       int examId) async {
     try {
-      final questions = await repositoryRemote.getListQuestions(examId);
-      if (questions.isEmpty) {
+      final resultWeb = await repositoryRemote.getListQuestions(examId);
+      if (resultWeb['status'] == false) {
         return (
           questions: List<QuestionModel>.empty(),
-          exptWeb: ExptWebGet('Empty questions list', 1),
+          exptWeb: ExptWebGet(
+              'Problem to get questions list: ${resultWeb["message"]}', 1),
         );
+      }
+      List<QuestionModel> questions = [];
+      for (var questionJson in resultWeb['data']) {
+        questions.add(QuestionModel.fromJson(questionJson));
       }
       return (
         questions: questions,
@@ -38,12 +43,17 @@ class UsecasePlayTeste {
     required int testeId
   }) async {
     try {
-      final answers = await repositoryRemote.getListStudentAnswers(studentId: studentId, testeId: testeId);
-      if (answers.isEmpty) {
+      final resultWeb = await repositoryRemote.getListStudentAnswers(studentId: studentId, testeId: testeId);
+      if (resultWeb['status'] == false) {
         return (
           answers: List<StudentAnswerModel>.empty(),
-          exptWeb: ExptWebGet('Empty answers list', 1),
+          exptWeb: ExptWebGet(
+              'Problem to get answers list: ${resultWeb["message"]}', 1),
         );
+      }
+      List<StudentAnswerModel> answers = [];
+      for (var answerJson in resultWeb['data']) {
+        answers.add(StudentAnswerModel.fromJson(answerJson));
       }
       return (
         answers: answers,
@@ -57,13 +67,24 @@ class UsecasePlayTeste {
     }
   }
 
-  Future<({ExptWeb exptWeb, bool result})> sendStudentAnswer(
-      StudentAnswerModel answer) async {
+  Future<({ExptWeb exptWeb, bool result})> sendStudentAnswer({
+    required int studentId,
+    required int questionId,
+    required int answerId,
+    required int testeId,
+  }) async {
     try {
-      final result = await repositoryRemote.postStudentAnswer(answer);
-      if (result == false) {
+      final answer = {
+        'studentId': studentId,
+        'questionId': questionId,
+        'answerId': answerId,
+        'testeId': testeId
+      };
+      final resultWeb = await repositoryRemote.postStudentAnswer(answer);
+      if (resultWeb['status'] == false) {
         return (exptWeb: ExptWebPost('Answer not send', 1), result: false);
       }
+
       return (exptWeb: ExptWebNoExpt(), result: true);
     } catch (e) {
       return (
@@ -75,13 +96,14 @@ class UsecasePlayTeste {
 
     Future<({TesteModel teste, ExptWeb exptWeb})> startTeste({required int studentId, required int examId}) async {
     try {
-      final teste = await repositoryRemote.postTeste(studentId: studentId, examId: examId);
-      if (teste.id == 0) {
+      final resultWeb = await repositoryRemote.postTeste(studentId: studentId, examId: examId);
+      if (resultWeb['status'] == false) {
         return (
           teste: TesteModel.init(),
-          exptWeb: ExptWebPost('Teste not started', 1),
+          exptWeb: ExptWebPost('Teste not started: ${resultWeb["message"]}', 1),
         );
       }
+      TesteModel teste = TesteModel.fromJson(resultWeb['data']);
 
       return (teste: teste, exptWeb: ExptWebNoExpt());
     } catch (e) {

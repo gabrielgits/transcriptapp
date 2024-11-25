@@ -19,8 +19,8 @@ class UsersController extends _$UsersController {
     if (configs == null) {
       return StudentViewModel(StudentModel.init());
     }
-    final result = await _usecaseUsers.loadStudent(configs.studentId);
-    return StudentViewModel(result.item);
+    final result = await _usecaseUsers.profile(configs.studentId);
+    return StudentViewModel(result.student);
   }
 
 
@@ -33,7 +33,6 @@ class UsersController extends _$UsersController {
       state = AsyncError(result.exptWeb, StackTrace.current);
       return false;
     }
-    await _usecaseUsers.updateStudentIdConfig(result.student.id);
     state = AsyncValue.data(StudentViewModel(result.student));
     return true;
   }

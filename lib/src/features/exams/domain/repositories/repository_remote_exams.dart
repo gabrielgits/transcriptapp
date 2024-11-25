@@ -1,23 +1,28 @@
-import '../models/exam_model.dart';
-import '../models/question_model.dart';
-import '../models/student_answer_model.dart';
-import '../models/teste_model.dart';
 
 abstract class RepositoryRemoteExams {
-  Future<List<ExamModel>> getListExams(int studentId);
-  Future<ExamModel> getItemExam(int id);
-  Future<ExamModel> putExam({required int id, required ExamModel newExam});
+  Future<Map<String, dynamic>> getListExams(int studentId);
+  Future<Map<String, dynamic>> getItemExam(int id);
+  Future<Map<String, dynamic>> putExam({
+    required int id,
+    required Map<String, dynamic> json,
+  });
 
-  Future<List<TesteModel>> getListTestes(int studentId);
-  Future<TesteModel> getItemTeste(int id);
-  Future<TesteModel> putTeste({required int id, required TesteModel newTeste});
+  Future<Map<String, dynamic>> getListTestes(int studentId);
+  Future<Map<String, dynamic>> getItemTeste(int id);
+  Future<Map<String, dynamic>> putTeste({
+    required int id,
+    required Map<String, dynamic> json,
+  });
 
-    Future<List<QuestionModel>> getListQuestions(int examId);
-  Future<bool> postStudentAnswer(StudentAnswerModel answer);
-  Future<List<StudentAnswerModel>> getListStudentAnswers({
+  Future<Map<String, dynamic>> getListQuestions(int examId);
+  Future<Map<String, dynamic>> postStudentAnswer(Map<String, dynamic> json);
+  Future<Map<String, dynamic>> getListStudentAnswers({
     required int studentId,
     required int testeId,
   });
 
-  Future<TesteModel> postTeste({required int studentId, required int examId});
+  Future<Map<String, dynamic>> postTeste({
+    required int studentId,
+    required int examId,
+  });
 }

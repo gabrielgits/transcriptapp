@@ -12,6 +12,7 @@ class StudentModel with _$StudentModel {
     required String phone,
     required String photo,
     required int status,
+    required int courseId,
   }) = _StudentModel;
 
   factory StudentModel.init() {
@@ -21,6 +22,7 @@ class StudentModel with _$StudentModel {
       phone: '',
       photo: '',
       status: 0,
+      courseId: 0,
     );
   }
 

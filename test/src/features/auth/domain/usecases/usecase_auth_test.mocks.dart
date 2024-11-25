@@ -3,15 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i3;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart'
-    as _i2;
 import 'package:transcriptapp/src/features/auth/domain/repositories/repository_local_auth.dart'
-    as _i5;
+    as _i4;
 import 'package:transcriptapp/src/features/auth/domain/repositories/repository_remote_auth.dart'
-    as _i3;
+    as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,23 +24,13 @@ import 'package:transcriptapp/src/features/auth/domain/repositories/repository_r
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeStudentModel_0 extends _i1.SmartFake implements _i2.StudentModel {
-  _FakeStudentModel_0(
-    Object parent,
-    Invocation parentInvocation,
-  ) : super(
-          parent,
-          parentInvocation,
-        );
-}
-
 /// A class which mocks [RepositoryRemoteAuth].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRepositoryRemoteAuth extends _i1.Mock
-    implements _i3.RepositoryRemoteAuth {
+    implements _i2.RepositoryRemoteAuth {
   @override
-  _i4.Future<_i2.StudentModel> signinWithPhone({
+  _i3.Future<Map<String, dynamic>> signinWithPhone({
     required String? phone,
     required String? password,
   }) =>
@@ -55,145 +43,133 @@ class MockRepositoryRemoteAuth extends _i1.Mock
             #password: password,
           },
         ),
-        returnValue: _i4.Future<_i2.StudentModel>.value(_FakeStudentModel_0(
-          this,
-          Invocation.method(
-            #signinWithPhone,
-            [],
-            {
-              #phone: phone,
-              #password: password,
-            },
-          ),
-        )),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
         returnValueForMissingStub:
-            _i4.Future<_i2.StudentModel>.value(_FakeStudentModel_0(
-          this,
-          Invocation.method(
-            #signinWithPhone,
-            [],
-            {
-              #phone: phone,
-              #password: password,
-            },
-          ),
-        )),
-      ) as _i4.Future<_i2.StudentModel>);
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i4.Future<bool> forgotPassword(String? email) => (super.noSuchMethod(
+  _i3.Future<Map<String, dynamic>> signUp(Map<String, dynamic>? json) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #signUp,
+          [json],
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+
+  @override
+  _i3.Future<Map<String, dynamic>> forgotPassword(String? phone) =>
+      (super.noSuchMethod(
         Invocation.method(
           #forgotPassword,
-          [email],
+          [phone],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i4.Future<bool> recoveryPassword({
-    required String? code,
+  _i3.Future<Map<String, dynamic>> updatePassword({
+    required String? oldPassword,
     required String? newPassword,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #recoveryPassword,
+          #updatePassword,
           [],
           {
-            #code: code,
+            #oldPassword: oldPassword,
             #newPassword: newPassword,
           },
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i4.Future<bool> updatePassword(String? newPassword) => (super.noSuchMethod(
-        Invocation.method(
-          #updatePassword,
-          [newPassword],
-        ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
-
-  @override
-  _i4.Future<bool> logout() => (super.noSuchMethod(
+  _i3.Future<Map<String, dynamic>> logout() => (super.noSuchMethod(
         Invocation.method(
           #logout,
           [],
         ),
-        returnValue: _i4.Future<bool>.value(false),
-        returnValueForMissingStub: _i4.Future<bool>.value(false),
-      ) as _i4.Future<bool>);
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+
+  @override
+  _i3.Future<Map<String, dynamic>> profile(int? id) => (super.noSuchMethod(
+        Invocation.method(
+          #profile,
+          [id],
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+
+  @override
+  _i3.Future<Map<String, dynamic>> updateProfile({
+    required int? id,
+    required Map<String, dynamic>? json,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateProfile,
+          [],
+          {
+            #id: id,
+            #json: json,
+          },
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
 }
 
 /// A class which mocks [RepositoryLocalAuth].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockRepositoryLocalAuth extends _i1.Mock
-    implements _i5.RepositoryLocalAuth {
+    implements _i4.RepositoryLocalAuth {
   @override
-  _i4.Future<_i2.StudentModel> getItem(int? id) => (super.noSuchMethod(
+  _i3.Future<int> updateConfigStudent({
+    required int? studentId,
+    required String? token,
+  }) =>
+      (super.noSuchMethod(
         Invocation.method(
-          #getItem,
-          [id],
+          #updateConfigStudent,
+          [],
+          {
+            #studentId: studentId,
+            #token: token,
+          },
         ),
-        returnValue: _i4.Future<_i2.StudentModel>.value(_FakeStudentModel_0(
-          this,
-          Invocation.method(
-            #getItem,
-            [id],
-          ),
-        )),
-        returnValueForMissingStub:
-            _i4.Future<_i2.StudentModel>.value(_FakeStudentModel_0(
-          this,
-          Invocation.method(
-            #getItem,
-            [id],
-          ),
-        )),
-      ) as _i4.Future<_i2.StudentModel>);
+        returnValue: _i3.Future<int>.value(0),
+        returnValueForMissingStub: _i3.Future<int>.value(0),
+      ) as _i3.Future<int>);
 
   @override
-  _i4.Future<int> saveItem(_i2.StudentModel? item) => (super.noSuchMethod(
+  _i3.Future<int> deleteConfigStudent() => (super.noSuchMethod(
         Invocation.method(
-          #saveItem,
-          [item],
+          #deleteConfigStudent,
+          [],
         ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
-
-  @override
-  _i4.Future<int> updateItem(_i2.StudentModel? item) => (super.noSuchMethod(
-        Invocation.method(
-          #updateItem,
-          [item],
-        ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
-
-  @override
-  _i4.Future<int> deleteItem(int? id) => (super.noSuchMethod(
-        Invocation.method(
-          #deleteItem,
-          [id],
-        ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
-
-  @override
-  _i4.Future<int> updateStudentIdConfig(int? id) => (super.noSuchMethod(
-        Invocation.method(
-          #updateStudentIdConfig,
-          [id],
-        ),
-        returnValue: _i4.Future<int>.value(0),
-        returnValueForMissingStub: _i4.Future<int>.value(0),
-      ) as _i4.Future<int>);
+        returnValue: _i3.Future<int>.value(0),
+        returnValueForMissingStub: _i3.Future<int>.value(0),
+      ) as _i3.Future<int>);
 }

@@ -43,7 +43,7 @@ dependencies:
 
   #networking and storage:
   feds:
-    git: https://github.com/gabrielgits/feds.git
+    path: ../packages/feds
   fecs:
     git: https://github.com/gabrielgits/fecs.git
   dart_openai: ^5.1.0

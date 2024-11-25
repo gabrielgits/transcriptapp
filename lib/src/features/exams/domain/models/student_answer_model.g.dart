@@ -10,19 +10,19 @@ _$StudentAnswerModelImpl _$$StudentAnswerModelImplFromJson(
         Map<String, dynamic> json) =>
     _$StudentAnswerModelImpl(
       id: (json['id'] as num).toInt(),
-      student: StudentModel.fromJson(json['student'] as Map<String, dynamic>),
+      studentId: (json['studentId'] as num).toInt(),
       question:
           QuestionModel.fromJson(json['question'] as Map<String, dynamic>),
       answer: AnswerModel.fromJson(json['answer'] as Map<String, dynamic>),
-      teste: TesteModel.fromJson(json['teste'] as Map<String, dynamic>),
+      testeId: (json['testeId'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$StudentAnswerModelImplToJson(
         _$StudentAnswerModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'student': instance.student,
+      'studentId': instance.studentId,
       'question': instance.question,
       'answer': instance.answer,
-      'teste': instance.teste,
+      'testeId': instance.testeId,
     };

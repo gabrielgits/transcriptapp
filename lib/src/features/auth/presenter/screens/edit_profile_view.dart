@@ -20,6 +20,7 @@ class EditProfileViewState extends State<EditProfileView> {
     name: 'Sarah Abs',
     phone: '',
     status: 0,
+    courseId: 0,
   );
 
   @override
