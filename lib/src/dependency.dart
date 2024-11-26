@@ -3,8 +3,11 @@ import 'package:get_it/get_it.dart';
 import 'package:transcriptapp/src/core/infra/services/ia_service_openia.dart';
 import 'package:transcriptapp/src/features/auth/infra/repositories/repository_local_auth_impl.dart';
 import 'package:transcriptapp/src/features/auth/infra/repositories/repository_remote_auth_impl.dart';
-
-
+import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
+import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_exams.dart';
+import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_play_teste.dart';
+import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_testes.dart';
+import 'package:transcriptapp/src/features/exams/infra/repositories/repository_remote_auth_impl.dart';
 
 import 'features/auth/domain/repositories/repository_local_auth.dart';
 import 'features/auth/domain/repositories/repository_remote_auth.dart';
@@ -21,6 +24,7 @@ void setupAppStart() {
   _setup();
   _setupHome();
   _setupAuth();
+  _setupExams();
 }
 
 void _setup() {
@@ -33,11 +37,9 @@ void _setupHome() {
     RepositoryLocalHomeImpl(getIt<FedsLocal>()),
   );
 
-
   getIt.registerSingleton(
     UsecaseConfigs(getIt<RepositoryLocalHome>()),
   );
-
 }
 
 void _setupAuth() {
@@ -53,5 +55,23 @@ void _setupAuth() {
       repositoryLocal: getIt<RepositoryLocalAuth>(),
       repositoryRemote: getIt<RepositoryRemoteAuth>(),
     ),
+  );
+}
+
+void _setupExams() {
+  getIt.registerSingleton<RepositoryRemoteExams>(
+    RepositoryRemoteExamsImpl(getIt<FedsRest>()),
+  );
+
+  getIt.registerSingleton(
+    UsecaseExams(getIt<RepositoryRemoteExams>()),
+  );
+
+  getIt.registerSingleton(
+    UsecasePlayTeste(repositoryRemote: getIt<RepositoryRemoteExams>()),
+  );
+
+  getIt.registerSingleton(
+    UsecaseTestes(getIt<RepositoryRemoteExams>()),
   );
 }

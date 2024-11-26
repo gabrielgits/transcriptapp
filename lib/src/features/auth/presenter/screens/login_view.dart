@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/core/presenter/widgets/custom_app_bar_widget.dart';
+import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
 
 import '../widgets/login_form_widget.dart';
 
