@@ -14,7 +14,7 @@ class UsecaseAuth {
     required this.repositoryLocal,
   });
 
-  Future<({ExptData exptData, ExptWeb exptWeb})> logout(int id) async {
+  Future<({ExptData exptData, ExptWeb exptWeb})> logout() async {
     try {
       final resultWeb = await repositoryRemote.logout();
       if (resultWeb['status'] == false) {

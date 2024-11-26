@@ -1,11 +1,8 @@
 {
   "msn": {
-    "welcome": "Welcome to Tchissola.\n The ultimate quiz game app that leverages the power of artificial intelligence to let you design and play your very own customized quiz challenges.",
-    "suggestions": "Here are some keywords suggestions to help you get started:",
+    "welcome": "Transcript is an all-in-one student evaluation system for schools and universities.",
     "error": "Houston, we have a problem.",
-    "downloading": "Downloading quiz {quiz}. please wait...",
-    "deleting": "Deleting quiz {quiz}. please wait...",
-    "loadingList": "Loading all quiz. please wait..."
+    "welcomeBack": "Welcome Back {student}"
   },
   "btn": {
     "send": "Send",
@@ -38,7 +35,7 @@
   "login": {
     "title": "Login",
     "subtitle": "Login to your account",
-    "email": "Email",
+    "phone": "Phone",
     "password": "Password",
     "forgotPassword": "Forgot Password?",
     "btnLogin": "Login",

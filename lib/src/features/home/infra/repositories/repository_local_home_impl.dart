@@ -21,7 +21,8 @@ class RepositoryLocalHomeImpl implements RepositoryLocalHome {
   }
 
   @override
+
   Future<int> saveConfig(ConfigModel config) async {
-    return (await datasource.save(item: config.toJson(), table: table)) as int;
+    return await datasource.save(item: config.toJson(), table: table);
   }
 }

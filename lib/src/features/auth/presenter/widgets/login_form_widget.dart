@@ -3,6 +3,7 @@ import 'package:bform/bform.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/loading_widget.dart';
 
@@ -16,7 +17,7 @@ class LoginFormWidgets extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const space = 10.0;
-    final tecEmail = TextEditingController();
+    final tecPhone = TextEditingController();
     final tecPassword = TextEditingController();
 
     final userNotifier = ref.watch(usersControllerProvider);
@@ -33,15 +34,16 @@ class LoginFormWidgets extends ConsumerWidget {
           return Column(
             children: [
               BformTextInput(
-                label: tr('profile.phone'),
-                textInputType: TextInputType.emailAddress,
-                icon: const Icon(Icons.email),
-                controller: tecEmail,
-                hintText: 'Ex: jhon@email.com',
+                label: tr('login.phone'),
+                textInputType: TextInputType.phone,
+                icon: const Icon(Icons.phone),
+                controller: tecPhone,
+                hintText: 'Ex: 923123456',
               ),
               const SizedBox(height: space),
               BformTextInput(
-                label: tr('profile.password'),
+                obscureText: true,
+                label: tr('login.password'),
                 textInputType: TextInputType.visiblePassword,
                 icon: const Icon(Icons.password),
                 controller: tecPassword,
@@ -56,55 +58,32 @@ class LoginFormWidgets extends ConsumerWidget {
                 textColor: Colors.white,
                 fontSize: 20,
                 onPressed: () async {
-                  /*
-                  await ref
+                  final result = await ref
                       .read(usersControllerProvider.notifier)
-                      .signinWithEmail(
-                        email: tecEmail.text.trim(),
+                      .signinWithPhone(
+                        phone: tecPhone.text.trim(),
                         password: tecPassword.text.trim(),
                       );
-                  */
-                },
-              ),
-              const SizedBox(height: space),
-              BformDivider(child: Text(tr('login.or'))),
-              const SizedBox(height: space),
-              BformButton(
-                label: tr('login.google'),
-                style: BformButtonStyle.outlined,
-                iconAsset: 'assets/images/icons/google.png',
-                colors: const [Colors.red],
-                fontSize: 22,
-                onPressed: () async {
-                  final resultSigninWithGoogle = await ref
-                      .read(usersControllerProvider.notifier)
-                      .signinWithPhone(phone: 'test', password: 'text',);
-                  
-                  if (context.mounted && resultSigninWithGoogle) {
+                  if (context.mounted) {
+                    if (result) {
                       alertshowSnackbar(
                         context: context,
-                        type: AlertshowType.danger,
+                        message: tr(
+                          'msn.welcomeBack',
+                          namedArgs: {'student': userNotifier.value!.title},
+                        ),
+                      );
+                      context.goNamed('home');
+                    } else {
+                      alertshowSnackbar(
+                        type: AlertshowType.warning,
+                        context: context,
                         message: tr('login.failed'),
                       );
                     }
-                
+                  }
                 },
-
-                // width: MediaQuery.of(context).size.width * 0.80,
               ),
-              const SizedBox(height: space),
-              BformButton(
-                label: tr('login.facebook'),
-                style: BformButtonStyle.outlined,
-                onPressed: () {
-                  ///handleGoogleSignIn();
-                },
-                iconAsset: 'assets/images/icons/facebook.png',
-                colors: const [Colors.blue],
-                fontSize: 22,
-                // width: MediaQuery.of(context).size.width * 0.80,
-              ),
-              const SizedBox(height: space),
             ],
           );
         },

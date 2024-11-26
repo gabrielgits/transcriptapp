@@ -34,7 +34,7 @@ void main() {
       when(mockRepositoryLocalAuth.deleteConfigStudent())
           .thenAnswer((_) async => 1);
 
-      final result = await usecaseAuth.logout(1);
+      final result = await usecaseAuth.logout();
 
       expect(result.exptData, isA<ExptDataNoExpt>());
       expect(result.exptWeb, isA<ExptWebNoExpt>());
@@ -49,7 +49,7 @@ void main() {
       when(mockRepositoryLocalAuth.deleteConfigStudent())
           .thenAnswer((_) async => 0);
 
-      final result = await usecaseAuth.logout(1);
+      final result = await usecaseAuth.logout();
 
       expect(result.exptData, isA<ExptDataDelete>());
       expect(result.exptWeb, isA<ExptWebNoExpt>());
@@ -59,7 +59,7 @@ void main() {
       when(mockRepositoryRemoteAuth.logout()).thenAnswer(
           (_) async => {'status': false, 'message': 'Network Error'});
 
-      final result = await usecaseAuth.logout(1);
+      final result = await usecaseAuth.logout();
 
       expect(result.exptWeb, isA<ExptWebPost>());
     });
@@ -68,7 +68,7 @@ void main() {
       when(mockRepositoryRemoteAuth.logout()).thenThrow(
           (_) async => throwsException );
 
-      final result = await usecaseAuth.logout(1);
+      final result = await usecaseAuth.logout();
 
       expect(result.exptWeb, isA<ExptWebUnknown>());
       expect(result.exptData, isA<ExptDataUnknown>());

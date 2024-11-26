@@ -51,7 +51,7 @@ class HomeView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: Text(
-              tr(AppConstants.describe),
+              tr('msn.welcome'),
               style: Theme.of(context).textTheme.labelSmall,
             ),
           ),

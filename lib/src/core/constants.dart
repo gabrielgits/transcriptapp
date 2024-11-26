@@ -10,7 +10,7 @@ class AppConstants {
   static const dev = 'GV';
 
   //url
-  static const url = 'https://transcript.ao';
+  static const url = 'http://localhost:8000';
   static const urlStorage = '$url/storage/';
   static const urlApi = '$url/api/v1';
 

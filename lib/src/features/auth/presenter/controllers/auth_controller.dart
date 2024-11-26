@@ -30,7 +30,7 @@ class UsersController extends _$UsersController {
     final result =
         await _usecaseUsers.signinWithPhone(phone: phone, password: password);
     if (result.exptWeb != ExptWebNoExpt()) {
-      state = AsyncError(result.exptWeb, StackTrace.current);
+      state = AsyncValue.data(StudentViewModel(StudentModel.init()));
       return false;
     }
     state = AsyncValue.data(StudentViewModel(result.student));
@@ -39,7 +39,7 @@ class UsersController extends _$UsersController {
   
   Future<void> logout() async {
     state = const AsyncLoading();
-    final result = await _usecaseUsers.logout(state.requireValue.model.id);
+    final result = await _usecaseUsers.logout();
     if (result.exptWeb != ExptWebNoExpt()) {
       state = AsyncError(result.exptWeb, StackTrace.current);
     }

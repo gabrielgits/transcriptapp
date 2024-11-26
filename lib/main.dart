@@ -21,8 +21,8 @@ Future<void> main() async {
   return runApp(
     ProviderScope(
       child: EasyLocalization(
-        //supportedLocales: const [Locale('en', 'US'), Locale('pt', 'PT')],
-        supportedLocales: const [Locale('en', 'US')],
+        supportedLocales: const [Locale('en', 'US'), Locale('pt', 'PT')],
+        //supportedLocales: const [Locale('en', 'US')],
         path: 'assets/languages',
         fallbackLocale: const Locale('en', 'US'),
         child: const AppWidget(),

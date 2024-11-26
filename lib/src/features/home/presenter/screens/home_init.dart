@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/loading_widget.dart';
+import 'package:transcriptapp/src/features/auth/presenter/screens/login_view.dart';
 
 import '../controllers/controller_configs.dart';
 import 'landing_screen.dart';
@@ -23,7 +24,10 @@ class HomeInit extends ConsumerWidget {
       ),
       data: (config) {
         if (config.id > 0) {
-          return const HomeScreen();
+          if (config.studentId > 0) {
+            return const HomeScreen();
+          }
+           return const LoginScreen();
         }
         return LandingScreen(
           started: () async {
@@ -31,9 +35,8 @@ class HomeInit extends ConsumerWidget {
                 .read(controllerConfigsProvider.notifier)
                 .createConfig();
             if (context.mounted) {
-             context.pushReplacement('/home');
-            }
-                
+             context.replaceNamed('login');
+            }             
           },
         );
       },

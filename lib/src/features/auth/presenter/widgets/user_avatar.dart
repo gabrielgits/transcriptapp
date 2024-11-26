@@ -51,14 +51,18 @@ class UserAvatarWidget extends ConsumerWidget {
                       children: [
                         user.id == 0
                             ? _userAnonymous(context)
-                            : _userInfo(user, context, () async {
-                                await ref
-                                    .read(usersControllerProvider.notifier)
-                                    .logout();
+                            : _userInfo(
+                                user: user,
+                                context: context,
+                                onLogout: () async {
+                                  await ref
+                                      .read(usersControllerProvider.notifier)
+                                      .logout();
 
-                                if (!context.mounted) return;
-                                context.pop();
-                              }),
+                                  if (!context.mounted) return;
+                                  context.pop();
+                                },
+                              ),
                         const Spacer(),
                         ElevatedButton(
                           onPressed: () => Navigator.pop(context),
@@ -82,7 +86,10 @@ class UserAvatarWidget extends ConsumerWidget {
   }
 }
 
-_userInfo(StudentViewModel user, BuildContext context, VoidCallback onLogout) {
+_userInfo(
+    {required StudentViewModel user,
+    required BuildContext context,
+    required VoidCallback onLogout}) {
   const double space = 15;
   return Column(
     children: [

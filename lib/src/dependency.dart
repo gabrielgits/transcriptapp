@@ -29,6 +29,7 @@ void setupAppStart() {
 
 void _setup() {
   getIt.registerSingleton<FedsLocal>(FedsLocalSharedPref());
+  getIt.registerSingleton<FedsRest>(FedsRestDio());
   getIt.registerSingleton<IaService>(IaServiceOpenia(''));
 }
 

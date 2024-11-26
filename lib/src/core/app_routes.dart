@@ -7,19 +7,25 @@ import 'package:transcriptapp/src/features/auth/presenter/screens/login_view.dar
 import 'package:transcriptapp/src/features/auth/presenter/screens/profile_view.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/signup_view.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_init.dart';
+import 'package:transcriptapp/src/features/home/presenter/screens/home_screen.dart';
 import 'package:transcriptapp/src/features/notifications/presenter/views/notifications_view.dart';
 
 final GoRouter appRoutes = GoRouter(
-  initialLocation: '/home',
+  initialLocation: '/init',
   routes: [
     GoRoute(
-      path: '/home',
-      name: 'home',
+      path: '/init',
+      name: 'init',
       builder: (context, state) => const HomeInit(),
     ),
+        GoRoute(
+      path: '/home',
+      name: 'home',
+      builder: (context, state) => const HomeScreen(),
+    ),
     GoRoute(
-      path: '/signin',
-      name: 'signin',
+      path: '/login',
+      name: 'login',
       builder: (context, state) => const LoginScreen(),
     ),
     GoRoute(
