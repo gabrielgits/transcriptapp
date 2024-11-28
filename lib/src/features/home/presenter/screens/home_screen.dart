@@ -1,11 +1,13 @@
-import 'package:bform/bform.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/core/constants.dart';
-import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
+import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
+import 'package:transcriptapp/src/features/auth/presenter/widgets/user_avatar.dart';
+import 'package:transcriptapp/src/features/exams/presenter/screens/exams_screen.dart';
 
-import '../widgets/app_bar_widget.dart';
+import '../widgets/rating_bar_widget.dart';
+import '../widgets/session_widget.dart';
+import 'about_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,21 +17,22 @@ class HomeScreen extends StatelessWidget {
     return const DefaultTabController(
       length: 3,
       child: Scaffold(
-        appBar: AppBarWidget(
+        appBar: CustomAppbarWidget(
           title: '${AppConstants.name} Ver. ${AppConstants.version}',
+          actions: [UserAvatarWidget()],
         ),
         body: TabBarView(
           children: [
             HomeView(),
-            ChallengesView(),
-            Icon(Icons.directions_bike),
+            ExamsScreen(),
+            AboutScreen(),
           ],
         ),
         bottomNavigationBar: TabBar(
           tabs: [
-            Tab(icon: Icon(Icons.directions_car)),
-            Tab(icon: Icon(Icons.directions_transit)),
-            Tab(icon: Icon(Icons.directions_bike)),
+            Tab(icon: Icon(Icons.home)),
+            Tab(icon: Icon(Icons.add_chart)),
+            Tab(icon: Icon(Icons.info)),
           ],
         ),
       ),
@@ -56,74 +59,83 @@ class HomeView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: space),
-          const Placeholder(),
-          const SizedBox(height: space),
-          BformButton(
-            colors: [
-              Theme.of(context).colorScheme.inversePrimary,
-            ],
-            onPressed: () {
-              context.pushNamed('gamemaker');
-            },
-            fontSize: 20,
-            label: tr('home.newGame'),
+          SessionWidget(
+            height: 100,
+            child: Column(
+              children: [
+                Text(tr('home.attendances'),
+                    style: Theme.of(context).textTheme.titleSmall),
+                const SizedBox(height: space / 2),
+                const Text('80 %',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                // progress bar
+                const SizedBox(height: space / 2),
+                const LinearProgressIndicator(
+                  minHeight: 10,
+                  value: 0.8,
+                  backgroundColor: Colors.grey,
+                  color: Colors.green,
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: space),
+          SessionWidget(
+            height: 100,
+            child: Column(
+              children: [
+                Text(tr('home.dailyPoint'),
+                    style: Theme.of(context).textTheme.titleSmall),
+                const SizedBox(height: space / 2),
+                const RatingBar(rating: 3, ratingCount: 3, size: 30),
+              ],
+            ),
+          ),
+          const SizedBox(height: space),
+          SessionWidget(
+            height: 3 * 100,
+            child: Column(
+              children: [
+                Text(tr('home.examsPoints'),
+                    style: Theme.of(context).textTheme.titleSmall),
+                const SizedBox(height: space / 2),
+                for (int index = 0; index < 3; index++)
+                  ListTile(
+                    leading: const CircleAvatar(
+                      backgroundImage:
+                          AssetImage('assets/images/icons/default_game.png'),
+                    ),
+                    title: Text('Avalition Number ${index + 1}'),
+                    subtitle: const Text('Date: 01/01/2023 - Type: Avalition',
+                        style: TextStyle(fontSize: 8)),
+                    trailing: Text('10',
+                        style: Theme.of(context).textTheme.titleSmall),
+                  ),
+                const SizedBox(height: space / 2),
+                Text(
+                  "${tr('home.average')} : 10 Points",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: space),
+          SessionWidget(
+            height: 100,
+            child: Column(
+              children: [
+                Text(tr('home.totalPoints'),
+                    style: Theme.of(context).textTheme.titleSmall),
+                const SizedBox(height: space / 2),
+                Text(
+                  "${tr('home.average')} : 10 Points",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
-    );
-  }
-}
-
-class ChallengesView extends StatelessWidget {
-  const ChallengesView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    List<StudentModel> games = [
-      StudentModel.init().copyWith(name: 'Game 1'),
-      StudentModel.init().copyWith(name: 'Game 2'),
-    ];
-    return ListView.builder(
-      itemCount: games.length,
-      itemBuilder: (context, index) {
-        return ExpansionTile(
-          onExpansionChanged: (bool expanded) {
-            //setState(() => _customTileExpanded = expanded);
-          },
-          title: Text(games[index].name),
-          leading: const CircleAvatar(
-            backgroundImage: AssetImage('assets/images/icons/default_game.png'),
-          ),
-          subtitle: Text('${games[index].name} / ${games[index].name}'),
-          children: [
-            Container(
-              margin: const EdgeInsets.all(10.0),
-              padding: const EdgeInsets.all(10.0),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16.0),
-                color: Theme.of(context).colorScheme.inversePrimary,
-              ),
-              child: Column(
-                children: [
-                  Text(games[index].name),
-                  const SizedBox(height: 16),
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        IconButton(
-                            onPressed: () {}, icon: const Icon(Icons.email)),
-                        IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.delete_forever)),
-                      ])
-                ],
-              ),
-            ),
-          ],
-        );
-      },
     );
   }
 }

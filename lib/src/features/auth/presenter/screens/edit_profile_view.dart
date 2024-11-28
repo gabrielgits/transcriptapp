@@ -1,6 +1,7 @@
 import 'package:bform/bform.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:transcriptapp/src/features/auth/domain/models/course_model.dart';
 import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
 
 import '../widgets/profile_widget.dart';
@@ -13,14 +14,14 @@ class EditProfileView extends StatefulWidget {
 }
 
 class EditProfileViewState extends State<EditProfileView> {
-  static const user = StudentModel(
+  final user = StudentModel(
     id: 1,
     photo:
         'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80',
     name: 'Sarah Abs',
     phone: '',
     status: 0,
-    courseId: 0,
+    course: CourseModelModel.init(),
   );
 
   @override

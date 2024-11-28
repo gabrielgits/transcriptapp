@@ -21,16 +21,18 @@
     "save": "Save"
   },
   "home": {
-    "subtitle": "Wellcome to ultima",
     "options": "Options",
     "signin": "Sign in",
     "signout": "Sign out",
     "profile": "My Profile",
     "noAccount": "Hey, you don't have an account yet. You can create one right now.",
-    "newGame": "Create New Game",
-    "gameStatus": "Game Status",
-    "author": "Author",
-    "category": "Category"
+    "category": "Category",
+    "dailyPoint": "Daily Point",
+    "examsPoints": "Exams Points",
+    "average": "Average",
+    "attendances": "Attendances",
+    "totalPoints": "Total Points",
+    "support": "Support"
   },
   "login": {
     "title": "Login",
@@ -49,36 +51,6 @@
     "title": "Settings",
     "languages": "Languages",
     "loading": "Loading Settings"
-  },
-  "gameMaker": {
-    "title": "Create a new quiz",
-    "subtitle": "Tell me what's the quiz game about and I will create it for you.",
-    "subtitleError": "Sorry, some problem occurred when try create the quiz game. Please try again or change the title below:",
-    "name": "What is the game about?",
-    "button": "Create Now",
-    "buttonTryAgain": "Try Again",
-    "playDemo": "Play Demo Version",
-    "start": "PLAY DEMO",
-    "createAccount": "Create Account",
-    "test": "Test before save",
-    "dismiss": "DISMISS",
-    "demoview": "Game View - Demo",
-    "nameShort": "The game title can't be empty or too short",
-    "demoWarning": "This is just a demo game if you want to play full game you need to 'SAVE' before",
-    "save": "SAVE",
-    "notLoggedMessage": "You need to be logged in to save the game, do you want to login now?",
-    "notLogged": "Not Logged In"
-  },
-  "gameView": {
-    "title": "Game View",
-    "subtitle": "Play the quiz game",
-    "start": "PLAY",
-    "share": "Share",
-    "publish": "Publish",
-    "deleteAsk": "Do you want to delete this game?",
-    "tipUsed": "You already used this tip",
-    "skipUsed": "You already used this skip",
-    "dismiss": "DISMISS"
   },
   "landing": {
     "title1": "The ultimate quiz game to challenge your brain.",

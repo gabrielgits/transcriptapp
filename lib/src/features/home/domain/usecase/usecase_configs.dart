@@ -1,4 +1,5 @@
 import 'package:expt/expt.dart';
+import 'package:transcriptapp/src/core/constants.dart';
 
 import '../models/config_model.dart';
 import '../repositories/repository_local_home.dart';
@@ -41,6 +42,7 @@ class UsecaseConfigs {
     try {
       final item = await repositoryLocal.getConfig(1);
       if (item.id != 0) {
+        AppConstants.token = item.token;
         return (
           exception: ExptDataNoExpt(),
           item: item,

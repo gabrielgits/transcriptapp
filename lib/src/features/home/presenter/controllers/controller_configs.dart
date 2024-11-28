@@ -1,6 +1,6 @@
 import 'package:expt/expt.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:transcriptapp/src/dependency.dart';
+import 'package:transcriptapp/src/core/dependency.dart';
 
 import '../../domain/models/config_model.dart';
 import '../../domain/usecase/usecase_configs.dart';

@@ -155,7 +155,7 @@ void main() {
                 'data': {'student': const StudentModel(
                   id: 1,
                   name: 'John Doe',
-                  courseId: 1,
+                  course: ,
                   phone: '1234567890',
                   photo: '',
                   status: 1,

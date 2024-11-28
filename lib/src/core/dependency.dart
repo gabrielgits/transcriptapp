@@ -9,14 +9,14 @@ import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_play_te
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_testes.dart';
 import 'package:transcriptapp/src/features/exams/infra/repositories/repository_remote_auth_impl.dart';
 
-import 'features/auth/domain/repositories/repository_local_auth.dart';
-import 'features/auth/domain/repositories/repository_remote_auth.dart';
+import '../features/auth/domain/repositories/repository_local_auth.dart';
+import '../features/auth/domain/repositories/repository_remote_auth.dart';
 
-import 'core/domain/services/ia_service.dart';
-import 'features/auth/domain/usecases/usecase_auth.dart';
-import 'features/home/domain/repositories/repository_local_home.dart';
-import 'features/home/domain/usecase/usecase_configs.dart';
-import 'features/home/infra/repositories/repository_local_home_impl.dart';
+import 'domain/services/ia_service.dart';
+import '../features/auth/domain/usecases/usecase_auth.dart';
+import '../features/home/domain/repositories/repository_local_home.dart';
+import '../features/home/domain/usecase/usecase_configs.dart';
+import '../features/home/infra/repositories/repository_local_home_impl.dart';
 
 final getIt = GetIt.instance;
 

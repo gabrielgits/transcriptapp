@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class CustomAppbarWidget extends StatelessWidget
     implements PreferredSizeWidget {
@@ -33,16 +32,6 @@ class CustomAppbarWidget extends StatelessWidget
                   ? Theme.of(context).textTheme.bodyLarge!.color
                   : Theme.of(context).cardColor)),
       centerTitle: true,
-      leading: isBackButtonExist
-          ? IconButton(
-              icon: const Icon(Icons.arrow_back_ios),
-              color: bgColor == null
-                  ? Theme.of(context).textTheme.bodyLarge!.color
-                  : Theme.of(context).cardColor,
-              onPressed: () =>
-                  onBackPressed != null ? onBackPressed!() : context.pop(),
-            )
-          : const SizedBox(),
       backgroundColor: bgColor ?? Theme.of(context).cardColor,
       elevation: 0,
       actions: actions,

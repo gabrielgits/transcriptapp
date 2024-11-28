@@ -38,10 +38,9 @@ class RepositoryRemoteAuthImpl implements RepositoryRemoteAuth {
   }
 
   @override
- Future<Map<String, dynamic>> logout() async {
-    return await datasource.post(
-      url: '${AppConstants.urlApi}/logout',
-      body: {},
+  Future<Map<String, dynamic>> logout() async {
+    return await datasource.delete(
+      '${AppConstants.urlApi}/logout',
       token: AppConstants.token,
     );
   }
@@ -53,17 +52,18 @@ class RepositoryRemoteAuthImpl implements RepositoryRemoteAuth {
       body: json,
     );
   }
-  
+
   @override
   Future<Map<String, dynamic>> profile(int id) async {
     return await datasource.get(
-      '${AppConstants.urlApi}/profile/$id',
+      '${AppConstants.urlApi}/students/$id',
       token: AppConstants.token,
     );
   }
-  
+
   @override
-  Future<Map<String, dynamic>> updateProfile({required int id, required Map<String, dynamic> json}) async {
+  Future<Map<String, dynamic>> updateProfile(
+      {required int id, required Map<String, dynamic> json}) async {
     return await datasource.put(
       url: '${AppConstants.urlApi}/update-profile',
       body: json,

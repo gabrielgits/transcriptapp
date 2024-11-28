@@ -13,7 +13,7 @@ _$StudentModelImpl _$$StudentModelImplFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String,
       photo: json['photo'] as String,
       status: (json['status'] as num).toInt(),
-      courseId: (json['courseId'] as num).toInt(),
+      course: CourseModelModel.fromJson(json['course'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$StudentModelImplToJson(_$StudentModelImpl instance) =>
@@ -23,5 +23,5 @@ Map<String, dynamic> _$$StudentModelImplToJson(_$StudentModelImpl instance) =>
       'phone': instance.phone,
       'photo': instance.photo,
       'status': instance.status,
-      'courseId': instance.courseId,
+      'course': instance.course,
     };

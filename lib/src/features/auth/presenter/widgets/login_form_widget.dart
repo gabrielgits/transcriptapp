@@ -17,8 +17,8 @@ class LoginFormWidgets extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const space = 10.0;
-    final tecPhone = TextEditingController();
-    final tecPassword = TextEditingController();
+    final tecPhone = TextEditingController(text: '1234567890');
+    final tecPassword = TextEditingController(text: 'password000');
 
     final userNotifier = ref.watch(usersControllerProvider);
     return BformForm(
@@ -64,13 +64,14 @@ class LoginFormWidgets extends ConsumerWidget {
                         phone: tecPhone.text.trim(),
                         password: tecPassword.text.trim(),
                       );
+                  String studentName = ref.watch(usersControllerProvider).value!.title;
                   if (context.mounted) {
                     if (result) {
                       alertshowSnackbar(
                         context: context,
                         message: tr(
                           'msn.welcomeBack',
-                          namedArgs: {'student': userNotifier.value!.title},
+                          namedArgs: {'student': studentName},
                         ),
                       );
                       context.goNamed('home');

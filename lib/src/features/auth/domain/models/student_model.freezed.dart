@@ -25,7 +25,7 @@ mixin _$StudentModel {
   String get phone => throw _privateConstructorUsedError;
   String get photo => throw _privateConstructorUsedError;
   int get status => throw _privateConstructorUsedError;
-  int get courseId => throw _privateConstructorUsedError;
+  CourseModelModel get course => throw _privateConstructorUsedError;
 
   /// Serializes this StudentModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -49,7 +49,9 @@ abstract class $StudentModelCopyWith<$Res> {
       String phone,
       String photo,
       int status,
-      int courseId});
+      CourseModelModel course});
+
+  $CourseModelModelCopyWith<$Res> get course;
 }
 
 /// @nodoc
@@ -72,7 +74,7 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
     Object? phone = null,
     Object? photo = null,
     Object? status = null,
-    Object? courseId = null,
+    Object? course = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,11 +97,21 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
-      courseId: null == courseId
-          ? _value.courseId
-          : courseId // ignore: cast_nullable_to_non_nullable
-              as int,
+      course: null == course
+          ? _value.course
+          : course // ignore: cast_nullable_to_non_nullable
+              as CourseModelModel,
     ) as $Val);
+  }
+
+  /// Create a copy of StudentModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CourseModelModelCopyWith<$Res> get course {
+    return $CourseModelModelCopyWith<$Res>(_value.course, (value) {
+      return _then(_value.copyWith(course: value) as $Val);
+    });
   }
 }
 
@@ -117,7 +129,10 @@ abstract class _$$StudentModelImplCopyWith<$Res>
       String phone,
       String photo,
       int status,
-      int courseId});
+      CourseModelModel course});
+
+  @override
+  $CourseModelModelCopyWith<$Res> get course;
 }
 
 /// @nodoc
@@ -138,7 +153,7 @@ class __$$StudentModelImplCopyWithImpl<$Res>
     Object? phone = null,
     Object? photo = null,
     Object? status = null,
-    Object? courseId = null,
+    Object? course = null,
   }) {
     return _then(_$StudentModelImpl(
       id: null == id
@@ -161,10 +176,10 @@ class __$$StudentModelImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as int,
-      courseId: null == courseId
-          ? _value.courseId
-          : courseId // ignore: cast_nullable_to_non_nullable
-              as int,
+      course: null == course
+          ? _value.course
+          : course // ignore: cast_nullable_to_non_nullable
+              as CourseModelModel,
     ));
   }
 }
@@ -178,7 +193,7 @@ class _$StudentModelImpl with DiagnosticableTreeMixin implements _StudentModel {
       required this.phone,
       required this.photo,
       required this.status,
-      required this.courseId});
+      required this.course});
 
   factory _$StudentModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$StudentModelImplFromJson(json);
@@ -194,11 +209,11 @@ class _$StudentModelImpl with DiagnosticableTreeMixin implements _StudentModel {
   @override
   final int status;
   @override
-  final int courseId;
+  final CourseModelModel course;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'StudentModel(id: $id, name: $name, phone: $phone, photo: $photo, status: $status, courseId: $courseId)';
+    return 'StudentModel(id: $id, name: $name, phone: $phone, photo: $photo, status: $status, course: $course)';
   }
 
   @override
@@ -211,7 +226,7 @@ class _$StudentModelImpl with DiagnosticableTreeMixin implements _StudentModel {
       ..add(DiagnosticsProperty('phone', phone))
       ..add(DiagnosticsProperty('photo', photo))
       ..add(DiagnosticsProperty('status', status))
-      ..add(DiagnosticsProperty('courseId', courseId));
+      ..add(DiagnosticsProperty('course', course));
   }
 
   @override
@@ -224,14 +239,13 @@ class _$StudentModelImpl with DiagnosticableTreeMixin implements _StudentModel {
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.photo, photo) || other.photo == photo) &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.courseId, courseId) ||
-                other.courseId == courseId));
+            (identical(other.course, course) || other.course == course));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, name, phone, photo, status, courseId);
+      Object.hash(runtimeType, id, name, phone, photo, status, course);
 
   /// Create a copy of StudentModel
   /// with the given fields replaced by the non-null parameter values.
@@ -256,7 +270,7 @@ abstract class _StudentModel implements StudentModel {
       required final String phone,
       required final String photo,
       required final int status,
-      required final int courseId}) = _$StudentModelImpl;
+      required final CourseModelModel course}) = _$StudentModelImpl;
 
   factory _StudentModel.fromJson(Map<String, dynamic> json) =
       _$StudentModelImpl.fromJson;
@@ -272,7 +286,7 @@ abstract class _StudentModel implements StudentModel {
   @override
   int get status;
   @override
-  int get courseId;
+  CourseModelModel get course;
 
   /// Create a copy of StudentModel
   /// with the given fields replaced by the non-null parameter values.

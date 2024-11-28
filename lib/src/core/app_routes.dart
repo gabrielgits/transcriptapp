@@ -3,9 +3,10 @@ import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/about_view.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/change_password_view.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/edit_profile_view.dart';
-import 'package:transcriptapp/src/features/auth/presenter/screens/login_view.dart';
-import 'package:transcriptapp/src/features/auth/presenter/screens/profile_view.dart';
+import 'package:transcriptapp/src/features/auth/presenter/screens/login_screen.dart';
+import 'package:transcriptapp/src/features/auth/presenter/screens/profile_screen.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/signup_view.dart';
+import 'package:transcriptapp/src/features/auth/presenter/viewmodels/student_view_model.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_init.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_screen.dart';
 import 'package:transcriptapp/src/features/notifications/presenter/views/notifications_view.dart';
@@ -43,7 +44,11 @@ final GoRouter appRoutes = GoRouter(
     ),
     GoRoute(
       path: '/profile',
-      builder: (context, state) => const ProfileView(),
+      name: 'profile',
+      builder: (context, state) {
+        final student = (state.extra as Map)['student'] as StudentViewModel;
+        return ProfileView(student: student);
+      },
       routes: [
         GoRoute(
           path: 'edit',

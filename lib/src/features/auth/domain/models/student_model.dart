@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:transcriptapp/src/features/auth/domain/models/course_model.dart';
 
 part 'student_model.freezed.dart';
 part 'student_model.g.dart';
@@ -12,17 +13,17 @@ class StudentModel with _$StudentModel {
     required String phone,
     required String photo,
     required int status,
-    required int courseId,
+    required CourseModelModel course,
   }) = _StudentModel;
 
   factory StudentModel.init() {
-    return const StudentModel(
+    return StudentModel(
       id: 0,
       name: '',
       phone: '',
       photo: '',
       status: 0,
-      courseId: 0,
+      course: CourseModelModel.init(),
     );
   }
 
