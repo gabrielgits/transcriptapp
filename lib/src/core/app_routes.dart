@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/features/auth/presenter/screens/about_view.dart';
+import 'package:transcriptapp/src/features/attendances/presenter/screens/attendances_list_screen.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/change_password_view.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/edit_profile_view.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/login_screen.dart';
@@ -28,31 +28,29 @@ final GoRouter appRoutes = GoRouter(
       path: '/login',
       name: 'login',
       builder: (context, state) => const LoginScreen(),
-    ),
-    GoRoute(
-      path: '/signup',
-      name: 'signup',
-      builder: (context, state) => const SignupView(),
-    ),
-    GoRoute(
-      path: '/change_password',
-      builder: (context, state) => const ChangePasswordView(),
-    ),
-    GoRoute(
-      path: '/about',
-      builder: (context, state) => const AboutView(),
-    ),
-    GoRoute(
-      path: '/profile',
-      name: 'profile',
-      builder: (context, state) {
-        final student = (state.extra as Map)['student'] as StudentViewModel;
-        return ProfileView(student: student);
-      },
       routes: [
         GoRoute(
-          path: 'edit',
-          builder: (context, state) => const EditProfileView(),
+          path: 'signup',
+          name: 'signup',
+          builder: (context, state) => const SignupView(),
+        ),
+        GoRoute(
+          path: 'change_password',
+          builder: (context, state) => const ChangePasswordView(),
+        ),
+        GoRoute(
+          path: 'profile',
+          name: 'profile',
+          builder: (context, state) {
+            final student = (state.extra as Map)['student'] as StudentViewModel;
+            return ProfileView(student: student);
+          },
+          routes: [
+            GoRoute(
+              path: 'edit',
+              builder: (context, state) => const EditProfileView(),
+            ),
+          ],
         ),
       ],
     ),
@@ -82,6 +80,11 @@ final GoRouter appRoutes = GoRouter(
           },
         ),
       ],
+    ),
+    GoRoute(
+      path: '/attendances',
+      name: 'attendances',
+      builder: (context, state) => const AttendancesListScreen(),
     ),
    
   ],

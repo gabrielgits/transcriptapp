@@ -40,9 +40,7 @@ void main() {
       expect(result.exptWeb, isA<ExptWebNoExpt>());
     });
 
-
-    test(
-        'logout: should return ExptDataDelete local actions unsuccessful',
+    test('logout: should return ExptDataDelete local actions unsuccessful',
         () async {
       when(mockRepositoryRemoteAuth.logout())
           .thenAnswer((_) async => {'status': true});
@@ -64,9 +62,9 @@ void main() {
       expect(result.exptWeb, isA<ExptWebPost>());
     });
 
-        test('logout: should return exception when remote logout fails', () async {
-      when(mockRepositoryRemoteAuth.logout()).thenThrow(
-          (_) async => throwsException );
+    test('logout: should return exception when remote logout fails', () async {
+      when(mockRepositoryRemoteAuth.logout())
+          .thenThrow((_) async => throwsException);
 
       final result = await usecaseAuth.logout();
 
@@ -101,13 +99,13 @@ void main() {
       expect(result, isA<ExptWebPost>());
     });
 
-        test('changePassword: should return exception when updatePassword throwsException',
+    test(
+        'changePassword: should return exception when updatePassword throwsException',
         () async {
       when(mockRepositoryRemoteAuth.updatePassword(
         oldPassword: 'oldPassword',
         newPassword: 'newPassword',
-      )).thenThrow(
-          throwsException);
+      )).thenThrow(throwsException);
 
       final result = await usecaseAuth.changePassword(
           oldPassword: 'oldPassword', newPassword: 'newPassword');
@@ -135,10 +133,11 @@ void main() {
       expect(result, isA<ExptWebPost>());
     });
 
-        test('forgotPassword: should return exception when forgotPassword throwsException',
+    test(
+        'forgotPassword: should return exception when forgotPassword throwsException',
         () async {
-      when(mockRepositoryRemoteAuth.forgotPassword('1234567890')).thenThrow(
-          (_) async => throwsException);
+      when(mockRepositoryRemoteAuth.forgotPassword('1234567890'))
+          .thenThrow((_) async => throwsException);
 
       final result = await usecaseAuth.forgotPassword('1234567890');
 
@@ -148,19 +147,34 @@ void main() {
     test(
         'signinWithPhone: should return student and no exception when sign in succeeds',
         () async {
+      final response = {
+        'status': true,
+        'data': {
+          'student': {
+            'id': 1,
+            'name': 'John Doe',
+            'phone': '1234567890',
+            'photo': 'default.png',
+            'status': 1,
+            'course': {
+              "id": 1,
+              "name": "Economia",
+              "room": "A.01",
+              "userId": 1,
+              "user": {
+                "id": 1,
+                "name": "Admin do Sistema",
+                "email": "admin@transcript.ao"
+              }
+            },
+          },
+          'token': 'abc123',
+        }
+      };
+
       when(mockRepositoryRemoteAuth.signinWithPhone(
               phone: '1234567890', password: 'password'))
-          .thenAnswer((_) async => {
-                'status': true,
-                'data': {'student': const StudentModel(
-                  id: 1,
-                  name: 'John Doe',
-                  course: ,
-                  phone: '1234567890',
-                  photo: '',
-                  status: 1,
-                ).toJson(), 'token': 'abc123'}
-              });
+          .thenAnswer((_) async => response);
 
       when(mockRepositoryLocalAuth.updateConfigStudent(
               studentId: anyNamed('studentId'), token: anyNamed('token')))
@@ -194,22 +208,37 @@ void main() {
       expect(result.exptWeb, isA<ExptWebPost>());
     });
 
-        test(
+    test(
         'signinWithPhone: should return exception when updateConfigStudent was unsucceeful',
         () async {
+      final response = {
+        'status': true,
+        'data': {
+          'student': {
+            'id': 1,
+            'name': 'John Doe',
+            'phone': '1234567890',
+            'photo': 'default.png',
+            'status': 1,
+            'course': {
+              "id": 1,
+              "name": "Economia",
+              "room": "A.01",
+              "userId": 1,
+              "user": {
+                "id": 1,
+                "name": "Admin do Sistema",
+                "email": "admin@transcript.ao"
+              }
+            },
+          },
+          'token': 'abc123',
+        }
+      };
+
       when(mockRepositoryRemoteAuth.signinWithPhone(
               phone: '1234567890', password: 'password'))
-          .thenAnswer((_) async => {
-                'status': true,
-                'data': {'student': const StudentModel(
-                  id: 1,
-                  name: 'John Doe',
-                  courseId: 1,
-                  phone: '1234567890',
-                  photo: '',
-                  status: 1,
-                ).toJson(), 'token': 'abc123'}
-              });
+          .thenAnswer((_) async => response);
 
       when(mockRepositoryLocalAuth.updateConfigStudent(
               studentId: anyNamed('studentId'), token: anyNamed('token')))
@@ -229,7 +258,6 @@ void main() {
               phone: '1234567890', password: 'password'))
           .thenThrow((_) async => throwsException);
 
-
       final result = await usecaseAuth.signinWithPhone(
           phone: '1234567890', password: 'password');
 
@@ -239,22 +267,33 @@ void main() {
 
     test('signUp: should return student and no exception when sign up succeeds',
         () async {
-      when(mockRepositoryRemoteAuth.signUp(any)).thenAnswer((_) async => {
-            'status': true,
-            'data': {
-              'student': 
-                const StudentModel(
-                  id: 1,
-                  name: 'John Doe',
-                  courseId: 1,
-                  phone: '1234567890',
-                  photo: '',
-                  status: 1,
-                ).toJson()
-              ,
-              'token': 'abc123'
-            }
-          });
+      final response = {
+        'status': true,
+        'data': {
+          'student': {
+            'id': 1,
+            'name': 'John Doe',
+            'phone': '1234567890',
+            'photo': 'default.png',
+            'status': 1,
+            'course': {
+              "id": 1,
+              "name": "Economia",
+              "room": "A.01",
+              "userId": 1,
+              "user": {
+                "id": 1,
+                "name": "Admin do Sistema",
+                "email": "admin@transcript.ao"
+              }
+            },
+          },
+          'token': 'abc123',
+        }
+      };
+
+      when(mockRepositoryRemoteAuth.signUp(any))
+          .thenAnswer((_) async => response);
 
       when(mockRepositoryLocalAuth.updateConfigStudent(
               studentId: anyNamed('studentId'), token: anyNamed('token')))
@@ -289,24 +328,36 @@ void main() {
       expect(result.exptWeb, isA<ExptWebPost>());
     });
 
-    test('signUp: should return exception when updateConfigStudent was unsucceeful',
+    test(
+        'signUp: should return exception when updateConfigStudent was unsucceeful',
         () async {
-      when(mockRepositoryRemoteAuth.signUp(any)).thenAnswer((_) async => {
-            'status': true,
-            'data': {
-              'student': 
-                const StudentModel(
-                  id: 1,
-                  name: 'John Doe',
-                  courseId: 1,
-                  phone: '1234567890',
-                  photo: '',
-                  status: 1,
-                ).toJson()
-              ,
-              'token': 'abc123'
-            }
-          });
+      final response = {
+        'status': true,
+        'data': {
+          'student': {
+            'id': 1,
+            'name': 'John Doe',
+            'phone': '1234567890',
+            'photo': 'default.png',
+            'status': 1,
+            'course': {
+              "id": 1,
+              "name": "Economia",
+              "room": "A.01",
+              "userId": 1,
+              "user": {
+                "id": 1,
+                "name": "Admin do Sistema",
+                "email": "admin@transcript.ao"
+              }
+            },
+          },
+          'token': 'abc123',
+        }
+      };
+
+      when(mockRepositoryRemoteAuth.signUp(any))
+          .thenAnswer((_) async => response);
 
       when(mockRepositoryLocalAuth.updateConfigStudent(
               studentId: anyNamed('studentId'), token: anyNamed('token')))
@@ -321,12 +372,12 @@ void main() {
 
       expect(result.student, StudentModel.init());
       expect(result.exptWeb, isA<ExptWebPost>());
-
     });
 
     test('signUp: should return exception when signUp throwsException',
         () async {
-      when(mockRepositoryRemoteAuth.signUp(any)).thenThrow((_) async => throwsException);
+      when(mockRepositoryRemoteAuth.signUp(any))
+          .thenThrow((_) async => throwsException);
 
       final result = await usecaseAuth.signUp(
         name: 'John Doe',
@@ -342,15 +393,30 @@ void main() {
     test(
         'profile: should return student and no exception when profile is found',
         () async {
+      final response = {
+        'status': true,
+        'data': {
+          'id': 1,
+          'name': 'John Doe',
+          'phone': '1234567890',
+          'photo': 'default.png',
+          'status': 1,
+          'course': {
+            "id": 1,
+            "name": "Economia",
+            "room": "A.01",
+            "userId": 1,
+            "user": {
+              "id": 1,
+              "name": "Admin do Sistema",
+              "email": "admin@transcript.ao"
+            }
+          },
+        },
+      };
+
       when(mockRepositoryRemoteAuth.profile(1))
-          .thenAnswer((_) async => {'status': true, 'data': const StudentModel(
-                  id: 1,
-                  name: 'John Doe',
-                  courseId: 1,
-                  phone: '1234567890',
-                  photo: '',
-                  status: 1,
-                ).toJson()});
+          .thenAnswer((_) async => response);
 
       final result = await usecaseAuth.profile(1);
 
@@ -358,8 +424,7 @@ void main() {
       expect(result.exception, isA<ExptWebNoExpt>());
     });
 
-    test(
-        'profile: should return exception when profile is not found',
+    test('profile: should return exception when profile is not found',
         () async {
       when(mockRepositoryRemoteAuth.profile(1))
           .thenAnswer((_) async => {'status': false, 'message': 'not found'});
@@ -370,8 +435,7 @@ void main() {
       expect(result.exception, isA<ExptWebGet>());
     });
 
-    test(
-        'profile: should return exception when profile throwsException',
+    test('profile: should return exception when profile throwsException',
         () async {
       when(mockRepositoryRemoteAuth.profile(1))
           .thenThrow((_) async => throwsException);

@@ -1,6 +1,9 @@
 import 'package:feds/feds.dart';
 import 'package:get_it/get_it.dart';
 import 'package:transcriptapp/src/core/infra/services/ia_service_openia.dart';
+import 'package:transcriptapp/src/features/attendances/domain/repositories/repository_remote_exams.dart';
+import 'package:transcriptapp/src/features/attendances/domain/usecases/usecase_attendances.dart';
+import 'package:transcriptapp/src/features/attendances/infra/repositories/repository_remote_auth_impl.dart';
 import 'package:transcriptapp/src/features/auth/infra/repositories/repository_local_auth_impl.dart';
 import 'package:transcriptapp/src/features/auth/infra/repositories/repository_remote_auth_impl.dart';
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
@@ -25,6 +28,7 @@ void setupAppStart() {
   _setupHome();
   _setupAuth();
   _setupExams();
+  _setupAttendances();
 }
 
 void _setup() {
@@ -74,5 +78,15 @@ void _setupExams() {
 
   getIt.registerSingleton(
     UsecaseTestes(getIt<RepositoryRemoteExams>()),
+  );
+}
+
+void _setupAttendances() {
+  getIt.registerSingleton<RepositoryRemoteAttendances>(
+    RepositoryRemoteAttendancesImpl(getIt<FedsRest>()),
+  );
+
+  getIt.registerSingleton(
+    UsecaseAttendances(getIt<RepositoryRemoteAttendances>()),
   );
 }

@@ -2,7 +2,8 @@
   "msn": {
     "welcome": "Transcript is an all-in-one student evaluation system for schools and universities.",
     "error": "Houston, we have a problem.",
-    "welcomeBack": "Welcome Back {student}"
+    "welcomeBack": "Welcome Back {student}",
+    "noData": "There is no data to show"
   },
   "btn": {
     "send": "Send",
@@ -58,5 +59,17 @@
     "title3": "You just need the title and Tchissola will do the rest.",
     "title4": "Share your quiz with friends and family.",
     "btnStart": "Get Started"
+  },
+  "attendances": {
+    "title": "Attendances",
+    "loading": "Loading Attendances",
+    "classeNumber": "Classe Number",
+    "date": "Date",
+    "countPresent": "Number of Present",
+    "countAbsent": "Number of Absent"
+  },
+  "noDataScreen": {
+    "search": "There is no data to show",
+    "goHome": "Go To Home"
   }
 }

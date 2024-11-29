@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:transcriptapp/src/core/constants.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
+import 'package:transcriptapp/src/features/attendances/presenter/widgets/attendance_report_widget.dart';
 import 'package:transcriptapp/src/features/auth/presenter/widgets/user_avatar.dart';
 import 'package:transcriptapp/src/features/exams/presenter/screens/exams_screen.dart';
 
@@ -18,7 +19,7 @@ class HomeScreen extends StatelessWidget {
       length: 3,
       child: Scaffold(
         appBar: CustomAppbarWidget(
-          title: '${AppConstants.name} Ver. ${AppConstants.version}',
+          title: AppConstants.name,
           actions: [UserAvatarWidget()],
         ),
         body: TabBarView(
@@ -59,25 +60,9 @@ class HomeView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: space),
-          SessionWidget(
-            height: 100,
-            child: Column(
-              children: [
-                Text(tr('home.attendances'),
-                    style: Theme.of(context).textTheme.titleSmall),
-                const SizedBox(height: space / 2),
-                const Text('80 %',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                // progress bar
-                const SizedBox(height: space / 2),
-                const LinearProgressIndicator(
-                  minHeight: 10,
-                  value: 0.8,
-                  backgroundColor: Colors.grey,
-                  color: Colors.green,
-                ),
-              ],
-            ),
+          const SessionWidget(
+            height: 170,
+            child: AttendanceReportWidget(),
           ),
           const SizedBox(height: space),
           SessionWidget(
