@@ -62,7 +62,7 @@ class AttendanceReportWidget extends ConsumerWidget {
                   Text(attendances['countAbsent'].toString()),
                 ],
               ),
-              Text("${attendances['percent']} %",
+              Text("${attendances['percent'].toStringAsFixed(1)} %",
                   style: const TextStyle(fontWeight: FontWeight.bold)),
               // progress bar
               const SizedBox(height: space),

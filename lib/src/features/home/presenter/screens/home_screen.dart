@@ -4,9 +4,9 @@ import 'package:transcriptapp/src/core/constants.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
 import 'package:transcriptapp/src/features/attendances/presenter/widgets/attendance_report_widget.dart';
 import 'package:transcriptapp/src/features/auth/presenter/widgets/user_avatar.dart';
+import 'package:transcriptapp/src/features/dailypoints/presenter/widgets/dailypoint_report_widget.dart';
 import 'package:transcriptapp/src/features/exams/presenter/screens/exams_screen.dart';
 
-import '../widgets/rating_bar_widget.dart';
 import '../widgets/session_widget.dart';
 import 'about_screen.dart';
 
@@ -65,16 +65,9 @@ class HomeView extends StatelessWidget {
             child: AttendanceReportWidget(),
           ),
           const SizedBox(height: space),
-          SessionWidget(
+          const SessionWidget(
             height: 100,
-            child: Column(
-              children: [
-                Text(tr('home.dailyPoint'),
-                    style: Theme.of(context).textTheme.titleSmall),
-                const SizedBox(height: space / 2),
-                const RatingBar(rating: 3, ratingCount: 3, size: 30),
-              ],
-            ),
+            child: DailypointReportWidget(),
           ),
           const SizedBox(height: space),
           SessionWidget(

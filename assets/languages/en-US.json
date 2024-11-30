@@ -68,6 +68,11 @@
     "countPresent": "Number of Present",
     "countAbsent": "Number of Absent"
   },
+  "dailypoints": {
+    "title": "Daily Points",
+    "classeNumber": "Classe Number",
+    "date": "Date"
+  },
   "noDataScreen": {
     "search": "There is no data to show",
     "goHome": "Go To Home"

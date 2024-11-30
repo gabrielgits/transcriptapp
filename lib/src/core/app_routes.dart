@@ -7,6 +7,7 @@ import 'package:transcriptapp/src/features/auth/presenter/screens/login_screen.d
 import 'package:transcriptapp/src/features/auth/presenter/screens/profile_screen.dart';
 import 'package:transcriptapp/src/features/auth/presenter/screens/signup_view.dart';
 import 'package:transcriptapp/src/features/auth/presenter/viewmodels/student_view_model.dart';
+import 'package:transcriptapp/src/features/dailypoints/presenter/screens/dailypoints_list_screen.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_init.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_screen.dart';
 import 'package:transcriptapp/src/features/notifications/presenter/views/notifications_view.dart';
@@ -19,7 +20,7 @@ final GoRouter appRoutes = GoRouter(
       name: 'init',
       builder: (context, state) => const HomeInit(),
     ),
-        GoRoute(
+    GoRoute(
       path: '/home',
       name: 'home',
       builder: (context, state) => const HomeScreen(),
@@ -71,12 +72,12 @@ final GoRouter appRoutes = GoRouter(
             return Placeholder(strokeWidth: item);
           },
         ),
-          GoRoute(
+        GoRoute(
           path: 'examplay',
           name: 'exam-play',
           builder: (context, state) {
             final item = (state.extra as Map)['game'] as double;
-           return Placeholder(strokeWidth: item);
+            return Placeholder(strokeWidth: item);
           },
         ),
       ],
@@ -86,6 +87,10 @@ final GoRouter appRoutes = GoRouter(
       name: 'attendances',
       builder: (context, state) => const AttendancesListScreen(),
     ),
-   
+    GoRoute(
+      path: '/dailypoints',
+      name: 'dailypoints',
+      builder: (context, state) => const DailypointsListScreen(),
+    ),
   ],
 );

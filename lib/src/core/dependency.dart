@@ -6,6 +6,9 @@ import 'package:transcriptapp/src/features/attendances/domain/usecases/usecase_a
 import 'package:transcriptapp/src/features/attendances/infra/repositories/repository_remote_auth_impl.dart';
 import 'package:transcriptapp/src/features/auth/infra/repositories/repository_local_auth_impl.dart';
 import 'package:transcriptapp/src/features/auth/infra/repositories/repository_remote_auth_impl.dart';
+import 'package:transcriptapp/src/features/dailypoints/domain/repositories/repository_remote_dailypoints.dart';
+import 'package:transcriptapp/src/features/dailypoints/domain/usecases/usecase_attendances.dart';
+import 'package:transcriptapp/src/features/dailypoints/infra/repositories/repository_remote_auth_impl.dart';
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_exams.dart';
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_play_teste.dart';
@@ -29,6 +32,7 @@ void setupAppStart() {
   _setupAuth();
   _setupExams();
   _setupAttendances();
+  _setupDailypoints();
 }
 
 void _setup() {
@@ -89,4 +93,15 @@ void _setupAttendances() {
   getIt.registerSingleton(
     UsecaseAttendances(getIt<RepositoryRemoteAttendances>()),
   );
+}
+
+void _setupDailypoints() {
+  getIt.registerSingleton<RepositoryRemoteDailypoints>(
+    RepositoryRemoteDailypointsImpl(getIt<FedsRest>()),
+  );
+
+  getIt.registerSingleton(
+    UsecaseDailypoints(getIt<RepositoryRemoteDailypoints>()),
+  );
+  
 }

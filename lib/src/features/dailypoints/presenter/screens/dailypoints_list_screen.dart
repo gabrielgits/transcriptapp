@@ -7,33 +7,33 @@ import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/loading_widget.dart';
 
-import '../controllers/attendances_controller.dart';
+import '../controllers/dailypoints_controller.dart';
 
-class AttendancesListScreen extends ConsumerWidget {
-  const AttendancesListScreen({super.key});
+class DailypointsListScreen extends ConsumerWidget {
+  const DailypointsListScreen({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final controller = ref.watch(getAllAttendancesProvider);
+    final controller = ref.watch(getAllDailypointsProvider);
     return Scaffold(
       appBar: CustomAppbarWidget(
-        title: tr('attendances.title'),
+        title: tr('dailypoints.title'),
       ),
       body: controller.when(
         loading: () => const Center(child: LoadingWidget()),
         error: (error, _) => ShowErrorView(
-          title: 'Error on get attendances',
+          title: 'Error on get dailypoints',
           detail: error.toString(),
           onPressed: () => {},
         ),
-        data: (attendances) {
-          if (attendances.isEmpty) {
-            return NoDataView(title: tr('attendances.title'));
+        data: (dailypoints) {
+          if (dailypoints.isEmpty) {
+            return NoDataView(title: tr('dailypoints.title'));
           }
           return ListView.builder(
-            itemCount: attendances.length,
+            itemCount: dailypoints.length,
             itemBuilder: (context, index) {
-              final attendance = attendances[index];
+              final dailypoint = dailypoints[index];
               return Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -46,19 +46,11 @@ class AttendancesListScreen extends ConsumerWidget {
                         AssetImage('assets/images/icons/app_icon.png'),
                   ),
                   title: Text(
-                      "${tr('attendances.classeNumber')} : ${attendance.classeId}"),
+                      "${tr('dailypoints.classeNumber')} : ${dailypoint.classeId}"),
                   subtitle: Text(
-                      '${tr('attendances.date')}: ${dateHelper(date: attendance.createdAt.toString())} - ${tr(attendance.status)}',
+                      '${tr('dailypoints.date')}: ${dateHelper(date: dailypoint.createdAt.toString())}',
                       style: const TextStyle(fontSize: 10)),
-                  trailing: attendance.status == 'present'
-                      ? Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        )
-                      : Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ),
+                  trailing: Text(dailypoint.point.toString(), style: Theme.of(context).textTheme.titleLarge),
                 ),
               );
             },
