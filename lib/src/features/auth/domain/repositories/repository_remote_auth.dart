@@ -11,6 +11,7 @@ abstract class RepositoryRemoteAuth {
   Future<Map<String, dynamic>> updatePassword({
     required String oldPassword,
     required String newPassword,
+    required int studentId,
   });
   Future<Map<String, dynamic>> logout();
 
@@ -19,4 +20,6 @@ abstract class RepositoryRemoteAuth {
     required int id,
     required Map<String, dynamic> json,
   });
+
+  Future<Map<String, dynamic>> getStudentScore(int studentId);
 }

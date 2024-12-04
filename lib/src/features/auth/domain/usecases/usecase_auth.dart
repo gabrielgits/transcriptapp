@@ -44,15 +44,17 @@ class UsecaseAuth {
   Future<ExptWeb> changePassword({
     required String oldPassword,
     required String newPassword,
+    required int studentId,
   }) async {
     try {
       final resultWeb = await repositoryRemote.updatePassword(
         newPassword: newPassword,
         oldPassword: oldPassword,
+        studentId: studentId,
       );
 
       if (resultWeb['status'] == false) {
-        return ExptWebPost("Password not changed: $resultWeb['message']", 1);
+        return ExptWebPost("Password not changed: ${resultWeb['message']}", 1);
       }
 
       return ExptWebNoExpt();
@@ -169,6 +171,39 @@ class UsecaseAuth {
       return (
         exception: ExptWebUnknown(e.toString(), 2),
         student: StudentModel.init(),
+      );
+    }
+  }
+
+  Future<({Map<String, dynamic> scoreReport, ExptWeb exptWeb})>
+      fetchStudentScore(int studentId) async {
+    try {
+      final resultWeb = await repositoryRemote.getStudentScore(studentId);
+      if (resultWeb['status'] == false) {
+        return (
+          scoreReport: {
+            'testesAverage': 0,
+            'attendancesPercent': 0,
+            'dailypointsAverageFinal': 0,
+            'finalAverage': 0,
+          },
+          exptWeb: ExptWebGet(
+              'Problem to get score Report: ${resultWeb["message"]}', 1),
+        );
+      }
+
+      Map<String, dynamic> scoreReport = resultWeb['data'];
+
+      return (scoreReport: scoreReport, exptWeb: ExptWebNoExpt());
+    } catch (e) {
+      return (
+        scoreReport: {
+          'testesAverage': 0,
+          'attendancesPercent': 0,
+          'dailypointsAverageFinal': 0,
+          'finalAverage': 0,
+        },
+        exptWeb: ExptWebUnknown('Error on get testes: ${e.toString()}', 3),
       );
     }
   }

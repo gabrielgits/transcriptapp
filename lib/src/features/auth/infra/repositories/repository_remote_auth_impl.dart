@@ -29,10 +29,11 @@ class RepositoryRemoteAuthImpl implements RepositoryRemoteAuth {
   Future<Map<String, dynamic>> updatePassword({
     required String oldPassword,
     required String newPassword,
+    required int studentId,
   }) async {
     return await datasource.put(
-      url: '${AppConstants.urlApi}/update-password',
-      body: {'oldPassword': oldPassword, 'newPassword': newPassword},
+      url: '${AppConstants.urlApi}/updatepassword',
+      body: {'studentId': studentId, 'oldPassword': oldPassword, 'newPassword': newPassword},
       token: AppConstants.token,
     );
   }
@@ -67,6 +68,14 @@ class RepositoryRemoteAuthImpl implements RepositoryRemoteAuth {
     return await datasource.put(
       url: '${AppConstants.urlApi}/update-profile',
       body: json,
+      token: AppConstants.token,
+    );
+  }
+
+    @override
+  Future<Map<String, dynamic>> getStudentScore(int id) async {
+    return await datasource.get(
+      '${AppConstants.urlApi}/students/$id/score',
       token: AppConstants.token,
     );
   }

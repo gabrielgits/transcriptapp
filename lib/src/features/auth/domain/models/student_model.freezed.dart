@@ -24,7 +24,7 @@ mixin _$StudentModel {
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String get photo => throw _privateConstructorUsedError;
-  int get status => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   CourseModelModel get course => throw _privateConstructorUsedError;
 
   /// Serializes this StudentModel to a JSON map.
@@ -48,7 +48,7 @@ abstract class $StudentModelCopyWith<$Res> {
       String name,
       String phone,
       String photo,
-      int status,
+      String status,
       CourseModelModel course});
 
   $CourseModelModelCopyWith<$Res> get course;
@@ -96,7 +96,7 @@ class _$StudentModelCopyWithImpl<$Res, $Val extends StudentModel>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       course: null == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
@@ -128,7 +128,7 @@ abstract class _$$StudentModelImplCopyWith<$Res>
       String name,
       String phone,
       String photo,
-      int status,
+      String status,
       CourseModelModel course});
 
   @override
@@ -175,7 +175,7 @@ class __$$StudentModelImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       course: null == course
           ? _value.course
           : course // ignore: cast_nullable_to_non_nullable
@@ -207,7 +207,7 @@ class _$StudentModelImpl with DiagnosticableTreeMixin implements _StudentModel {
   @override
   final String photo;
   @override
-  final int status;
+  final String status;
   @override
   final CourseModelModel course;
 
@@ -269,7 +269,7 @@ abstract class _StudentModel implements StudentModel {
       required final String name,
       required final String phone,
       required final String photo,
-      required final int status,
+      required final String status,
       required final CourseModelModel course}) = _$StudentModelImpl;
 
   factory _StudentModel.fromJson(Map<String, dynamic> json) =
@@ -284,7 +284,7 @@ abstract class _StudentModel implements StudentModel {
   @override
   String get photo;
   @override
-  int get status;
+  String get status;
   @override
   CourseModelModel get course;
 

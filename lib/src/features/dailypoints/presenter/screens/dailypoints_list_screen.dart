@@ -34,6 +34,22 @@ class DailypointsListScreen extends ConsumerWidget {
             itemCount: dailypoints.length,
             itemBuilder: (context, index) {
               final dailypoint = dailypoints[index];
+
+              var pointDescription = tr('dailypoints.veryBad');
+              Color pointColor = Colors.red;
+              if(dailypoint.point == 2){
+                pointDescription = tr('dailypoints.bad');
+                pointColor = Colors.orange;
+              }else if(dailypoint.point == 3){
+                pointDescription = tr('dailypoints.normal');
+                pointColor = Colors.yellow;
+              }else if(dailypoint.point == 4){
+                pointDescription = tr('dailypoints.good');
+                pointColor = Colors.blue;
+              }else if(dailypoint.point == 5){
+                pointDescription = tr('dailypoints.veryGood');
+                pointColor = Colors.green;
+              }
               return Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
@@ -41,6 +57,7 @@ class DailypointsListScreen extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: ListTile(
+                
                   leading: const CircleAvatar(
                     backgroundImage:
                         AssetImage('assets/images/icons/app_icon.png'),
@@ -50,7 +67,7 @@ class DailypointsListScreen extends ConsumerWidget {
                   subtitle: Text(
                       '${tr('dailypoints.date')}: ${dateHelper(date: dailypoint.createdAt.toString())}',
                       style: const TextStyle(fontSize: 10)),
-                  trailing: Text(dailypoint.point.toString(), style: Theme.of(context).textTheme.titleLarge),
+                  trailing: Text(pointDescription, style: TextStyle(color: pointColor),),
                 ),
               );
             },

@@ -51,11 +51,11 @@ class AttendancesListScreen extends ConsumerWidget {
                       '${tr('attendances.date')}: ${dateHelper(date: attendance.createdAt.toString())} - ${tr(attendance.status)}',
                       style: const TextStyle(fontSize: 10)),
                   trailing: attendance.status == 'present'
-                      ? Icon(
+                      ? const Icon(
                           Icons.check,
                           color: Colors.green,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.close,
                           color: Colors.red,
                         ),

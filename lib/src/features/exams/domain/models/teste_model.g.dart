@@ -12,7 +12,7 @@ _$TesteModelImpl _$$TesteModelImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String,
       score: (json['score'] as num).toDouble(),
       points: (json['points'] as num).toDouble(),
-      examId: (json['examId'] as num).toInt(),
+      exam: ExamModel.fromJson(json['exam'] as Map<String, dynamic>),
       studentId: (json['studentId'] as num).toInt(),
       createdAt: DateTime.parse(json['createdAt'] as String),
     );
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$TesteModelImplToJson(_$TesteModelImpl instance) =>
       'status': instance.status,
       'score': instance.score,
       'points': instance.points,
-      'examId': instance.examId,
+      'exam': instance.exam,
       'studentId': instance.studentId,
       'createdAt': instance.createdAt.toIso8601String(),
     };

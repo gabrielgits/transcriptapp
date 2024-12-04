@@ -5,7 +5,6 @@ import '../models/student_answer_model.dart';
 import '../models/teste_model.dart';
 import '../repositories/repository_remote_exams.dart';
 
-
 class UsecasePlayTeste {
   final RepositoryRemoteExams repositoryRemote;
 
@@ -38,12 +37,12 @@ class UsecasePlayTeste {
     }
   }
 
-  Future<({List<StudentAnswerModel> answers, ExptWeb exptWeb})> fetchListStudentAnswers({
-    required int studentId,
-    required int testeId
-  }) async {
+  Future<({List<StudentAnswerModel> answers, ExptWeb exptWeb})>
+      fetchListStudentAnswers(
+          {required int studentId, required int testeId}) async {
     try {
-      final resultWeb = await repositoryRemote.getListStudentAnswers(studentId: studentId, testeId: testeId);
+      final resultWeb = await repositoryRemote.getListStudentAnswers(
+          studentId: studentId, testeId: testeId);
       if (resultWeb['status'] == false) {
         return (
           answers: List<StudentAnswerModel>.empty(),
@@ -67,48 +66,55 @@ class UsecasePlayTeste {
     }
   }
 
-  Future<({ExptWeb exptWeb, bool result})> sendStudentAnswer({
+  Future<({ExptWeb exptWeb, TesteModel teste})> sendStudentAnswers({
     required int studentId,
-    required int questionId,
-    required int answerId,
     required int testeId,
+    required Map<int, int> selectedAnswers,
   }) async {
     try {
-      final answer = {
-        'studentId': studentId,
-        'questionId': questionId,
-        'answerId': answerId,
-        'testeId': testeId
-      };
-      final resultWeb = await repositoryRemote.postStudentAnswer(answer);
+      Map<String, dynamic> answers = selectedAnswers.map((key, value) {
+        return MapEntry(key.toString(), value);
+      });
+      final resultWeb = await repositoryRemote.postStudentAnswers(
+        studentId: studentId,
+        testeId: testeId,
+        selectedAnswers: answers,
+      );
       if (resultWeb['status'] == false) {
-        return (exptWeb: ExptWebPost('Answer not send', 1), result: false);
+        return (exptWeb: ExptWebPost('Answer not send', 1), teste: TesteModel.init());
       }
 
-      return (exptWeb: ExptWebNoExpt(), result: true);
+      TesteModel teste = TesteModel.fromJson(resultWeb['data']);
+
+      return (exptWeb: ExptWebNoExpt(), teste: teste);
     } catch (e) {
       return (
         exptWeb: ExptWebUnknown('Error on send answer: ${e.toString()}', 3),
-        result: false
+        teste: TesteModel.init(),
       );
     }
   }
 
-    Future<({TesteModel teste, ExptWeb exptWeb})> startTeste({required int studentId, required int examId}) async {
+  Future<({List<QuestionModel> questions, ExptWeb exptWeb})> startTeste(
+      {required int studentId, required int testeId}) async {
     try {
-      final resultWeb = await repositoryRemote.postTeste(studentId: studentId, examId: examId);
+      final resultWeb = await repositoryRemote.postTeste(
+          studentId: studentId, testeId: testeId);
       if (resultWeb['status'] == false) {
         return (
-          teste: TesteModel.init(),
+          questions: List<QuestionModel>.empty(),
           exptWeb: ExptWebPost('Teste not started: ${resultWeb["message"]}', 1),
         );
       }
-      TesteModel teste = TesteModel.fromJson(resultWeb['data']);
+      List<QuestionModel> questions = [];
+      for (final testeJson in resultWeb['data']) {
+        questions.add(QuestionModel.fromJson(testeJson));
+      }
 
-      return (teste: teste, exptWeb: ExptWebNoExpt());
+      return (questions: questions, exptWeb: ExptWebNoExpt());
     } catch (e) {
       return (
-        teste: TesteModel.init(),
+        questions: List<QuestionModel>.empty(),
         exptWeb: ExptWebUnknown('Error on start teste: ${e.toString()}', 3),
       );
     }

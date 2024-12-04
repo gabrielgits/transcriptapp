@@ -20,7 +20,7 @@ class EditProfileViewState extends State<EditProfileView> {
         'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80',
     name: 'Sarah Abs',
     phone: '',
-    status: 0,
+    status: 'active',
     course: CourseModelModel.init(),
   );
 
@@ -54,7 +54,7 @@ class EditProfileViewState extends State<EditProfileView> {
           const SizedBox(height: 24),
           BformTextInput(
             label: 'About',
-            defaultValue: user.status == 1
+            defaultValue: user.status == 'active'
                 ? 'Certified Personal Trainer and Nutritionist with years of experience in creating effective diets and training plans focused on achieving individual customers goals in a smooth way.'
                 : '',
             onChange: (about) {},

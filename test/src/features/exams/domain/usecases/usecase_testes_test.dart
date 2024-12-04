@@ -2,6 +2,7 @@ import 'package:expt/expt.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:transcriptapp/src/features/exams/domain/models/exam_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_testes.dart';
@@ -24,7 +25,7 @@ void main() {
         status: 'pending',
         score: 0.0,
         points: 0.0,
-        examId: 1,
+        exam: ExamModel.init(),
         studentId: 1,
         createdAt: DateTime.now(),
       );

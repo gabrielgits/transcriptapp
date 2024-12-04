@@ -74,7 +74,7 @@ class AboutScreenState extends State<AboutScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        tr('home.support'),
+                        tr('home.reviews'),
                         style: const TextStyle(
                           fontSize: 20,
                           color: Colors.grey,

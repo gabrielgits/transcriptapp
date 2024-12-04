@@ -79,8 +79,10 @@ _userInfo({
       ),
       data: (student) => Column(
         children: [
-          CircleAvatar(
-            backgroundImage: NetworkImage(student.imagePath),
+          const CircleAvatar(
+            //backgroundImage: NetworkImage(student.imagePath),
+            backgroundImage: NetworkImage(
+                'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80'),
             maxRadius: 50,
           ),
           const SizedBox(height: space),
@@ -99,17 +101,18 @@ _userInfo({
             children: [
               BformButton(
                 colors: [
-                  Theme.of(context).colorScheme.primary,
+                  Theme.of(context).colorScheme.primaryContainer,
                 ],
                 label: tr('home.profile'),
                 onPressed: () {
                   context.pushNamed('profile', extra: {'student': student});
                 },
+                
               ),
               const SizedBox(width: space),
               BformButton(
                 colors: [
-                  Theme.of(context).colorScheme.secondary,
+                  Theme.of(context).colorScheme.errorContainer,
                 ],
                 label: tr('home.signout'),
                 onPressed: onLogout,

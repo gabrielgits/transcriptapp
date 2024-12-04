@@ -23,7 +23,6 @@ class UsersController extends _$UsersController {
     return StudentViewModel(result.student);
   }
 
-
   Future<bool> signinWithPhone(
       {required String phone, required String password}) async {
     state = const AsyncLoading();
@@ -33,10 +32,11 @@ class UsersController extends _$UsersController {
       state = AsyncValue.data(StudentViewModel(StudentModel.init()));
       return false;
     }
+    await ref.read(controllerConfigsProvider.notifier).loadConfig();
     state = AsyncValue.data(StudentViewModel(result.student));
     return true;
   }
-  
+
   Future<void> logout() async {
     state = const AsyncLoading();
     final result = await _usecaseUsers.logout();
@@ -47,5 +47,26 @@ class UsersController extends _$UsersController {
       state = AsyncError(result.exptData, StackTrace.current);
     }
     state = AsyncValue.data(StudentViewModel(StudentModel.init()));
+  }
+
+  Future<String> changePassword({
+    required String oldPassword,
+    required String newPassword,
+  }) async {
+    final tempState = state;
+    state = const AsyncLoading();
+    final usecaseAuth = getIt<UsecaseAuth>();
+    final studentId = ref.watch(controllerConfigsProvider).value!.studentId;
+    final result = await usecaseAuth.changePassword(
+      oldPassword: oldPassword,
+      newPassword: newPassword,
+      studentId: studentId,
+    );
+    if (result != ExptWebNoExpt()) {
+      state = tempState;
+      return result.message;
+    }
+    state = tempState;
+    return 'changed';
   }
 }

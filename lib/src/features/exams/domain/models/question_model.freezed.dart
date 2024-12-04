@@ -23,7 +23,7 @@ mixin _$QuestionModel {
   int get id => throw _privateConstructorUsedError;
   String get question => throw _privateConstructorUsedError;
   String get correctLine => throw _privateConstructorUsedError;
-  List<AnswerModel> get answer => throw _privateConstructorUsedError;
+  List<AnswerModel> get answers => throw _privateConstructorUsedError;
   int get examId => throw _privateConstructorUsedError;
   int get answerId => throw _privateConstructorUsedError;
 
@@ -47,7 +47,7 @@ abstract class $QuestionModelCopyWith<$Res> {
       {int id,
       String question,
       String correctLine,
-      List<AnswerModel> answer,
+      List<AnswerModel> answers,
       int examId,
       int answerId});
 }
@@ -70,7 +70,7 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
     Object? id = null,
     Object? question = null,
     Object? correctLine = null,
-    Object? answer = null,
+    Object? answers = null,
     Object? examId = null,
     Object? answerId = null,
   }) {
@@ -87,9 +87,9 @@ class _$QuestionModelCopyWithImpl<$Res, $Val extends QuestionModel>
           ? _value.correctLine
           : correctLine // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
-          ? _value.answer
-          : answer // ignore: cast_nullable_to_non_nullable
+      answers: null == answers
+          ? _value.answers
+          : answers // ignore: cast_nullable_to_non_nullable
               as List<AnswerModel>,
       examId: null == examId
           ? _value.examId
@@ -115,7 +115,7 @@ abstract class _$$QuestionModelImplCopyWith<$Res>
       {int id,
       String question,
       String correctLine,
-      List<AnswerModel> answer,
+      List<AnswerModel> answers,
       int examId,
       int answerId});
 }
@@ -136,7 +136,7 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
     Object? id = null,
     Object? question = null,
     Object? correctLine = null,
-    Object? answer = null,
+    Object? answers = null,
     Object? examId = null,
     Object? answerId = null,
   }) {
@@ -153,9 +153,9 @@ class __$$QuestionModelImplCopyWithImpl<$Res>
           ? _value.correctLine
           : correctLine // ignore: cast_nullable_to_non_nullable
               as String,
-      answer: null == answer
-          ? _value._answer
-          : answer // ignore: cast_nullable_to_non_nullable
+      answers: null == answers
+          ? _value._answers
+          : answers // ignore: cast_nullable_to_non_nullable
               as List<AnswerModel>,
       examId: null == examId
           ? _value.examId
@@ -178,10 +178,10 @@ class _$QuestionModelImpl
       {required this.id,
       required this.question,
       required this.correctLine,
-      required final List<AnswerModel> answer,
+      required final List<AnswerModel> answers,
       required this.examId,
       required this.answerId})
-      : _answer = answer;
+      : _answers = answers;
 
   factory _$QuestionModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$QuestionModelImplFromJson(json);
@@ -192,12 +192,12 @@ class _$QuestionModelImpl
   final String question;
   @override
   final String correctLine;
-  final List<AnswerModel> _answer;
+  final List<AnswerModel> _answers;
   @override
-  List<AnswerModel> get answer {
-    if (_answer is EqualUnmodifiableListView) return _answer;
+  List<AnswerModel> get answers {
+    if (_answers is EqualUnmodifiableListView) return _answers;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_answer);
+    return EqualUnmodifiableListView(_answers);
   }
 
   @override
@@ -207,7 +207,7 @@ class _$QuestionModelImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'QuestionModel(id: $id, question: $question, correctLine: $correctLine, answer: $answer, examId: $examId, answerId: $answerId)';
+    return 'QuestionModel(id: $id, question: $question, correctLine: $correctLine, answers: $answers, examId: $examId, answerId: $answerId)';
   }
 
   @override
@@ -218,7 +218,7 @@ class _$QuestionModelImpl
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('question', question))
       ..add(DiagnosticsProperty('correctLine', correctLine))
-      ..add(DiagnosticsProperty('answer', answer))
+      ..add(DiagnosticsProperty('answers', answers))
       ..add(DiagnosticsProperty('examId', examId))
       ..add(DiagnosticsProperty('answerId', answerId));
   }
@@ -233,7 +233,7 @@ class _$QuestionModelImpl
                 other.question == question) &&
             (identical(other.correctLine, correctLine) ||
                 other.correctLine == correctLine) &&
-            const DeepCollectionEquality().equals(other._answer, _answer) &&
+            const DeepCollectionEquality().equals(other._answers, _answers) &&
             (identical(other.examId, examId) || other.examId == examId) &&
             (identical(other.answerId, answerId) ||
                 other.answerId == answerId));
@@ -242,7 +242,7 @@ class _$QuestionModelImpl
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, question, correctLine,
-      const DeepCollectionEquality().hash(_answer), examId, answerId);
+      const DeepCollectionEquality().hash(_answers), examId, answerId);
 
   /// Create a copy of QuestionModel
   /// with the given fields replaced by the non-null parameter values.
@@ -265,7 +265,7 @@ abstract class _QuestionModel implements QuestionModel {
       {required final int id,
       required final String question,
       required final String correctLine,
-      required final List<AnswerModel> answer,
+      required final List<AnswerModel> answers,
       required final int examId,
       required final int answerId}) = _$QuestionModelImpl;
 
@@ -279,7 +279,7 @@ abstract class _QuestionModel implements QuestionModel {
   @override
   String get correctLine;
   @override
-  List<AnswerModel> get answer;
+  List<AnswerModel> get answers;
   @override
   int get examId;
   @override

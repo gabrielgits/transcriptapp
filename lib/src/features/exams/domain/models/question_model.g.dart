@@ -11,7 +11,7 @@ _$QuestionModelImpl _$$QuestionModelImplFromJson(Map<String, dynamic> json) =>
       id: (json['id'] as num).toInt(),
       question: json['question'] as String,
       correctLine: json['correctLine'] as String,
-      answer: (json['answer'] as List<dynamic>)
+      answers: (json['answers'] as List<dynamic>)
           .map((e) => AnswerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       examId: (json['examId'] as num).toInt(),
@@ -23,7 +23,7 @@ Map<String, dynamic> _$$QuestionModelImplToJson(_$QuestionModelImpl instance) =>
       'id': instance.id,
       'question': instance.question,
       'correctLine': instance.correctLine,
-      'answer': instance.answer,
+      'answers': instance.answers,
       'examId': instance.examId,
       'answerId': instance.answerId,
     };

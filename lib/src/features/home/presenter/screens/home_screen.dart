@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:transcriptapp/src/core/constants.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
 import 'package:transcriptapp/src/features/attendances/presenter/widgets/attendance_report_widget.dart';
+import 'package:transcriptapp/src/features/auth/presenter/widgets/student_score_widget.dart';
 import 'package:transcriptapp/src/features/auth/presenter/widgets/user_avatar.dart';
 import 'package:transcriptapp/src/features/dailypoints/presenter/widgets/dailypoint_report_widget.dart';
-import 'package:transcriptapp/src/features/exams/presenter/screens/exams_screen.dart';
+import 'package:transcriptapp/src/features/exams/presenter/screens/testes_screen.dart';
+import 'package:transcriptapp/src/features/exams/presenter/widgets/last_testes_widget.dart';
 
 import '../widgets/session_widget.dart';
 import 'about_screen.dart';
@@ -25,7 +27,7 @@ class HomeScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             HomeView(),
-            ExamsScreen(),
+            TestesListScreen(),
             AboutScreen(),
           ],
         ),
@@ -53,64 +55,49 @@ class HomeView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: const EdgeInsets.all(12.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child: Text(
-              tr('msn.welcome'),
-              style: Theme.of(context).textTheme.labelSmall,
+              AppConstants.schoolName,
+              style: Theme.of(context).textTheme.titleSmall,
+              textAlign: TextAlign.center,
+            ),
+          ),
+         
+          SessionWidget(
+            height: 180,
+            child: Column(
+              children: [
+                const AttendanceReportWidget(),
+                const Spacer(),
+                Text(
+                  tr('home.touch'),
+                  style: const TextStyle(fontSize: 10),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: space),
-          const SessionWidget(
-            height: 170,
-            child: AttendanceReportWidget(),
-          ),
-          const SizedBox(height: space),
-          const SessionWidget(
-            height: 100,
-            child: DailypointReportWidget(),
-          ),
-          const SizedBox(height: space),
           SessionWidget(
-            height: 3 * 100,
-            child: Column(
-              children: [
-                Text(tr('home.examsPoints'),
-                    style: Theme.of(context).textTheme.titleSmall),
-                const SizedBox(height: space / 2),
-                for (int index = 0; index < 3; index++)
-                  ListTile(
-                    leading: const CircleAvatar(
-                      backgroundImage:
-                          AssetImage('assets/images/icons/default_game.png'),
-                    ),
-                    title: Text('Avalition Number ${index + 1}'),
-                    subtitle: const Text('Date: 01/01/2023 - Type: Avalition',
-                        style: TextStyle(fontSize: 8)),
-                    trailing: Text('10',
-                        style: Theme.of(context).textTheme.titleSmall),
+              height: 120,
+              child: Column(
+                children: [
+                  const DailypointReportWidget(),
+                  const Spacer(),
+                  Text(
+                    tr('home.touch'),
+                    style: const TextStyle(fontSize: 10),
                   ),
-                const SizedBox(height: space / 2),
-                Text(
-                  "${tr('home.average')} : 10 Points",
-                  style: Theme.of(context).textTheme.titleSmall,
-                ),
-              ],
-            ),
+                ],
+              )),
+          const SizedBox(height: space),
+          const SessionWidget(
+            height: 3 * 120,
+            child: LastTestesWidget(),
           ),
           const SizedBox(height: space),
-          SessionWidget(
-            height: 100,
-            child: Column(
-              children: [
-                Text(tr('home.totalPoints'),
-                    style: Theme.of(context).textTheme.titleSmall),
-                const SizedBox(height: space / 2),
-                Text(
-                  "${tr('home.average')} : 10 Points",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              ],
-            ),
+          const SessionWidget(
+            height: 180,
+            child: StudentScoreWidget(),
           ),
         ],
       ),

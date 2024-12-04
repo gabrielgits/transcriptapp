@@ -22,9 +22,9 @@ Future<void> main() async {
     ProviderScope(
       child: EasyLocalization(
         supportedLocales: const [Locale('en', 'US'), Locale('pt', 'PT')],
-        //supportedLocales: const [Locale('en', 'US')],
+        //supportedLocales: const [Locale('pt', 'PT')],
         path: 'assets/languages',
-        fallbackLocale: const Locale('en', 'US'),
+        fallbackLocale: const Locale('en', 'US'), //const Locale('pt', 'PT'),
         child: const AppWidget(),
       ),
     ),

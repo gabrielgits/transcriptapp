@@ -24,7 +24,7 @@ mixin _$TesteModel {
   String get status => throw _privateConstructorUsedError;
   double get score => throw _privateConstructorUsedError;
   double get points => throw _privateConstructorUsedError;
-  int get examId => throw _privateConstructorUsedError;
+  ExamModel get exam => throw _privateConstructorUsedError;
   int get studentId => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -49,9 +49,11 @@ abstract class $TesteModelCopyWith<$Res> {
       String status,
       double score,
       double points,
-      int examId,
+      ExamModel exam,
       int studentId,
       DateTime createdAt});
+
+  $ExamModelCopyWith<$Res> get exam;
 }
 
 /// @nodoc
@@ -73,7 +75,7 @@ class _$TesteModelCopyWithImpl<$Res, $Val extends TesteModel>
     Object? status = null,
     Object? score = null,
     Object? points = null,
-    Object? examId = null,
+    Object? exam = null,
     Object? studentId = null,
     Object? createdAt = null,
   }) {
@@ -94,10 +96,10 @@ class _$TesteModelCopyWithImpl<$Res, $Val extends TesteModel>
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as double,
-      examId: null == examId
-          ? _value.examId
-          : examId // ignore: cast_nullable_to_non_nullable
-              as int,
+      exam: null == exam
+          ? _value.exam
+          : exam // ignore: cast_nullable_to_non_nullable
+              as ExamModel,
       studentId: null == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -107,6 +109,16 @@ class _$TesteModelCopyWithImpl<$Res, $Val extends TesteModel>
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
+  }
+
+  /// Create a copy of TesteModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ExamModelCopyWith<$Res> get exam {
+    return $ExamModelCopyWith<$Res>(_value.exam, (value) {
+      return _then(_value.copyWith(exam: value) as $Val);
+    });
   }
 }
 
@@ -123,9 +135,12 @@ abstract class _$$TesteModelImplCopyWith<$Res>
       String status,
       double score,
       double points,
-      int examId,
+      ExamModel exam,
       int studentId,
       DateTime createdAt});
+
+  @override
+  $ExamModelCopyWith<$Res> get exam;
 }
 
 /// @nodoc
@@ -145,7 +160,7 @@ class __$$TesteModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? score = null,
     Object? points = null,
-    Object? examId = null,
+    Object? exam = null,
     Object? studentId = null,
     Object? createdAt = null,
   }) {
@@ -166,10 +181,10 @@ class __$$TesteModelImplCopyWithImpl<$Res>
           ? _value.points
           : points // ignore: cast_nullable_to_non_nullable
               as double,
-      examId: null == examId
-          ? _value.examId
-          : examId // ignore: cast_nullable_to_non_nullable
-              as int,
+      exam: null == exam
+          ? _value.exam
+          : exam // ignore: cast_nullable_to_non_nullable
+              as ExamModel,
       studentId: null == studentId
           ? _value.studentId
           : studentId // ignore: cast_nullable_to_non_nullable
@@ -190,7 +205,7 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
       required this.status,
       required this.score,
       required this.points,
-      required this.examId,
+      required this.exam,
       required this.studentId,
       required this.createdAt});
 
@@ -206,7 +221,7 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
   @override
   final double points;
   @override
-  final int examId;
+  final ExamModel exam;
   @override
   final int studentId;
   @override
@@ -214,7 +229,7 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TesteModel(id: $id, status: $status, score: $score, points: $points, examId: $examId, studentId: $studentId, createdAt: $createdAt)';
+    return 'TesteModel(id: $id, status: $status, score: $score, points: $points, exam: $exam, studentId: $studentId, createdAt: $createdAt)';
   }
 
   @override
@@ -226,7 +241,7 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('score', score))
       ..add(DiagnosticsProperty('points', points))
-      ..add(DiagnosticsProperty('examId', examId))
+      ..add(DiagnosticsProperty('exam', exam))
       ..add(DiagnosticsProperty('studentId', studentId))
       ..add(DiagnosticsProperty('createdAt', createdAt));
   }
@@ -240,7 +255,7 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.score, score) || other.score == score) &&
             (identical(other.points, points) || other.points == points) &&
-            (identical(other.examId, examId) || other.examId == examId) &&
+            (identical(other.exam, exam) || other.exam == exam) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
             (identical(other.createdAt, createdAt) ||
@@ -250,7 +265,7 @@ class _$TesteModelImpl with DiagnosticableTreeMixin implements _TesteModel {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, status, score, points, examId, studentId, createdAt);
+      runtimeType, id, status, score, points, exam, studentId, createdAt);
 
   /// Create a copy of TesteModel
   /// with the given fields replaced by the non-null parameter values.
@@ -274,7 +289,7 @@ abstract class _TesteModel implements TesteModel {
       required final String status,
       required final double score,
       required final double points,
-      required final int examId,
+      required final ExamModel exam,
       required final int studentId,
       required final DateTime createdAt}) = _$TesteModelImpl;
 
@@ -290,7 +305,7 @@ abstract class _TesteModel implements TesteModel {
   @override
   double get points;
   @override
-  int get examId;
+  ExamModel get exam;
   @override
   int get studentId;
   @override

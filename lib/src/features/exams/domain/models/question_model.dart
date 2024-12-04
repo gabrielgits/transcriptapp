@@ -12,7 +12,7 @@ class QuestionModel with _$QuestionModel {
     required int id,
     required String question,
     required String correctLine,
-    required List<AnswerModel> answer,
+    required List<AnswerModel> answers,
     required int examId,
     required int answerId,
   }) = _QuestionModel;
@@ -22,7 +22,7 @@ class QuestionModel with _$QuestionModel {
       id: 0,
       question: '',
       correctLine: '',
-      answer: [],
+      answers: [],
       examId: 0,
       answerId: 0,
     );

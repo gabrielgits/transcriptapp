@@ -12,7 +12,7 @@ class StudentModel with _$StudentModel {
     required String name,
     required String phone,
     required String photo,
-    required int status,
+    required String status,
     required CourseModelModel course,
   }) = _StudentModel;
 
@@ -22,7 +22,7 @@ class StudentModel with _$StudentModel {
       name: '',
       phone: '',
       photo: '',
-      status: 0,
+      status: '',
       course: CourseModelModel.init(),
     );
   }

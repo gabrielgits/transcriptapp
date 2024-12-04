@@ -2,6 +2,7 @@ class AppConstants {
   //app
   static const debug = true;
   static const name = 'Transcript';
+  static const schoolName = 'Instituto Superior Politecnico Lusíada de Benguela';
   static const version = '0.1';
   static const versionCode = 1;
   static const describe =

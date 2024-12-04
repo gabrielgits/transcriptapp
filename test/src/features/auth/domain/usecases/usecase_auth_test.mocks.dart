@@ -79,6 +79,7 @@ class MockRepositoryRemoteAuth extends _i1.Mock
   _i3.Future<Map<String, dynamic>> updatePassword({
     required String? oldPassword,
     required String? newPassword,
+    required int? studentId,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -87,6 +88,7 @@ class MockRepositoryRemoteAuth extends _i1.Mock
           {
             #oldPassword: oldPassword,
             #newPassword: newPassword,
+            #studentId: studentId,
           },
         ),
         returnValue:
@@ -132,6 +134,19 @@ class MockRepositoryRemoteAuth extends _i1.Mock
             #id: id,
             #json: json,
           },
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+
+  @override
+  _i3.Future<Map<String, dynamic>> getStudentScore(int? studentId) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getStudentScore,
+          [studentId],
         ),
         returnValue:
             _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),

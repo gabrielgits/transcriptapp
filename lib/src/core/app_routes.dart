@@ -8,12 +8,17 @@ import 'package:transcriptapp/src/features/auth/presenter/screens/profile_screen
 import 'package:transcriptapp/src/features/auth/presenter/screens/signup_view.dart';
 import 'package:transcriptapp/src/features/auth/presenter/viewmodels/student_view_model.dart';
 import 'package:transcriptapp/src/features/dailypoints/presenter/screens/dailypoints_list_screen.dart';
+import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart';
+import 'package:transcriptapp/src/features/exams/presenter/screens/teste_play_screen.dart';
+import 'package:transcriptapp/src/features/exams/presenter/screens/teste_view_screen.dart';
+import 'package:transcriptapp/src/features/exams/presenter/screens/testes_screen.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_init.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_screen.dart';
 import 'package:transcriptapp/src/features/notifications/presenter/views/notifications_view.dart';
 
 final GoRouter appRoutes = GoRouter(
-  initialLocation: '/init',
+  // initialLocation go to testesplay
+  initialLocation:'/init',
   routes: [
     GoRoute(
       path: '/init',
@@ -36,7 +41,8 @@ final GoRouter appRoutes = GoRouter(
           builder: (context, state) => const SignupView(),
         ),
         GoRoute(
-          path: 'change_password',
+          path: 'changepassword',
+          name: 'changepassword',
           builder: (context, state) => const ChangePasswordView(),
         ),
         GoRoute(
@@ -63,24 +69,6 @@ final GoRouter appRoutes = GoRouter(
       path: '/exam',
       name: 'exam',
       builder: (context, state) => const Placeholder(),
-      routes: [
-        GoRoute(
-          path: 'examview',
-          name: 'exam-view',
-          builder: (context, state) {
-            final item = (state.extra as Map)['exam'] as double;
-            return Placeholder(strokeWidth: item);
-          },
-        ),
-        GoRoute(
-          path: 'examplay',
-          name: 'exam-play',
-          builder: (context, state) {
-            final item = (state.extra as Map)['game'] as double;
-            return Placeholder(strokeWidth: item);
-          },
-        ),
-      ],
     ),
     GoRoute(
       path: '/attendances',
@@ -92,5 +80,27 @@ final GoRouter appRoutes = GoRouter(
       name: 'dailypoints',
       builder: (context, state) => const DailypointsListScreen(),
     ),
+    GoRoute(
+        path: '/testes',
+        name: 'testes',
+        builder: (context, state) => const TestesListScreen(),
+        routes: [
+          GoRoute(
+            path: 'testesdetail',
+            name: 'testes-detail',
+            builder: (context, state) {
+              final teste = (state.extra as Map)['teste'] as TesteModel;
+              return TesteDetailPage(teste: teste);
+            },
+          ),
+          GoRoute(
+            path: 'testesplay',
+            name: 'testes-play',
+            builder: (context, state) {
+              final testeId = (state.extra as Map)['testeId'] as int;
+              return TestePlayScreen(testeId: testeId);
+            },
+          ),
+        ]),
   ],
 );

@@ -2,6 +2,7 @@ import 'package:expt/expt.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+import 'package:transcriptapp/src/core/domain/models/classe_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/exam_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_exams.dart';
@@ -91,7 +92,7 @@ void main() {
     });
 
     test('updateExam: should return updated exam when successful', () async {
-      final newExam = ExamModel(id: 1,  classe: '1A', createdAt: DateTime.now(), status: 'pending');
+      final newExam = ExamModel(id: 1, name: 'new name',  classe: ClasseModel.init(), createdAt: DateTime.now(), status: 'pending');
       when(mockRepositoryRemoteExams.putExam(id: anyNamed('id'), json: anyNamed('json')))
           .thenAnswer((_) async => {
                 'status': true,
@@ -105,7 +106,7 @@ void main() {
     });
 
     test('updateExam: should return exception when update fails', () async {
-      final newExam = ExamModel(id: 1,  classe: '1A', createdAt: DateTime.now(), status: 'pending');
+      final newExam = ExamModel(id: 1, name: 'new name',  classe: ClasseModel.init(), createdAt: DateTime.now(), status: 'pending');
       when(mockRepositoryRemoteExams.putExam(id: anyNamed('id'), json: anyNamed('json')))
           .thenAnswer((_) async => {'status': false, 'message': 'Update Failed'});
 
@@ -116,7 +117,7 @@ void main() {
     });
 
         test('updateExam: should return exception when putExam throwsException', () async {
-      final newExam = ExamModel(id: 1,  classe: '1A', createdAt: DateTime.now(), status: 'pending');
+      final newExam = ExamModel(id: 1, name: 'new name',  classe: ClasseModel.init(), createdAt: DateTime.now(), status: 'pending');
       when(mockRepositoryRemoteExams.putExam(id: anyNamed('id'), json: anyNamed('json')))
           .thenThrow((_) async => throwsException);
 

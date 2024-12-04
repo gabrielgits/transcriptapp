@@ -21,8 +21,9 @@ ExamModel _$ExamModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ExamModel {
   int get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
-  String get classe => throw _privateConstructorUsedError;
+  ClasseModel get classe => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this ExamModel to a JSON map.
@@ -40,7 +41,14 @@ abstract class $ExamModelCopyWith<$Res> {
   factory $ExamModelCopyWith(ExamModel value, $Res Function(ExamModel) then) =
       _$ExamModelCopyWithImpl<$Res, ExamModel>;
   @useResult
-  $Res call({int id, String status, String classe, DateTime createdAt});
+  $Res call(
+      {int id,
+      String name,
+      String status,
+      ClasseModel classe,
+      DateTime createdAt});
+
+  $ClasseModelCopyWith<$Res> get classe;
 }
 
 /// @nodoc
@@ -59,6 +67,7 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
   @override
   $Res call({
     Object? id = null,
+    Object? name = null,
     Object? status = null,
     Object? classe = null,
     Object? createdAt = null,
@@ -68,6 +77,10 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -75,12 +88,22 @@ class _$ExamModelCopyWithImpl<$Res, $Val extends ExamModel>
       classe: null == classe
           ? _value.classe
           : classe // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ClasseModel,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
+  }
+
+  /// Create a copy of ExamModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClasseModelCopyWith<$Res> get classe {
+    return $ClasseModelCopyWith<$Res>(_value.classe, (value) {
+      return _then(_value.copyWith(classe: value) as $Val);
+    });
   }
 }
 
@@ -92,7 +115,15 @@ abstract class _$$ExamModelImplCopyWith<$Res>
       __$$ExamModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String status, String classe, DateTime createdAt});
+  $Res call(
+      {int id,
+      String name,
+      String status,
+      ClasseModel classe,
+      DateTime createdAt});
+
+  @override
+  $ClasseModelCopyWith<$Res> get classe;
 }
 
 /// @nodoc
@@ -109,6 +140,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? name = null,
     Object? status = null,
     Object? classe = null,
     Object? createdAt = null,
@@ -118,6 +150,10 @@ class __$$ExamModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -125,7 +161,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
       classe: null == classe
           ? _value.classe
           : classe // ignore: cast_nullable_to_non_nullable
-              as String,
+              as ClasseModel,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -139,6 +175,7 @@ class __$$ExamModelImplCopyWithImpl<$Res>
 class _$ExamModelImpl with DiagnosticableTreeMixin implements _ExamModel {
   const _$ExamModelImpl(
       {required this.id,
+      required this.name,
       required this.status,
       required this.classe,
       required this.createdAt});
@@ -149,15 +186,17 @@ class _$ExamModelImpl with DiagnosticableTreeMixin implements _ExamModel {
   @override
   final int id;
   @override
+  final String name;
+  @override
   final String status;
   @override
-  final String classe;
+  final ClasseModel classe;
   @override
   final DateTime createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ExamModel(id: $id, status: $status, classe: $classe, createdAt: $createdAt)';
+    return 'ExamModel(id: $id, name: $name, status: $status, classe: $classe, createdAt: $createdAt)';
   }
 
   @override
@@ -166,6 +205,7 @@ class _$ExamModelImpl with DiagnosticableTreeMixin implements _ExamModel {
     properties
       ..add(DiagnosticsProperty('type', 'ExamModel'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('classe', classe))
       ..add(DiagnosticsProperty('createdAt', createdAt));
@@ -177,6 +217,7 @@ class _$ExamModelImpl with DiagnosticableTreeMixin implements _ExamModel {
         (other.runtimeType == runtimeType &&
             other is _$ExamModelImpl &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.classe, classe) || other.classe == classe) &&
             (identical(other.createdAt, createdAt) ||
@@ -185,7 +226,8 @@ class _$ExamModelImpl with DiagnosticableTreeMixin implements _ExamModel {
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, status, classe, createdAt);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, status, classe, createdAt);
 
   /// Create a copy of ExamModel
   /// with the given fields replaced by the non-null parameter values.
@@ -206,8 +248,9 @@ class _$ExamModelImpl with DiagnosticableTreeMixin implements _ExamModel {
 abstract class _ExamModel implements ExamModel {
   const factory _ExamModel(
       {required final int id,
+      required final String name,
       required final String status,
-      required final String classe,
+      required final ClasseModel classe,
       required final DateTime createdAt}) = _$ExamModelImpl;
 
   factory _ExamModel.fromJson(Map<String, dynamic> json) =
@@ -216,9 +259,11 @@ abstract class _ExamModel implements ExamModel {
   @override
   int get id;
   @override
+  String get name;
+  @override
   String get status;
   @override
-  String get classe;
+  ClasseModel get classe;
   @override
   DateTime get createdAt;
 

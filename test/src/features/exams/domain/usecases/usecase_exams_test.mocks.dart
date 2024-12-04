@@ -86,6 +86,26 @@ class MockRepositoryRemoteExams extends _i1.Mock
       ) as _i3.Future<Map<String, dynamic>>);
 
   @override
+  _i3.Future<Map<String, dynamic>> getTesteReport({
+    required int? studentId,
+    required int? limit,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTesteReport,
+          [],
+          {
+            #studentId: studentId,
+            #limit: limit,
+          },
+        ),
+        returnValue:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+        returnValueForMissingStub:
+            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i3.Future<Map<String, dynamic>>);
+
+  @override
   _i3.Future<Map<String, dynamic>> getItemTeste(int? id) => (super.noSuchMethod(
         Invocation.method(
           #getItemTeste,
@@ -131,12 +151,20 @@ class MockRepositoryRemoteExams extends _i1.Mock
       ) as _i3.Future<Map<String, dynamic>>);
 
   @override
-  _i3.Future<Map<String, dynamic>> postStudentAnswer(
-          Map<String, dynamic>? json) =>
+  _i3.Future<Map<String, dynamic>> postStudentAnswers({
+    required int? studentId,
+    required int? testeId,
+    required Map<String, dynamic>? selectedAnswers,
+  }) =>
       (super.noSuchMethod(
         Invocation.method(
-          #postStudentAnswer,
-          [json],
+          #postStudentAnswers,
+          [],
+          {
+            #studentId: studentId,
+            #testeId: testeId,
+            #selectedAnswers: selectedAnswers,
+          },
         ),
         returnValue:
             _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
@@ -167,7 +195,7 @@ class MockRepositoryRemoteExams extends _i1.Mock
   @override
   _i3.Future<Map<String, dynamic>> postTeste({
     required int? studentId,
-    required int? examId,
+    required int? testeId,
   }) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -175,7 +203,7 @@ class MockRepositoryRemoteExams extends _i1.Mock
           [],
           {
             #studentId: studentId,
-            #examId: examId,
+            #testeId: testeId,
           },
         ),
         returnValue:

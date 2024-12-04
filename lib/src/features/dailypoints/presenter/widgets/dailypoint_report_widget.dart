@@ -8,9 +8,7 @@ import 'package:transcriptapp/src/features/home/presenter/widgets/rating_bar_wid
 import '../controllers/dailypoints_controller.dart';
 
 class DailypointReportWidget extends ConsumerWidget {
-  const DailypointReportWidget({
-    super.key,
-  });
+  const DailypointReportWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,20 +23,25 @@ class DailypointReportWidget extends ConsumerWidget {
         onPressed: () => {},
       ),
       data: (dailypoints) {
-        double point = dailypoints['average'] == null ? 0 : dailypoints['average'].toDouble();
-        
+        double point = dailypoints['average'] == null
+            ? 0
+            : dailypoints['average'].toDouble();
+
         return InkWell(
           onTap: () {
             context.pushNamed('dailypoints');
           },
           child: Column(
-              children: [
-                Text(tr('home.dailyPoint'),
-                    style: Theme.of(context).textTheme.titleSmall),
-                const SizedBox(height: space / 2),
-                RatingBar(rating: point, ratingCount: dailypoints['countAll'], size: 30),
-              ],
-            ),
+            children: [
+              Text(tr('home.dailyPoint'),
+                  style: Theme.of(context).textTheme.titleSmall),
+              const SizedBox(height: space / 2),
+              RatingBar(
+                  rating: point,
+                  ratingCount: dailypoints['countAll'],
+                  size: 30),
+            ],
+          ),
         );
       },
     );

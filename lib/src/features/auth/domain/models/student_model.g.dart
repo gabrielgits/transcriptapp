@@ -12,7 +12,7 @@ _$StudentModelImpl _$$StudentModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       phone: json['phone'] as String,
       photo: json['photo'] as String,
-      status: (json['status'] as num).toInt(),
+      status: json['status'] as String,
       course: CourseModelModel.fromJson(json['course'] as Map<String, dynamic>),
     );
 

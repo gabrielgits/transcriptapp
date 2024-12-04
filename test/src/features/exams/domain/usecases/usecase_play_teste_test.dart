@@ -4,7 +4,6 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/question_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/student_answer_model.dart';
-import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_play_teste.dart';
 
@@ -137,7 +136,7 @@ void main() {
     test(
         'sendStudentAnswer: should return true when answer is sent successfully',
         () async {
-      when(mockRepositoryRemoteExams.postStudentAnswer(any))
+      when(mockRepositoryRemoteExams.postStudentAnswers(selectedAnswers: anyNamed('selectedAnswers')))
           .thenAnswer((_) async => {'status': true});
 
       final result = await usecasePlayTeste.sendStudentAnswer(
@@ -153,7 +152,7 @@ void main() {
 
     test('sendStudentAnswer: should return false when failed to send answer',
         () async {
-      when(mockRepositoryRemoteExams.postStudentAnswer(any))
+      when(mockRepositoryRemoteExams.postStudentAnswers(any))
           .thenAnswer((_) async => {'status': false, 'message': 'Error'});
 
       final result = await usecasePlayTeste.sendStudentAnswer(
@@ -170,7 +169,7 @@ void main() {
 
     test('sendStudentAnswer: should Exception when postStudentAnswer throwsException',
         () async {
-      when(mockRepositoryRemoteExams.postStudentAnswer(any))
+      when(mockRepositoryRemoteExams.postStudentAnswers(any))
           .thenThrow((_) async => throwsException);
 
       final result = await usecasePlayTeste.sendStudentAnswer(
@@ -200,36 +199,36 @@ void main() {
       };
       when(mockRepositoryRemoteExams.postTeste(
         studentId: anyNamed('studentId'),
-        examId: anyNamed('examId'),
+        testeId: anyNamed('examId'),
       )).thenAnswer((_) async => test);
 
-      final result = await usecasePlayTeste.startTeste(studentId: 1, examId: 1);
+      final result = await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
 
-      expect(result.teste, isA<TesteModel>());
+      expect(result.questions.length, 1);
       expect(result.exptWeb, isA<ExptWebNoExpt>());
     });
 
     test('startTeste: should return exception when test fails to start',
         () async {
       when(mockRepositoryRemoteExams.postTeste(
-              studentId: anyNamed('studentId'), examId: anyNamed('examId')))
+              studentId: anyNamed('studentId'), testeId: anyNamed('examId')))
           .thenAnswer((_) async => {'status': false, 'message': 'Error'});
 
-      final result = await usecasePlayTeste.startTeste(studentId: 1, examId: 1);
+      final result = await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
 
-      expect(result.teste, isA<TesteModel>());
+      expect(result.questions.length, 0);
       expect(result.exptWeb, isA<ExptWebPost>());
     });
 
     test('startTeste: should return exception when postTeste throwsException to start',
         () async {
       when(mockRepositoryRemoteExams.postTeste(
-              studentId: anyNamed('studentId'), examId: anyNamed('examId')))
+              studentId: anyNamed('studentId'), testeId: anyNamed('examId')))
           .thenThrow((_) async => throwsException);
 
-      final result = await usecasePlayTeste.startTeste(studentId: 1, examId: 1);
+      final result = await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
 
-      expect(result.teste, isA<TesteModel>());
+      expect(result.questions.length, 0);
       expect(result.exptWeb, isA<ExptWebUnknown>());
     });
   });
