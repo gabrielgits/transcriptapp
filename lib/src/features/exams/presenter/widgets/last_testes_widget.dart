@@ -46,7 +46,7 @@ class LastTestesWidget extends ConsumerWidget {
                   title: Text(teste.exam.name),
                   subtitle: Text(
                       '${tr('testes.date')}: ${dateHelper(date: teste.createdAt.toString())} - ${tr('testes.score')}: ${teste.score}',
-                      style: const TextStyle(fontSize: 10)),
+                      style: Theme.of(context).textTheme.bodySmall),
                   trailing: Column(
                     children: [
                       IconStatusWidget(status: teste.status),
@@ -65,7 +65,7 @@ class LastTestesWidget extends ConsumerWidget {
               const Spacer(),
               Text(
                 tr('home.touch'),
-                style: const TextStyle(fontSize: 10),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             ],
           ),

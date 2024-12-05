@@ -117,7 +117,7 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                             ? null
                             : BformButton(
                                 label: tr('testePlay.back'),
-                                colors: const [Colors.blueAccent],
+                                colors: [Theme.of(context).primaryColor],
                                 style: BformButtonStyle.outlined,
                                 onPressed: () {
                                   setState(() {
@@ -158,7 +158,7 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                             ? null
                             : BformButton(
                                 label: tr('testePlay.next'),
-                                colors: const [Colors.blueAccent],
+                                colors: [Theme.of(context).primaryColor],
                                 style: BformButtonStyle.outlined,
                                 onPressed: () {
                                   setState(() {
@@ -221,8 +221,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   void initState() {
     super.initState();
     // Initialize the selected answer for this question
-    selectedAnswerId = _selectedAnswers[widget.question.id] ??
-        0;
+    selectedAnswerId = _selectedAnswers[widget.question.id] ?? 0;
   }
 
   @override
@@ -271,4 +270,3 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     );
   }
 }
-

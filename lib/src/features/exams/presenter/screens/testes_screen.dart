@@ -53,7 +53,7 @@ class TestesListScreen extends ConsumerWidget {
                   title: Text(teste.exam.name),
                   subtitle: Text(
                       '${tr('testes.date')}: ${dateHelper(date: teste.createdAt.toString())} - ${tr('testes.score')}: ${teste.score}',
-                      style: const TextStyle(fontSize: 10)),
+                      style: Theme.of(context).textTheme.labelSmall),
                   trailing: Column(
                     children: [
                       IconStatusWidget(status: teste.status),

@@ -19,7 +19,7 @@ class TesteDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(tr('testeDetails.title')), // Use tr() for localization
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Theme.of(context).colorScheme.primary,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -29,10 +29,7 @@ class TesteDetailPage extends StatelessWidget {
             Center(
               child: Text(
                 teste.exam.name,
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
             const SizedBox(height: space),
@@ -45,7 +42,7 @@ class TesteDetailPage extends StatelessWidget {
               children: [
                 Text(
                   tr('testeDetails.status'),
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: Theme.of(context).textTheme.labelLarge,
                 ),
                 const Spacer(),
                 Column(

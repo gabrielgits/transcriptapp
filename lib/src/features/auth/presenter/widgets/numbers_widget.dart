@@ -58,12 +58,12 @@ class NumbersWidget extends ConsumerWidget {
         children: <Widget>[
           Text(
             value,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+            style: Theme.of(context).textTheme.headlineSmall,
           ),
           const SizedBox(height: 2),
           Text(
             text,
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.labelMedium,
           ),
         ],
       ),

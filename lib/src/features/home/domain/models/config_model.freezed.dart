@@ -24,6 +24,7 @@ mixin _$ConfigModel {
   String get name => throw _privateConstructorUsedError;
   int get studentId => throw _privateConstructorUsedError;
   String get token => throw _privateConstructorUsedError;
+  String get language => throw _privateConstructorUsedError;
 
   /// Serializes this ConfigModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,7 +42,8 @@ abstract class $ConfigModelCopyWith<$Res> {
           ConfigModel value, $Res Function(ConfigModel) then) =
       _$ConfigModelCopyWithImpl<$Res, ConfigModel>;
   @useResult
-  $Res call({int id, String name, int studentId, String token});
+  $Res call(
+      {int id, String name, int studentId, String token, String language});
 }
 
 /// @nodoc
@@ -63,6 +65,7 @@ class _$ConfigModelCopyWithImpl<$Res, $Val extends ConfigModel>
     Object? name = null,
     Object? studentId = null,
     Object? token = null,
+    Object? language = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -81,6 +84,10 @@ class _$ConfigModelCopyWithImpl<$Res, $Val extends ConfigModel>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -93,7 +100,8 @@ abstract class _$$ConfigModelImplCopyWith<$Res>
       __$$ConfigModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String name, int studentId, String token});
+  $Res call(
+      {int id, String name, int studentId, String token, String language});
 }
 
 /// @nodoc
@@ -113,6 +121,7 @@ class __$$ConfigModelImplCopyWithImpl<$Res>
     Object? name = null,
     Object? studentId = null,
     Object? token = null,
+    Object? language = null,
   }) {
     return _then(_$ConfigModelImpl(
       id: null == id
@@ -131,6 +140,10 @@ class __$$ConfigModelImplCopyWithImpl<$Res>
           ? _value.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
+      language: null == language
+          ? _value.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -142,7 +155,8 @@ class _$ConfigModelImpl with DiagnosticableTreeMixin implements _ConfigModel {
       {required this.id,
       required this.name,
       required this.studentId,
-      required this.token});
+      required this.token,
+      required this.language});
 
   factory _$ConfigModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ConfigModelImplFromJson(json);
@@ -155,10 +169,12 @@ class _$ConfigModelImpl with DiagnosticableTreeMixin implements _ConfigModel {
   final int studentId;
   @override
   final String token;
+  @override
+  final String language;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ConfigModel(id: $id, name: $name, studentId: $studentId, token: $token)';
+    return 'ConfigModel(id: $id, name: $name, studentId: $studentId, token: $token, language: $language)';
   }
 
   @override
@@ -169,7 +185,8 @@ class _$ConfigModelImpl with DiagnosticableTreeMixin implements _ConfigModel {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('studentId', studentId))
-      ..add(DiagnosticsProperty('token', token));
+      ..add(DiagnosticsProperty('token', token))
+      ..add(DiagnosticsProperty('language', language));
   }
 
   @override
@@ -181,12 +198,15 @@ class _$ConfigModelImpl with DiagnosticableTreeMixin implements _ConfigModel {
             (identical(other.name, name) || other.name == name) &&
             (identical(other.studentId, studentId) ||
                 other.studentId == studentId) &&
-            (identical(other.token, token) || other.token == token));
+            (identical(other.token, token) || other.token == token) &&
+            (identical(other.language, language) ||
+                other.language == language));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, studentId, token);
+  int get hashCode =>
+      Object.hash(runtimeType, id, name, studentId, token, language);
 
   /// Create a copy of ConfigModel
   /// with the given fields replaced by the non-null parameter values.
@@ -209,7 +229,8 @@ abstract class _ConfigModel implements ConfigModel {
       {required final int id,
       required final String name,
       required final int studentId,
-      required final String token}) = _$ConfigModelImpl;
+      required final String token,
+      required final String language}) = _$ConfigModelImpl;
 
   factory _ConfigModel.fromJson(Map<String, dynamic> json) =
       _$ConfigModelImpl.fromJson;
@@ -222,6 +243,8 @@ abstract class _ConfigModel implements ConfigModel {
   int get studentId;
   @override
   String get token;
+  @override
+  String get language;
 
   /// Create a copy of ConfigModel
   /// with the given fields replaced by the non-null parameter values.

@@ -12,6 +12,7 @@ _$ConfigModelImpl _$$ConfigModelImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       studentId: (json['studentId'] as num).toInt(),
       token: json['token'] as String,
+      language: json['language'] as String,
     );
 
 Map<String, dynamic> _$$ConfigModelImplToJson(_$ConfigModelImpl instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$ConfigModelImplToJson(_$ConfigModelImpl instance) =>
       'name': instance.name,
       'studentId': instance.studentId,
       'token': instance.token,
+      'language': instance.language,
     };

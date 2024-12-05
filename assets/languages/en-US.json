@@ -58,10 +58,9 @@
     "loading": "Loading Settings"
   },
   "landing": {
-    "title1": "The ultimate quiz game to challenge your brain.",
-    "title2": "Design and play your very own customized quiz challenges.",
-    "title3": "You just need the title and Tchissola will do the rest.",
-    "title4": "Share your quiz with friends and family.",
+    "title1": "Simplify the monitoring of school performance.",
+    "title2": "Academic information accessible at any time.",
+    "title3": "Efficient educational management and transparency.",
     "btnStart": "Get Started"
   },
   "attendances": {
@@ -98,7 +97,9 @@
     "finished": "Finished",
     "missing": "Missing",
     "active": "Active",
-    "inactive": "Inactive"
+    "inactive": "Inactive",
+    "absent": "Absent",
+    "present": "Present"
   },
   "student": {
     "testesAverage": "Exams Average",

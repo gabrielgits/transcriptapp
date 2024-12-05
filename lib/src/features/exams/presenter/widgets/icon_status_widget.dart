@@ -9,16 +9,16 @@ class IconStatusWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var icon = Icons.timer;
     var color = Colors.orange;
-    if (status == 'ongoing') {
+    if (status == 'ongoing' || status == 'started') {
       icon = Icons.timelapse;
       color = Colors.yellow;
-    } else if (status == 'submitted') {
+    } else if (status == 'submitted' || status == 'sended') {
       icon = Icons.send;
       color = Colors.blue;
-    } else if (status == 'done') {
+    } else if (status == 'done' || status == 'finished') {
       icon = Icons.done_all;
       color = Colors.green;
-    } else if (status == 'missing') {
+    } else if (status == 'missing' || status == 'absent') {
       icon = Icons.close;
       color = Colors.red;
     }

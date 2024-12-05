@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:transcriptapp/src/core/constants.dart';
 import 'package:transcriptapp/src/core/helpers/open_url.dart';
 
-
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
 
@@ -30,7 +29,7 @@ class AboutScreenState extends State<AboutScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-                        const SizedBox(
+            const SizedBox(
               height: 10,
             ),
             const SizedBox(
@@ -45,17 +44,16 @@ class AboutScreenState extends State<AboutScreen> {
             Container(
               margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
-              decoration: const BoxDecoration(
-                color: Colors.white,
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.surface,
                 borderRadius: BorderRadius.all(Radius.circular(15)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Text(
+                  Text(
                     '${AppConstants.name} ${AppConstants.version}',
-                    style: TextStyle(
-                        fontSize: 28, fontWeight: FontWeight.bold),
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(
                     height: 10,
@@ -67,7 +65,7 @@ class AboutScreenState extends State<AboutScreen> {
                       fontSize: 12,
                     ),
                   ),
-                                   const SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Column(
@@ -75,36 +73,28 @@ class AboutScreenState extends State<AboutScreen> {
                     children: [
                       Text(
                         tr('home.reviews'),
-                        style: const TextStyle(
-                          fontSize: 20,
-                          color: Colors.grey,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium,
                       ),
                       SizedBox(height: space),
                       InkWell(
-                          child: const Text(AppConstants.suporteContacto,
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.blue)),
-                          onTap: () => OpenUrl(
-                              'tel:${AppConstants.suporteContacto}')),
+                          child: Text(AppConstants.suporteContacto,
+                              style: Theme.of(context).textTheme.titleSmall),
+                          onTap: () =>
+                              OpenUrl('tel:${AppConstants.suporteContacto}')),
                       SizedBox(height: space),
                       InkWell(
-                          child: const Text(AppConstants.suporteEmail,
-                              style:
-                                  TextStyle(fontSize: 18, color: Colors.blue)),
+                          child: Text(AppConstants.suporteEmail,
+                              style: Theme.of(context).textTheme.titleSmall),
                           onTap: () =>
                               OpenUrl('mailto:${AppConstants.suporteEmail}')),
                       SizedBox(height: space),
                       TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.primaryContainer,
-                        ),
-                        child: const Text(AppConstants.copyrith,
-                            style: TextStyle(fontSize: 12)),
-                        onPressed: () =>
-                              OpenUrl(AppConstants.suporteLink)
-                      ),
+                          style: TextButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primaryContainer,
+                          ),
+                          child: const Text(AppConstants.copyrith),
+                          onPressed: () => OpenUrl(AppConstants.suporteLink)),
                     ],
                   ),
                 ],
@@ -114,6 +104,5 @@ class AboutScreenState extends State<AboutScreen> {
         ),
       ),
     );
-  
   }
 }

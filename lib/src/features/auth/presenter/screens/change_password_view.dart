@@ -96,9 +96,9 @@ class ChangePasswordViewState extends ConsumerState<ChangePasswordView> {
                             //style: BformButtonStyle.highlighted,
                             label: tr('changePwd.btnChange'),
                             colors: [
-                              Theme.of(context).colorScheme.onErrorContainer,
+                              Theme.of(context).colorScheme.primary,
                             ],
-                            textColor: Colors.white,
+                            textColor: Theme.of(context).colorScheme.surface,
                             fontSize: 20,
                             onPressed: () async {
                               if (tecNewPassword.text !=

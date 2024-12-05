@@ -42,7 +42,7 @@ class ControllerConfigs extends _$ControllerConfigs {
 
   Future<void> createConfig() async {
     state = const AsyncLoading();
-    const config = ConfigModel(id: 1, studentId: 0, name: 'configs', token: '');
+    const config = ConfigModel(id: 1, studentId: 0, name: 'configs', token: '', language: 'en');
     final result = await _usecaseConfigs.saveConfig(config);
     if (result.exception != ExptDataNoExpt()) {
       state = AsyncError(result.exception, StackTrace.current);

@@ -12,7 +12,7 @@ import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart'
 import 'package:transcriptapp/src/features/exams/presenter/screens/teste_play_screen.dart';
 import 'package:transcriptapp/src/features/exams/presenter/screens/teste_view_screen.dart';
 import 'package:transcriptapp/src/features/exams/presenter/screens/testes_screen.dart';
-import 'package:transcriptapp/src/features/home/presenter/screens/home_init.dart';
+import 'package:transcriptapp/src/features/home/presenter/screens/app_init.dart';
 import 'package:transcriptapp/src/features/home/presenter/screens/home_screen.dart';
 import 'package:transcriptapp/src/features/notifications/presenter/views/notifications_view.dart';
 
@@ -23,7 +23,7 @@ final GoRouter appRoutes = GoRouter(
     GoRoute(
       path: '/init',
       name: 'init',
-      builder: (context, state) => const HomeInit(),
+      builder: (context, state) => const AppInit(),
     ),
     GoRoute(
       path: '/home',

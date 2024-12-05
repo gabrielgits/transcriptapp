@@ -17,8 +17,8 @@ class LoginFormWidgets extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     const space = 10.0;
-    final tecPhone = TextEditingController(text: '1234567890');
-    final tecPassword = TextEditingController(text: 'password000');
+    final tecPhone = TextEditingController();
+    final tecPassword = TextEditingController();
 
     final userNotifier = ref.watch(usersControllerProvider);
     return BformForm(
@@ -55,7 +55,7 @@ class LoginFormWidgets extends ConsumerWidget {
                 colors: [
                   Theme.of(context).colorScheme.primary,
                 ],
-                textColor: Colors.white,
+                textColor: Theme.of(context).colorScheme.surface,
                 fontSize: 20,
                 onPressed: () async {
                   final result = await ref

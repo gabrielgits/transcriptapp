@@ -18,7 +18,7 @@ class UserAvatarWidget extends ConsumerWidget {
       margin: const EdgeInsets.only(right: 16),
       child: IconButton(
         icon: CircleAvatar(
-          backgroundColor: Colors.red[200],
+          backgroundColor: Theme.of(context).colorScheme.errorContainer,
           child: const Icon(Icons.person),
         ),
         onPressed: () {
@@ -88,13 +88,31 @@ _userInfo({
           const SizedBox(height: space),
           Text(
             student.title,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
+            style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: space),
-          Text(student.subtitle),
+          // locale change
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              InkWell(
+                child: const CircleAvatar(
+                  backgroundImage:
+                      AssetImage('assets/images/flags/flag_en_us.png'),
+                  maxRadius: 25,
+                ),
+                onTap: () => context.setLocale(const Locale('en', 'US')),
+              ),
+              InkWell(
+                child: const CircleAvatar(
+                  backgroundImage:
+                      AssetImage('assets/images/flags/flag_pt_pt.png'),
+                  maxRadius: 25,
+                ),
+                onTap: () => context.setLocale(const Locale('pt', 'PT')),
+              ),
+            ],
+          ),
           const SizedBox(height: space),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -107,7 +125,6 @@ _userInfo({
                 onPressed: () {
                   context.pushNamed('profile', extra: {'student': student});
                 },
-                
               ),
               const SizedBox(width: space),
               BformButton(

@@ -24,6 +24,7 @@ mixin _$AttendanceModel {
   String get status => throw _privateConstructorUsedError;
   int get studentId => throw _privateConstructorUsedError;
   int get classeId => throw _privateConstructorUsedError;
+  ClasseModel get classe => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   /// Serializes this AttendanceModel to a JSON map.
@@ -43,7 +44,14 @@ abstract class $AttendanceModelCopyWith<$Res> {
       _$AttendanceModelCopyWithImpl<$Res, AttendanceModel>;
   @useResult
   $Res call(
-      {int id, String status, int studentId, int classeId, DateTime createdAt});
+      {int id,
+      String status,
+      int studentId,
+      int classeId,
+      ClasseModel classe,
+      DateTime createdAt});
+
+  $ClasseModelCopyWith<$Res> get classe;
 }
 
 /// @nodoc
@@ -65,6 +73,7 @@ class _$AttendanceModelCopyWithImpl<$Res, $Val extends AttendanceModel>
     Object? status = null,
     Object? studentId = null,
     Object? classeId = null,
+    Object? classe = null,
     Object? createdAt = null,
   }) {
     return _then(_value.copyWith(
@@ -84,11 +93,25 @@ class _$AttendanceModelCopyWithImpl<$Res, $Val extends AttendanceModel>
           ? _value.classeId
           : classeId // ignore: cast_nullable_to_non_nullable
               as int,
+      classe: null == classe
+          ? _value.classe
+          : classe // ignore: cast_nullable_to_non_nullable
+              as ClasseModel,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
+  }
+
+  /// Create a copy of AttendanceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ClasseModelCopyWith<$Res> get classe {
+    return $ClasseModelCopyWith<$Res>(_value.classe, (value) {
+      return _then(_value.copyWith(classe: value) as $Val);
+    });
   }
 }
 
@@ -101,7 +124,15 @@ abstract class _$$AttendanceModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id, String status, int studentId, int classeId, DateTime createdAt});
+      {int id,
+      String status,
+      int studentId,
+      int classeId,
+      ClasseModel classe,
+      DateTime createdAt});
+
+  @override
+  $ClasseModelCopyWith<$Res> get classe;
 }
 
 /// @nodoc
@@ -121,6 +152,7 @@ class __$$AttendanceModelImplCopyWithImpl<$Res>
     Object? status = null,
     Object? studentId = null,
     Object? classeId = null,
+    Object? classe = null,
     Object? createdAt = null,
   }) {
     return _then(_$AttendanceModelImpl(
@@ -140,6 +172,10 @@ class __$$AttendanceModelImplCopyWithImpl<$Res>
           ? _value.classeId
           : classeId // ignore: cast_nullable_to_non_nullable
               as int,
+      classe: null == classe
+          ? _value.classe
+          : classe // ignore: cast_nullable_to_non_nullable
+              as ClasseModel,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -158,6 +194,7 @@ class _$AttendanceModelImpl
       required this.status,
       required this.studentId,
       required this.classeId,
+      required this.classe,
       required this.createdAt});
 
   factory _$AttendanceModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -172,11 +209,13 @@ class _$AttendanceModelImpl
   @override
   final int classeId;
   @override
+  final ClasseModel classe;
+  @override
   final DateTime createdAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'AttendanceModel(id: $id, status: $status, studentId: $studentId, classeId: $classeId, createdAt: $createdAt)';
+    return 'AttendanceModel(id: $id, status: $status, studentId: $studentId, classeId: $classeId, classe: $classe, createdAt: $createdAt)';
   }
 
   @override
@@ -188,6 +227,7 @@ class _$AttendanceModelImpl
       ..add(DiagnosticsProperty('status', status))
       ..add(DiagnosticsProperty('studentId', studentId))
       ..add(DiagnosticsProperty('classeId', classeId))
+      ..add(DiagnosticsProperty('classe', classe))
       ..add(DiagnosticsProperty('createdAt', createdAt));
   }
 
@@ -202,14 +242,15 @@ class _$AttendanceModelImpl
                 other.studentId == studentId) &&
             (identical(other.classeId, classeId) ||
                 other.classeId == classeId) &&
+            (identical(other.classe, classe) || other.classe == classe) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, status, studentId, classeId, createdAt);
+  int get hashCode => Object.hash(
+      runtimeType, id, status, studentId, classeId, classe, createdAt);
 
   /// Create a copy of AttendanceModel
   /// with the given fields replaced by the non-null parameter values.
@@ -234,6 +275,7 @@ abstract class _AttendanceModel implements AttendanceModel {
       required final String status,
       required final int studentId,
       required final int classeId,
+      required final ClasseModel classe,
       required final DateTime createdAt}) = _$AttendanceModelImpl;
 
   factory _AttendanceModel.fromJson(Map<String, dynamic> json) =
@@ -247,6 +289,8 @@ abstract class _AttendanceModel implements AttendanceModel {
   int get studentId;
   @override
   int get classeId;
+  @override
+  ClasseModel get classe;
   @override
   DateTime get createdAt;
 

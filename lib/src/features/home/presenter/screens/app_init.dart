@@ -9,8 +9,8 @@ import '../controllers/controller_configs.dart';
 import 'landing_screen.dart';
 import 'home_screen.dart';
 
-class HomeInit extends ConsumerWidget {
-  const HomeInit({super.key});
+class AppInit extends ConsumerWidget {
+  const AppInit({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -24,6 +24,7 @@ class HomeInit extends ConsumerWidget {
       ),
       data: (config) {
         if (config.id > 0) {
+          //changeLocale(locale: config.language, context: context);
           if (config.studentId > 0) {
             return const HomeScreen();
           }

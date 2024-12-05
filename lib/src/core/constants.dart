@@ -1,6 +1,6 @@
 class AppConstants {
   //app
-  static const debug = true;
+  static const debug = false;
   static const name = 'Transcript';
   static const schoolName = 'Instituto Superior Politecnico Lusíada de Benguela';
   static const version = '0.1';
@@ -14,7 +14,8 @@ class AppConstants {
   static const suporteLink = 'https://github.com/gabrielgits';
 
   //url
-  static const url = 'http://10.0.2.2:8000';
+  //static const url = 'http://10.0.2.2:8000';
+  static const url = 'https://stranscript.online';
   static const urlStorage = '$url/storage/';
   static const urlApi = '$url/api/v1';
 

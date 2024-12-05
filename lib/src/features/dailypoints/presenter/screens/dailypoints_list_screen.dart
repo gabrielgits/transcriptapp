@@ -53,7 +53,7 @@ class DailypointsListScreen extends ConsumerWidget {
               return Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,
+                  color: Theme.of(context).colorScheme.tertiary,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: ListTile(
@@ -66,7 +66,7 @@ class DailypointsListScreen extends ConsumerWidget {
                       "${tr('dailypoints.classeNumber')} : ${dailypoint.classeId}"),
                   subtitle: Text(
                       '${tr('dailypoints.date')}: ${dateHelper(date: dailypoint.createdAt.toString())}',
-                      style: const TextStyle(fontSize: 10)),
+                      style: Theme.of(context).textTheme.bodySmall),
                   trailing: Text(pointDescription, style: TextStyle(color: pointColor),),
                 ),
               );

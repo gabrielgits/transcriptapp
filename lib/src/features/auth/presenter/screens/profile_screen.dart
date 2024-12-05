@@ -32,24 +32,22 @@ class ProfileView extends StatelessWidget {
               children: [
                 Text(
                   student.title,
-                  style: const TextStyle(
-                      fontWeight: FontWeight.bold, fontSize: 24),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(height: 4),
                 Text(
                   student.subtitle,
-                  style: const TextStyle(color: Colors.grey),
+                  style: Theme.of(context).textTheme.bodySmall,
                 ),
+                const SizedBox(height: 4),
                 Text(
                   '${student.model.course.name} - ${student.model.course.room}',
-                  style: const TextStyle(
-                    fontSize: 16,
-                    height: 1.4,
-                  ),
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
                 const SizedBox(height: 4),
                 Text(
                   '${tr('profile.teacher')}: ${student.model.course.teacher.name}',
+                  style: Theme.of(context).textTheme.labelSmall,
                 ),
               ],
             ),
@@ -57,7 +55,8 @@ class ProfileView extends StatelessWidget {
             Center(
                 child: BformButton(
               label: tr('profile.changePassword'),
-              colors: [Theme.of(context).colorScheme.errorContainer],
+              colors: [Theme.of(context).colorScheme.secondary],
+              textColor: Theme.of(context).colorScheme.surface,
               onPressed: () {
                 context.pushNamed('changepassword');
               },

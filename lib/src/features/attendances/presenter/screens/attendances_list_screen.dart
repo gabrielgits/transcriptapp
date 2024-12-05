@@ -45,11 +45,10 @@ class AttendancesListScreen extends ConsumerWidget {
                     backgroundImage:
                         AssetImage('assets/images/icons/app_icon.png'),
                   ),
-                  title: Text(
-                      "${tr('attendances.classeNumber')} : ${attendance.classeId}"),
+                  title: Text(attendance.classe.summary),
                   subtitle: Text(
-                      '${tr('attendances.date')}: ${dateHelper(date: attendance.createdAt.toString())} - ${tr(attendance.status)}',
-                      style: const TextStyle(fontSize: 10)),
+                      '${tr('attendances.date')}: ${dateHelper(date: attendance.createdAt.toString())} - ${tr("status.${attendance.status}")}',
+                      style: Theme.of(context).textTheme.bodySmall),
                   trailing: attendance.status == 'present'
                       ? const Icon(
                           Icons.check,

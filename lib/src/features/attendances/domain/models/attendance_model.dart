@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:transcriptapp/src/core/domain/models/classe_model.dart';
 
 part 'attendance_model.freezed.dart';
 part 'attendance_model.g.dart';
@@ -11,6 +12,7 @@ class AttendanceModel with _$AttendanceModel {
     required String status,
     required int studentId,
     required int classeId,
+    required ClasseModel classe,
     required DateTime createdAt,
   }) = _AttendanceModel;
 
@@ -20,6 +22,7 @@ class AttendanceModel with _$AttendanceModel {
       status: '',
       studentId: 0,
       classeId: 0,
+      classe: ClasseModel.init(),
       createdAt: DateTime.now(),
     );
   }
