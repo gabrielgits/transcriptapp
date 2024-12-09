@@ -4,6 +4,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/question_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/student_answer_model.dart';
+import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart';
 import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
 import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_play_teste.dart';
 
@@ -59,7 +60,9 @@ void main() {
       expect(result.exptWeb, isA<ExptWebGet>());
     });
 
-        test('fetchListQuestions: should return exception when  getListQuestions throwsException', () async {
+    test(
+        'fetchListQuestions: should return exception when  getListQuestions throwsException',
+        () async {
       when(mockRepositoryRemoteExams.getListQuestions(any))
           .thenThrow((_) async => throwsException);
 
@@ -72,10 +75,9 @@ void main() {
     test(
         'fetchListStudentAnswers: should return list of student answers when successful',
         () async {
-
       final studentAnswerJson = {
         'id': 1,
-        'studentId': 1, 
+        'studentId': 1,
         'question': {
           'id': 1,
           'question': 'What is the capital of France?',
@@ -120,7 +122,8 @@ void main() {
       expect(result.exptWeb, isA<ExptWebGet>());
     });
 
-        test('fetchListStudentAnswers: should return exception when fetchListStudentAnswers throwsException',
+    test(
+        'fetchListStudentAnswers: should return exception when fetchListStudentAnswers throwsException',
         () async {
       when(mockRepositoryRemoteExams.getListStudentAnswers(
               studentId: anyNamed('studentId'), testeId: anyNamed('testeId')))
@@ -136,50 +139,56 @@ void main() {
     test(
         'sendStudentAnswer: should return true when answer is sent successfully',
         () async {
-      when(mockRepositoryRemoteExams.postStudentAnswers(selectedAnswers: anyNamed('selectedAnswers')))
+      when(mockRepositoryRemoteExams.postStudentAnswers(
+              studentId: anyNamed('studentId'),
+              testeId: anyNamed('testeId'),
+              selectedAnswers: anyNamed('selectedAnswers')))
           .thenAnswer((_) async => {'status': true});
 
-      final result = await usecasePlayTeste.sendStudentAnswer(
-        answerId: 1,
-        questionId: 1,
+      final result = await usecasePlayTeste.sendStudentAnswers(
+        selectedAnswers: {},
         studentId: 1,
         testeId: 1,
       );
 
-      expect(result.result, isTrue);
+      expect(result.teste, isA<TesteModel>());
       expect(result.exptWeb, isA<ExptWebNoExpt>());
     });
 
     test('sendStudentAnswer: should return false when failed to send answer',
         () async {
-      when(mockRepositoryRemoteExams.postStudentAnswers(any))
-          .thenAnswer((_) async => {'status': false, 'message': 'Error'});
+      when(mockRepositoryRemoteExams.postStudentAnswers(
+        studentId: anyNamed('studentId'),
+        testeId: anyNamed('testeId'),
+        selectedAnswers: anyNamed('selectedAnswers'),
+      )).thenAnswer((_) async => {'status': false, 'message': 'Error'});
 
-      final result = await usecasePlayTeste.sendStudentAnswer(
-        answerId: 1,
-        questionId: 1,
+      final result = await usecasePlayTeste.sendStudentAnswers(
+        selectedAnswers: {},
         studentId: 1,
         testeId: 1,
       );
 
-      expect(result.result, isFalse);
+      expect(result.teste, TesteModel.init());
       expect(result.exptWeb, isA<ExptWebPost>());
     });
 
-
-    test('sendStudentAnswer: should Exception when postStudentAnswer throwsException',
+    test(
+        'sendStudentAnswer: should Exception when postStudentAnswer throwsException',
         () async {
-      when(mockRepositoryRemoteExams.postStudentAnswers(any))
-          .thenThrow((_) async => throwsException);
+      when(mockRepositoryRemoteExams.postStudentAnswers(
+        testeId: anyNamed('testeId'),
+        studentId: anyNamed('studentId'),
+        selectedAnswers: anyNamed('selectedAnswers'),
+      )).thenThrow((_) async => throwsException);
 
-      final result = await usecasePlayTeste.sendStudentAnswer(
-        answerId: 1,
-        questionId: 1,
+      final result = await usecasePlayTeste.sendStudentAnswers(
         studentId: 1,
         testeId: 1,
+        selectedAnswers: {},
       );
 
-      expect(result.result, isFalse);
+      expect(result.teste, TesteModel.init());
       expect(result.exptWeb, isA<ExptWebUnknown>());
     });
 
@@ -202,7 +211,8 @@ void main() {
         testeId: anyNamed('examId'),
       )).thenAnswer((_) async => test);
 
-      final result = await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
+      final result =
+          await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
 
       expect(result.questions.length, 1);
       expect(result.exptWeb, isA<ExptWebNoExpt>());
@@ -214,19 +224,22 @@ void main() {
               studentId: anyNamed('studentId'), testeId: anyNamed('examId')))
           .thenAnswer((_) async => {'status': false, 'message': 'Error'});
 
-      final result = await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
+      final result =
+          await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
 
       expect(result.questions.length, 0);
       expect(result.exptWeb, isA<ExptWebPost>());
     });
 
-    test('startTeste: should return exception when postTeste throwsException to start',
+    test(
+        'startTeste: should return exception when postTeste throwsException to start',
         () async {
       when(mockRepositoryRemoteExams.postTeste(
               studentId: anyNamed('studentId'), testeId: anyNamed('examId')))
           .thenThrow((_) async => throwsException);
 
-      final result = await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
+      final result =
+          await usecasePlayTeste.startTeste(studentId: 1, testeId: 1);
 
       expect(result.questions.length, 0);
       expect(result.exptWeb, isA<ExptWebUnknown>());

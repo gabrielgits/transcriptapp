@@ -27,6 +27,7 @@ void main() {
       name: 'Test Config',
       studentId: 1,
       token: '',
+      language: 'en',
     );
     when(mockRepositoryLocal.updateConfig(config)).thenAnswer((_) async => 1);
 
@@ -42,6 +43,7 @@ void main() {
       name: 'Test Config',
       studentId: 1,
       token: '',
+      language: 'en',
     );
     when(mockRepositoryLocal.updateConfig(config)).thenAnswer((_) async => 0);
 
@@ -58,6 +60,7 @@ void main() {
       name: 'Test Config',
       studentId: 1,
       token: '',
+      language: 'en',
     );
     when(mockRepositoryLocal.updateConfig(config))
         .thenThrow((_) async => throwsException);
@@ -75,6 +78,7 @@ void main() {
       name: 'Test Config',
       studentId: 1,
       token: '',
+      language: 'en',
     );
     when(mockRepositoryLocal.getConfig(1)).thenAnswer((_) async => config);
 
@@ -111,6 +115,7 @@ void main() {
       name: 'Test Config',
       studentId: 1,
       token: '',
+      language: 'en',
     );
     when(mockRepositoryLocal.saveConfig(config)).thenAnswer((_) async => 1);
 
@@ -126,6 +131,7 @@ void main() {
       name: 'Test Config',
       studentId: 1,
       token: '',
+      language: 'en',
     );
     when(mockRepositoryLocal.saveConfig(config)).thenAnswer((_) async => 0);
 
@@ -142,6 +148,7 @@ void main() {
       name: 'Test Config',
       studentId: 1,
       token: '',
+      language: 'en',
     );
     when(mockRepositoryLocal.saveConfig(config))
         .thenThrow((_) async => throwsException);

@@ -43,7 +43,7 @@ dependencies:
 
   #networking and storage:
   feds:
-    path: ../packages/feds
+    git: https://github.com/gabrielgits/feds.git
   dart_openai: ^5.1.0
   cloud_firestore: ^5.0.0
   freezed_annotation: ^2.4.1

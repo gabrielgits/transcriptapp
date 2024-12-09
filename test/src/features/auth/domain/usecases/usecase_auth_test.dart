@@ -77,10 +77,11 @@ void main() {
       when(mockRepositoryRemoteAuth.updatePassword(
         oldPassword: 'oldPassword',
         newPassword: 'newPassword',
+        studentId: 1,
       )).thenAnswer((_) async => {'status': true});
 
       final result = await usecaseAuth.changePassword(
-          oldPassword: 'oldPassword', newPassword: 'newPassword');
+          oldPassword: 'oldPassword', newPassword: 'newPassword', studentId: 1);
 
       expect(result, isA<ExptWebNoExpt>());
     });
@@ -90,11 +91,12 @@ void main() {
       when(mockRepositoryRemoteAuth.updatePassword(
         oldPassword: 'oldPassword',
         newPassword: 'newPassword',
+        studentId: 1,
       )).thenAnswer(
           (_) async => {'status': false, 'message': 'Invalid Credentials'});
 
       final result = await usecaseAuth.changePassword(
-          oldPassword: 'oldPassword', newPassword: 'newPassword');
+          oldPassword: 'oldPassword', newPassword: 'newPassword', studentId: 1);
 
       expect(result, isA<ExptWebPost>());
     });
@@ -105,10 +107,11 @@ void main() {
       when(mockRepositoryRemoteAuth.updatePassword(
         oldPassword: 'oldPassword',
         newPassword: 'newPassword',
+        studentId: 1,
       )).thenThrow(throwsException);
 
       final result = await usecaseAuth.changePassword(
-          oldPassword: 'oldPassword', newPassword: 'newPassword');
+          oldPassword: 'oldPassword', newPassword: 'newPassword', studentId: 1);
 
       expect(result, isA<ExptWebUnknown>());
     });
