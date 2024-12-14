@@ -4,6 +4,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transcriptapp/src/core/helpers/responsive_helper.dart';
 import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
 import 'package:transcriptapp/src/core/presenter/widgets/loading_widget.dart';
 
@@ -22,6 +23,7 @@ class LoginFormWidgets extends ConsumerWidget {
 
     final userNotifier = ref.watch(usersControllerProvider);
     return BformForm(
+      width: ResponsiveHelper.isMobile(context) ? null : 400,
       border: Border.all(color: Theme.of(context).colorScheme.primary),
       child: userNotifier.when(
         loading: () => const Center(child: LoadingWidget()),

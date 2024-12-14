@@ -97,7 +97,9 @@
     "finished": "Finalizado",
     "missing": "Ausente",
     "active": "Ativo",
-    "inactive": "Inativo"
+    "inactive": "Inativo",
+    "absent": "Presença",
+    "present": "Ausencia"
   },
   "student": {
     "testesAverage": "Média de Exames",
