@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transcriptapp/src/core/helpers/date_helper.dart';
-import 'package:transcriptapp/src/core/presenter/screens/no_data_view.dart';
-import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
-import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
-import 'package:transcriptapp/src/core/presenter/widgets/loading_widget.dart';
+import 'package:transcriptapp/src/utils/date_helper.dart';
+import 'package:transcriptapp/src/shared/ui/screens/no_data_view.dart';
+import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
+import 'package:transcriptapp/src/shared/ui/widgets/custom_appbar_widget.dart';
+import 'package:transcriptapp/src/shared/ui/widgets/loading_widget.dart';
 
 import '../controllers/attendances_controller.dart';
 

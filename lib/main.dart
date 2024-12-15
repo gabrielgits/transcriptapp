@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transcriptapp/src/core/dependency.dart';
+import 'package:transcriptapp/src/config/dependency.dart';
 
 import 'src/app_widget.dart';
-import 'src/core/constants.dart';
+import 'src/config/constants.dart';
 
 
 Future<void> main() async {

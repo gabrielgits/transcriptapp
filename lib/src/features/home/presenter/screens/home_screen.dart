@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:transcriptapp/src/core/constants.dart';
-import 'package:transcriptapp/src/core/presenter/widgets/custom_appbar_widget.dart';
+import 'package:transcriptapp/src/config/constants.dart';
+import 'package:transcriptapp/src/shared/ui/widgets/custom_appbar_widget.dart';
 import 'package:transcriptapp/src/features/attendances/presenter/widgets/attendance_report_widget.dart';
 import 'package:transcriptapp/src/features/auth/presenter/widgets/student_score_widget.dart';
 import 'package:transcriptapp/src/features/auth/presenter/widgets/user_avatar.dart';

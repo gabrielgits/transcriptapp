@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/core/helpers/date_helper.dart';
-import 'package:transcriptapp/src/core/presenter/screens/no_data_view.dart';
-import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
+import 'package:transcriptapp/src/utils/date_helper.dart';
+import 'package:transcriptapp/src/shared/ui/screens/no_data_view.dart';
+import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart';
 
 import '../controllers/testes_controller.dart';

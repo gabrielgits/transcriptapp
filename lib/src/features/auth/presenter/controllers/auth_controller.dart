@@ -1,6 +1,6 @@
 import 'package:expt/expt.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:transcriptapp/src/core/dependency.dart';
+import 'package:transcriptapp/src/config/dependency.dart';
 import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
 import 'package:transcriptapp/src/features/auth/domain/usecases/usecase_auth.dart';
 import 'package:transcriptapp/src/features/home/presenter/controllers/controller_configs.dart';

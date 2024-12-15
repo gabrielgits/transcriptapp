@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:transcriptapp/src/core/constants.dart';
-import 'package:transcriptapp/src/core/helpers/open_url.dart';
+import 'package:transcriptapp/src/config/constants.dart';
+import 'package:transcriptapp/src/utils/open_url.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});

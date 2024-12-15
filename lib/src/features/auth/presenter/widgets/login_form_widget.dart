@@ -4,9 +4,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/core/helpers/responsive_helper.dart';
-import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
-import 'package:transcriptapp/src/core/presenter/widgets/loading_widget.dart';
+import 'package:transcriptapp/src/utils/responsive_helper.dart';
+import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
+import 'package:transcriptapp/src/shared/ui/widgets/loading_widget.dart';
 
 import '../controllers/auth_controller.dart';
 

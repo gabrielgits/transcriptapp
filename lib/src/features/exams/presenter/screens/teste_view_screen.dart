@@ -3,7 +3,7 @@ import 'package:bform/bform.dart';
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/core/helpers/date_helper.dart';
+import 'package:transcriptapp/src/utils/date_helper.dart';
 
 import '../../domain/models/teste_model.dart';
 import '../widgets/icon_status_widget.dart';

@@ -1,6 +1,6 @@
 
 import 'package:dart_openai/dart_openai.dart';
-import 'package:transcriptapp/src/core/domain/services/ia_service.dart';
+import 'package:transcriptapp/src/shared/data/services/ia_service.dart';
 
 class IaServiceOpenia implements IaService {
   final String apiKey;

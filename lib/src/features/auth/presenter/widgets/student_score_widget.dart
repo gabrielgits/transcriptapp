@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transcriptapp/src/core/presenter/screens/no_data_view.dart';
-import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
+import 'package:transcriptapp/src/shared/ui/screens/no_data_view.dart';
+import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
 
 import '../controllers/student_score_controller.dart';
 

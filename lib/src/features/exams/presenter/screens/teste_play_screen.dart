@@ -5,8 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/core/presenter/screens/show_error_view.dart';
-import 'package:transcriptapp/src/core/presenter/widgets/loading_widget.dart';
+import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
+import 'package:transcriptapp/src/shared/ui/widgets/loading_widget.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/question_model.dart';
 
 import '../controllers/testes_controller.dart';

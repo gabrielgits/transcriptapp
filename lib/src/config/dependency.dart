@@ -1,6 +1,6 @@
 import 'package:feds/feds.dart';
 import 'package:get_it/get_it.dart';
-import 'package:transcriptapp/src/core/infra/services/ia_service_openia.dart';
+import 'package:transcriptapp/src/shared/data/services/ia_service_openia.dart';
 import 'package:transcriptapp/src/features/attendances/domain/repositories/repository_remote_exams.dart';
 import 'package:transcriptapp/src/features/attendances/domain/usecases/usecase_attendances.dart';
 import 'package:transcriptapp/src/features/attendances/infra/repositories/repository_remote_auth_impl.dart';
@@ -18,7 +18,7 @@ import 'package:transcriptapp/src/features/exams/infra/repositories/repository_r
 import '../features/auth/domain/repositories/repository_local_auth.dart';
 import '../features/auth/domain/repositories/repository_remote_auth.dart';
 
-import 'domain/services/ia_service.dart';
+import '../shared/data/services/ia_service.dart';
 import '../features/auth/domain/usecases/usecase_auth.dart';
 import '../features/home/domain/repositories/repository_local_home.dart';
 import '../features/home/domain/usecase/usecase_configs.dart';

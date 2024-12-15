@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:transcriptapp/src/core/app_routes.dart';
+import 'package:transcriptapp/src/config/app_routes.dart';
 
-import 'core/theme/color_schemes.g.dart';
-import 'core/constants.dart';
+import 'shared/ui/theme/color_schemes.g.dart';
+import 'config/constants.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});

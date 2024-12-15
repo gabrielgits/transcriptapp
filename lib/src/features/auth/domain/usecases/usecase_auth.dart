@@ -1,5 +1,5 @@
 import 'package:expt/expt.dart';
-import 'package:transcriptapp/src/core/constants.dart';
+import 'package:transcriptapp/src/config/constants.dart';
 
 import '../models/student_model.dart';
 import '../repositories/repository_local_auth.dart';
