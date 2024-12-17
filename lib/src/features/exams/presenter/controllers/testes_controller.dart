@@ -1,7 +1,7 @@
 import 'package:expt/expt.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:transcriptapp/src/config/dependency.dart';
+import 'package:transcriptapp/src/core/dependency.dart';
 import 'package:transcriptapp/src/features/exams/domain/models/question_model.dart';
 import 'package:transcriptapp/src/features/home/presenter/controllers/controller_configs.dart';
 

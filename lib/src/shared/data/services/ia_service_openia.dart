@@ -1,15 +1,14 @@
 
 import 'package:dart_openai/dart_openai.dart';
-import 'package:transcriptapp/src/shared/data/services/ia_service.dart';
 
-class IaServiceOpenia implements IaService {
+class IaServiceOpenia  {
   final String apiKey;
 
   IaServiceOpenia(this.apiKey) {
     OpenAI.apiKey = apiKey;
   }
 
-  @override
+  
   Future<Map<String, dynamic>> getData(String request) async {
     try {
       final chatCompletion = await OpenAI.instance.chat.create(
@@ -33,7 +32,6 @@ class IaServiceOpenia implements IaService {
     }
   }
   
-  @override
   Future<Map<String, dynamic>> getText(String request) {
     // TODO: implement getText
     throw UnimplementedError();

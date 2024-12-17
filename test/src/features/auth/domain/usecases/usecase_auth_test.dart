@@ -3,12 +3,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
-import 'package:transcriptapp/src/features/auth/domain/repositories/repository_local_auth.dart';
-import 'package:transcriptapp/src/features/auth/domain/repositories/repository_remote_auth.dart';
+import 'package:transcriptapp/src/features/auth/data/repositories/repository_local_auth.dart';
+import 'package:transcriptapp/src/features/auth/data/repositories/auth_repository.dart';
 import 'package:transcriptapp/src/features/auth/domain/usecases/usecase_auth.dart';
 
 @GenerateNiceMocks(
-    [MockSpec<RepositoryRemoteAuth>(), MockSpec<RepositoryLocalAuth>()])
+    [MockSpec<AuthRepository>(), MockSpec<RepositoryLocalAuth>()])
 import 'usecase_auth_test.mocks.dart';
 
 void main() {

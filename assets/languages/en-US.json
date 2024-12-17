@@ -5,6 +5,9 @@
     "welcomeBack": "Welcome Back {student}",
     "noData": "There is no data to show"
   },
+  "config": {
+    "localeError": "Language not changed"
+  },
   "home": {
     "options": "Options",
     "signin": "Sign in",

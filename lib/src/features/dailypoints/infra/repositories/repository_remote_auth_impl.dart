@@ -1,5 +1,5 @@
 import 'package:feds/feds.dart';
-import 'package:transcriptapp/src/config/constants.dart';
+import 'package:transcriptapp/src/core/constants.dart';
 
 import '../../domain/repositories/repository_remote_dailypoints.dart';
 

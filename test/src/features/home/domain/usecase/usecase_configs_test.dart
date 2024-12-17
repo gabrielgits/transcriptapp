@@ -2,8 +2,8 @@ import 'package:expt/expt.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:transcriptapp/src/features/home/domain/models/config_model.dart';
-import 'package:transcriptapp/src/features/home/domain/repositories/repository_local_home.dart';
+import 'package:transcriptapp/src/features/config/domain/models/config_model.dart';
+import 'package:transcriptapp/src/features/config/data/repositories/config_repository.dart';
 import 'package:transcriptapp/src/features/home/domain/usecase/usecase_configs.dart';
 
 import 'usecase_configs_test.mocks.dart';
