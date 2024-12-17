@@ -85,7 +85,7 @@
   "testes": {
     "title": "Exames",
     "classeNumber": "Número da Aula",
-    "score": "Pontuação",
+    "score": "Pontos",
     "date": "Data",
     "average": "Média"
   },
@@ -95,9 +95,11 @@
     "submitted": "Enviado",
     "done": "Concluído",
     "finished": "Finalizado",
-    "missing": "Ausente",
+    "missed": "Perdido",
     "active": "Ativo",
-    "inactive": "Inativo"
+    "inactive": "Inativo",
+    "absent": "Ausencia",
+    "present": "Presença"
   },
   "student": {
     "testesAverage": "Média de Exames",
@@ -107,7 +109,7 @@
   },
   "testeDetails": {
     "title": "Detalhes do Teste",
-    "subject": "Disciplina",
+    "subject": "Sumário",
     "status": "Status",
     "score": "Pontuação",
     "examDate": "Data do Exame",

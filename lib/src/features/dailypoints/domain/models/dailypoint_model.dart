@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
+import 'package:transcriptapp/src/core/domain/models/classe_model.dart';
 
 part 'dailypoint_model.freezed.dart';
 part 'dailypoint_model.g.dart';
@@ -11,6 +12,7 @@ class DailypointModel with _$DailypointModel {
     required int point,
      required int studentId,
     required int classeId,
+    required ClasseModel classe,
     required DateTime createdAt,
   }) = _DailypointModel;
 
@@ -20,6 +22,7 @@ class DailypointModel with _$DailypointModel {
       point: 0,
       studentId: 0,
       classeId: 0,
+      classe: ClasseModel.init(),
       createdAt: DateTime.now(),
     );
   }
