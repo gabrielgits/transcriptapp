@@ -18,7 +18,7 @@ class IconStatusWidget extends StatelessWidget {
     } else if (status == 'done' || status == 'finished') {
       icon = Icons.done_all;
       color = Colors.green;
-    } else if (status == 'missing' || status == 'absent') {
+    } else if (status == 'missed' || status == 'absent') {
       icon = Icons.close;
       color = Colors.red;
     }
