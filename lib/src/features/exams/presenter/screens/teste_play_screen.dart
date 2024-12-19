@@ -119,7 +119,7 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                             ? null
                             : BformButton(
                                 label: tr('testePlay.back'),
-                                colors: [Theme.of(context).primaryColor],
+                                colors: [Theme.of(context).colorScheme.primary],
                                 style: BformButtonStyle.outlined,
                                 onPressed: () {
                                   setState(() {
@@ -160,7 +160,7 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                             ? null
                             : BformButton(
                                 label: tr('testePlay.next'),
-                                colors: [Theme.of(context).primaryColor],
+                                colors: [Theme.of(context).colorScheme.primary],
                                 style: BformButtonStyle.outlined,
                                 onPressed: () {
                                   setState(() {
@@ -251,16 +251,14 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         Container(
           height: 270,
           //color: Colors.grey,
-          decoration:  BoxDecoration(
-            color: Colors.grey[200],
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
+ 
           child: Scrollbar(
             child: ListView.builder(
               itemCount: widget.question.answers.length,
               itemBuilder: (context, index) {
                 final answer = widget.question.answers[index];
                 return RadioListTile<int>(
+                  tileColor: Colors.black,
                   value: answer.id,
                   groupValue: selectedAnswerId,
                   title: Text("${answer.line} ) ${answer.answer}"),
