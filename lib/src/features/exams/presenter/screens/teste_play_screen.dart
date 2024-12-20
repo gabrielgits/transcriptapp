@@ -194,7 +194,7 @@ class TitleWidget extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer,
-        //borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: Text(
         tr('testePlay.title'),
@@ -258,7 +258,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               itemBuilder: (context, index) {
                 final answer = widget.question.answers[index];
                 return RadioListTile<int>(
-                  tileColor: Colors.black,
+                  //tileColor: Colors.black,
                   value: answer.id,
                   groupValue: selectedAnswerId,
                   title: Text("${answer.line} ) ${answer.answer}"),
