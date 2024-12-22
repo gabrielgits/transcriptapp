@@ -7,7 +7,7 @@ import 'package:transcriptapp/src/utils/result.dart';
 import '../../data/repositories/auth_repository.dart';
 import '../../domain/models/student_score_model.dart';
 
-part 'view_model_student_score.g.dart';
+part 'student_score_view_model.g.dart';
 
 @riverpod
 Future<StudentScoreModel> studentScoreViewModel(Ref ref) async {

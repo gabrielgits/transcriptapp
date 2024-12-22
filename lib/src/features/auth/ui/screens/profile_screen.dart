@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../domain/models/student_model.dart';
-import '../widgets/numbers_widget.dart';
+import '../../../attendances/ui/widgets/numbers_widget.dart';
 import '../widgets/profile_widget.dart';
 
 class ProfileView extends StatelessWidget {

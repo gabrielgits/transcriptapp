@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefService {
@@ -31,6 +30,12 @@ class SharedPrefService {
     }
     return await prefs.setString(key, encodedItem);
   }
+
+  Future<bool> _deleteAll(String key) async {
+    final prefs = await SharedPreferences.getInstance();
+    return await prefs.remove(key);
+  }
+  /*
 
   Future<int> _saveItem({
     required Map<String, dynamic> item,
@@ -65,11 +70,6 @@ class SharedPrefService {
     return item;
   }
 
-  Future<bool> _deleteAll(String key) async {
-    final prefs = await SharedPreferences.getInstance();
-    return await prefs.remove(key);
-  }
-
   Future<int> _updateItem(
       {required Map<String, dynamic> item, required String table}) async {
     final encodedItem = jsonEncode(item);
@@ -89,6 +89,7 @@ class SharedPrefService {
     }
     return 0;
   }
+  */
 
   // #### Config ####
 
@@ -102,7 +103,7 @@ class SharedPrefService {
 
   Future<bool> updateConfig(Map<String, dynamic> json) async =>
       await _updateObject(item: json, key: _keyConfig);
-  
+
   Future<bool> removeConfig() async => await _deleteAll(_keyConfig);
 
   Future<bool> updateLoginConfig({
@@ -112,7 +113,7 @@ class SharedPrefService {
     var config = await getConfig();
     config['token'] = token;
     config['studentId'] = studentId;
-    return await saveConfig(config); 
+    return await saveConfig(config);
   }
 
   Future<String> getToken() async {
@@ -120,6 +121,10 @@ class SharedPrefService {
     return config['token'];
   }
 
-  logout() {}
-
+  Future<bool> logout() async {
+    return await updateLoginConfig(
+      token: '',
+      studentId: 0,
+    );
+  }
 }

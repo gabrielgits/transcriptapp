@@ -89,6 +89,7 @@ class DioClientService {
     }
   }
 
+/*
   Future<List<int>> _getData(String url) async {
     try {
       if (_token.isNotEmpty) {
@@ -106,7 +107,7 @@ class DioClientService {
       rethrow;
     }
   }
-
+*/
   Future<Map<String, dynamic>> signinWithPhone({
     required String phone,
     required String password,
@@ -139,7 +140,7 @@ class DioClientService {
     );
   }
 
-  Future<Map<String, dynamic>> logout() async{
+  Future<Map<String, dynamic>> logout() async {
     return await _delete('${AppConstants.urlApi}/logout');
   }
 
@@ -154,7 +155,7 @@ class DioClientService {
     return await _get('${AppConstants.urlApi}/profile/$id');
   }
 
-  Future<Map<String, dynamic>>  updateProfile(Map<String, dynamic> json) async {
+  Future<Map<String, dynamic>> updateProfile(Map<String, dynamic> json) async {
     return await _put(
       url: '${AppConstants.urlApi}/students/${json['id']}',
       body: json,
@@ -164,4 +165,105 @@ class DioClientService {
   Future<Map<String, dynamic>> getStudentScore(int id) async {
     return await _get('${AppConstants.urlApi}/students/$id/score');
   }
+
+  Future<Map<String, dynamic>> getAttendances(int id) {
+    return _get('${AppConstants.urlApi}/attendances/student/$id/all');
+  }
+
+  Future<Map<String, dynamic>> getAttendanceReport(int id) {
+    return _get('${AppConstants.urlApi}/attendances/student/$id');
+  }
+
+  Future<Map<String, dynamic>> getDailypoints(int id) async {
+    return await _get('${AppConstants.urlApi}/dailypoints/student/$id/all');
+  }
+
+  Future<Map<String, dynamic>> getDailypointReport(int id) async {
+    return await _get('${AppConstants.urlApi}/dailypoints/student/$id');
+  }
+
+  Future<Map<String, dynamic>> getTeste(int id) async {
+    return await _get('${AppConstants.urlApi}/testes/$id');
+  }
+
+  Future<Map<String, dynamic>> getQuestions(int examId) async {
+    return await _get('${AppConstants.urlApi}/questions/exam/$examId');
+  }
+
+  Future<Map<String, dynamic>> getStudentAnswers(
+      {required int studentId, required int testeId}) async {
+    return await _get(
+        '${AppConstants.urlApi}/studentsanswers/student/$studentId/teste/$testeId');
+  }
+
+  Future<Map<String, dynamic>> getTestes(int studentId) async {
+    return await _get('${AppConstants.urlApi}/testes/student/$studentId');
+  }
+
+  Future<Map<String, dynamic>> postStudentAnswers({
+    required int studentId,
+    required int testeId,
+    required Map<int, int> selectedAnswers,
+  }) async {
+    return await _post(
+      url: '${AppConstants.urlApi}/studentsanswers',
+      body: {
+        'studentId': studentId,
+        'testeId': testeId,
+        'selectedAnswers': selectedAnswers
+      },
+    );
+  }
+
+  Future<Map<String, dynamic>> postTeste({required int studentId, required int testeId})  async{
+    return await _post(
+      url: '${AppConstants.urlApi}/testes',
+      body: {'studentId': studentId, 'testeId': testeId},
+    );
+  }
+
+   Future<Map<String, dynamic>>  putTeste({required int id, required Map<String, dynamic> json})  async {
+    return await _put(
+      url: '${AppConstants.urlApi}/testes/$id',
+      body: json,
+    );
+   }
+
+  Future<Map<String, dynamic>>  getTesteReport({required int studentId, required int limit}) async {
+    return await _get(
+      '${AppConstants.urlApi}/testes/$studentId/report?limit=$limit',
+    );
+  }
+
+  Future<Map<String, dynamic>> startTeste(int testeId) {
+    return _get('${AppConstants.urlApi}/testes/start/$testeId');
+  }
+
+  Future<Map<String, dynamic>> getNotifications() async {
+    return await _get('${AppConstants.urlApi}/notifications');
+  }
+
+  Future<Map<String, dynamic>> getNotification(int id) async {
+    return await _get('${AppConstants.urlApi}/notifications/$id');
+  }
+
+  Future<Map<String, dynamic>> postNotification(Map<String, dynamic> json) async {
+    return await _post(
+      url: '${AppConstants.urlApi}/notifications',
+      body: json,
+    );
+  }
+
+  Future<Map<String, dynamic>> putNotification({required int id, required Map<String, dynamic> json}) async {
+    return await _put(
+      url: '${AppConstants.urlApi}/notifications/$id',
+      body: json,
+    );
+  }
+
+  Future<Map<String, dynamic>> deleteNotification(int id) async {
+    return await _delete('${AppConstants.urlApi}/notifications/$id');
+  }
+
+
 }

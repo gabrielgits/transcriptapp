@@ -2,12 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:transcriptapp/src/core/constants.dart';
 import 'package:transcriptapp/src/shared/ui/widgets/custom_appbar_widget.dart';
-import 'package:transcriptapp/src/features/attendances/presenter/widgets/attendance_report_widget.dart';
+import 'package:transcriptapp/src/features/attendances/ui/widgets/attendance_report_widget.dart';
 import 'package:transcriptapp/src/features/auth/ui/widgets/student_score_widget.dart';
 import 'package:transcriptapp/src/features/auth/ui/widgets/user_avatar.dart';
-import 'package:transcriptapp/src/features/dailypoints/presenter/widgets/dailypoint_report_widget.dart';
-import 'package:transcriptapp/src/features/exams/presenter/screens/testes_screen.dart';
-import 'package:transcriptapp/src/features/exams/presenter/widgets/last_testes_widget.dart';
+import 'package:transcriptapp/src/features/dailypoints/ui/widgets/dailypoint_report_widget.dart';
+import 'package:transcriptapp/src/features/testes/ui/screens/testes_screen.dart';
+import 'package:transcriptapp/src/features/testes/ui/widgets/last_testes_widget.dart';
 
 import '../widgets/session_widget.dart';
 import 'about_screen.dart';

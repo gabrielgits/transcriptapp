@@ -34,9 +34,7 @@ class UserAvatarWidget extends ConsumerWidget {
                     _userInfo(
                       context: context,
                       onLogout: () async {
-                        await ref
-                            .read(usersControllerProvider.notifier)
-                            .logout();
+                        await ref.read(authViewModelProvider.notifier).logout();
 
                         if (!context.mounted) return;
                         context.replaceNamed('login');
@@ -69,7 +67,7 @@ _userInfo({
 }) {
   const double space = 15;
   return Consumer(builder: (context, ref, child) {
-    final controller = ref.watch(usersControllerProvider);
+    final controller = ref.watch(authViewModelProvider);
 
     return controller.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -83,17 +81,18 @@ _userInfo({
           const CircleAvatar(
             //backgroundImage: NetworkImage(student.imagePath),
             backgroundImage: NetworkImage(
-                'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80'),
+              'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80',
+            ),
             maxRadius: 50,
           ),
           const SizedBox(height: space),
           Text(
-            student.title,
+            student.name,
             style: Theme.of(context).textTheme.titleLarge,
           ),
           const SizedBox(height: space),
           // locale change
-          LocalesWidget(),
+          const LocalesWidget(),
           const SizedBox(height: space),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,

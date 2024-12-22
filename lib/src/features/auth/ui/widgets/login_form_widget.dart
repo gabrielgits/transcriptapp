@@ -21,7 +21,7 @@ class LoginFormWidgets extends ConsumerWidget {
     final tecPhone = TextEditingController();
     final tecPassword = TextEditingController();
 
-    final userNotifier = ref.watch(usersControllerProvider);
+    final userNotifier = ref.watch(authViewModelProvider);
     return BformForm(
       width: ResponsiveHelper.isMobile(context) ? null : 400,
       border: Border.all(color: Theme.of(context).colorScheme.primary),
@@ -60,15 +60,16 @@ class LoginFormWidgets extends ConsumerWidget {
                 textColor: Theme.of(context).colorScheme.surface,
                 fontSize: 20,
                 onPressed: () async {
-                  final result = await ref
-                      .read(usersControllerProvider.notifier)
+                  await ref
+                      .read(authViewModelProvider.notifier)
                       .signinWithPhone(
                         phone: tecPhone.text.trim(),
                         password: tecPassword.text.trim(),
                       );
-                  String studentName = ref.watch(usersControllerProvider).value!.title;
+                  final studentName =
+                      ref.watch(authViewModelProvider).value!.name;
                   if (context.mounted) {
-                    if (result) {
+                    if (studentName.isNotEmpty) {
                       alertshowSnackbar(
                         context: context,
                         message: tr(

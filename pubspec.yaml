@@ -17,6 +17,8 @@ dependencies:
   bform: ^0.4.3
   carousel_slider: ^5.0.0
   shimmer_animation: ^2.1.0+1
+  ftcontrol:
+    git: https://github.com/gabrielgits/ftcontrol.git
 
 
   #utils:

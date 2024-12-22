@@ -86,10 +86,7 @@ class AuthRepositoryRemote implements AuthRepository {
       if (data['status'] == false) {
         return Result.error(data['message']);       
       }
-      final savedConfig = await sharedPrefService.updateLoginConfig(
-        studentId: 0,
-        token: '',
-      );
+      final savedConfig = await sharedPrefService.logout();
       if (!savedConfig) {
         return Result.error(Exception('Failed to clear config'));
       }

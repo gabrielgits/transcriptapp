@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transcriptapp/src/shared/ui/screens/no_data_view.dart';
 import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
 
-import '../view_models/view_model_student_score.dart';
+import '../view_models/student_score_view_model.dart';
+
 
 class StudentScoreWidget extends ConsumerWidget {
   const StudentScoreWidget({super.key});
@@ -13,7 +13,7 @@ class StudentScoreWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     const space = 10.0;
 
-    final controller = ref.watch(getStudentScoreProvider);
+    final controller = ref.watch(studentScoreViewModelProvider);
     return controller.when(
         loading: () => const Center(child: CircularProgressIndicator()),
         error: (error, _) => ShowErrorView(
@@ -22,9 +22,6 @@ class StudentScoreWidget extends ConsumerWidget {
               onPressed: () => {},
             ),
         data: (studentReport) {
-          if (studentReport.isEmpty) {
-            return NoDataView(title: tr('home.totalPoints'));
-          }
           return Column(
             children: [
               Text(tr('home.totalPoints'),
@@ -36,7 +33,7 @@ class StudentScoreWidget extends ConsumerWidget {
                     tr('student.testesAverage'),
                   ),
                   const Spacer(),
-                  Text("${studentReport['testesAverage'].toStringAsFixed(1)} ${tr('testes.score')}"),
+                  Text("${studentReport.testesAverage.toStringAsFixed(1)} ${tr('testes.score')}"),
                 ],
               ),
               const SizedBox(height: space),
@@ -46,7 +43,7 @@ class StudentScoreWidget extends ConsumerWidget {
                     tr('student.attendancesPercent'),
                   ),
                   const Spacer(),
-                  Text("${studentReport['attendancesPercent'].toStringAsFixed(1)} %"),
+                  Text("${studentReport.attendancesPercent.toStringAsFixed(1)} %"),
                 ],
               ),
               const SizedBox(height: space),
@@ -56,12 +53,12 @@ class StudentScoreWidget extends ConsumerWidget {
                     tr('student.dailypointsAverageFinal'),
                   ),
                   const Spacer(),
-                  Text("${studentReport['dailypointsAverageFinal'].toStringAsFixed(1)} ${tr('testes.score')}"),
+                  Text("${studentReport.dailypointsAverageFinal.toStringAsFixed(1)} ${tr('testes.score')}"),
                 ],
               ),
               const SizedBox(height: space),
               Text(
-                "${tr('student.finalAverage')} : ${studentReport['finalAverage'].toStringAsFixed(1)} ${tr('testes.score')}",
+                "${tr('student.finalAverage')} : ${studentReport.finalAverage.toStringAsFixed(1)} ${tr('testes.score')}",
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ],

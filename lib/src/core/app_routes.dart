@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/features/attendances/presenter/screens/attendances_list_screen.dart';
+import 'package:transcriptapp/src/features/attendances/ui/screens/attendances_list_screen.dart';
+import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/change_password_view.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/edit_profile_view.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/login_screen.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/profile_screen.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/signup_view.dart';
-import 'package:transcriptapp/src/features/auth/ui/view_models/student_view_model.dart';
-import 'package:transcriptapp/src/features/dailypoints/presenter/screens/dailypoints_list_screen.dart';
-import 'package:transcriptapp/src/features/exams/domain/models/teste_model.dart';
-import 'package:transcriptapp/src/features/exams/presenter/screens/teste_play_screen.dart';
-import 'package:transcriptapp/src/features/exams/presenter/screens/teste_view_screen.dart';
-import 'package:transcriptapp/src/features/exams/presenter/screens/testes_screen.dart';
+import 'package:transcriptapp/src/features/dailypoints/ui/screens/dailypoints_list_screen.dart';
+import 'package:transcriptapp/src/features/testes/domain/models/teste_model.dart';
+import 'package:transcriptapp/src/features/testes/ui/screens/teste_play_screen.dart';
+import 'package:transcriptapp/src/features/testes/ui/screens/teste_view_screen.dart';
+import 'package:transcriptapp/src/features/testes/ui/screens/testes_screen.dart';
 import 'package:transcriptapp/src/features/home/ui/screens/app_init.dart';
 import 'package:transcriptapp/src/features/home/ui/screens/home_screen.dart';
-import 'package:transcriptapp/src/features/notifications/presenter/views/notifications_view.dart';
+import 'package:transcriptapp/src/features/notifications/ui/views/notifications_view.dart';
 
 final GoRouter appRoutes = GoRouter(
   // initialLocation go to testesplay
@@ -49,7 +49,7 @@ final GoRouter appRoutes = GoRouter(
           path: 'profile',
           name: 'profile',
           builder: (context, state) {
-            final student = (state.extra as Map)['student'] as StudentViewModel;
+            final student = (state.extra as Map)['student'] as StudentModel;
             return ProfileView(student: student);
           },
           routes: [
