@@ -231,7 +231,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
       children: [
         Container(
           height: 60,
-          height: 60,
           width: double.infinity,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primary,
