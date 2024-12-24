@@ -1,7 +1,7 @@
 name: transcriptapp
 description: Transcript is an all-in-one student evaluation system for schools and universities.
 publish_to: 'none'
-version: 0.8.0+8
+version: 0.9.0+9
 
 
 environment:
@@ -17,8 +17,6 @@ dependencies:
   bform: ^0.4.3
   carousel_slider: ^5.0.0
   shimmer_animation: ^2.1.0+1
-  inani:
-    git: https://github.com/gabrielgits/inani.git
   ftcontrol:
     git: https://github.com/gabrielgits/ftcontrol.git
 
@@ -29,8 +27,6 @@ dependencies:
   equatable: ^2.0.5
   easy_localization: ^3.0.7
   url_launcher: ^6.1.14
-  expt:
-    git: https://github.com/gabrielgits/expt.git
   alertshow:
     git: https://github.com/gabrielgits/alertshow.git
 
@@ -42,11 +38,11 @@ dependencies:
   go_router: ^14.1.4
 
   #networking and storage:
-  feds:
-    git: https://github.com/gabrielgits/feds.git
   dart_openai: ^5.1.0
   cloud_firestore: ^5.0.0
   freezed_annotation: ^2.4.1
+  shared_preferences: ^2.3.3
+  dio: ^5.7.0
 
 
 dev_dependencies:

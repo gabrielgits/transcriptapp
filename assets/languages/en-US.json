@@ -5,6 +5,9 @@
     "welcomeBack": "Welcome Back {student}",
     "noData": "There is no data to show"
   },
+  "config": {
+    "localeError": "Language not changed"
+  },
   "home": {
     "options": "Options",
     "signin": "Sign in",
@@ -128,7 +131,8 @@
     "send": "Send Answers",
     "yes": "Yes",
     "no": "No",
-    "warning": "Do you want to finish the test and send the answers?"
+    "warning": "Do you want to finish the test and send the answers?",
+    "success": "Answers sent successfully"
   },
   "noDataScreen": {
     "search": "There is no data to show",

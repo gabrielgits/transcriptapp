@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
-import 'package:transcriptapp/src/core/domain/models/classe_model.dart';
+import 'package:transcriptapp/src/shared/domain/models/classe_model.dart';
 
 part 'attendance_model.freezed.dart';
 part 'attendance_model.g.dart';

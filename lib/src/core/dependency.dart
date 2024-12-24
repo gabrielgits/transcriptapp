@@ -1,107 +1,67 @@
-import 'package:feds/feds.dart';
 import 'package:get_it/get_it.dart';
-import 'package:transcriptapp/src/core/infra/services/ia_service_openia.dart';
-import 'package:transcriptapp/src/features/attendances/domain/repositories/repository_remote_exams.dart';
-import 'package:transcriptapp/src/features/attendances/domain/usecases/usecase_attendances.dart';
-import 'package:transcriptapp/src/features/attendances/infra/repositories/repository_remote_auth_impl.dart';
-import 'package:transcriptapp/src/features/auth/infra/repositories/repository_local_auth_impl.dart';
-import 'package:transcriptapp/src/features/auth/infra/repositories/repository_remote_auth_impl.dart';
-import 'package:transcriptapp/src/features/dailypoints/domain/repositories/repository_remote_dailypoints.dart';
-import 'package:transcriptapp/src/features/dailypoints/domain/usecases/usecase_attendances.dart';
-import 'package:transcriptapp/src/features/dailypoints/infra/repositories/repository_remote_auth_impl.dart';
-import 'package:transcriptapp/src/features/exams/domain/repositories/repository_remote_exams.dart';
-import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_exams.dart';
-import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_play_teste.dart';
-import 'package:transcriptapp/src/features/exams/domain/usecases/usecase_testes.dart';
-import 'package:transcriptapp/src/features/exams/infra/repositories/repository_remote_auth_impl.dart';
+import 'package:transcriptapp/src/features/auth/data/repositories/auth_repository.dart';
+import 'package:transcriptapp/src/features/config/data/repositories/config_repository.dart';
+import 'package:transcriptapp/src/features/attendances/data/repositories/auth_repository_remote.dart';
+import 'package:transcriptapp/src/features/auth/data/repositories/auth_repository_remote.dart';
+import 'package:transcriptapp/src/features/config/data/repositories/config_repository_local.dart';
+import 'package:transcriptapp/src/features/dailypoints/data/repositories/dailypoints_repository.dart';
+import 'package:transcriptapp/src/features/dailypoints/data/repositories/dailypoints_repository_remote.dart';
+import 'package:transcriptapp/src/features/testes/data/repositories/testes_repository.dart';
+import 'package:transcriptapp/src/features/testes/data/repositories/testes_repository_remote.dart';
 
-import '../features/auth/domain/repositories/repository_local_auth.dart';
-import '../features/auth/domain/repositories/repository_remote_auth.dart';
+import '../features/attendances/data/repositories/exams_repository.dart';
+import '../shared/data/services/dio_client_service.dart';
+import '../shared/data/services/ia_service_openia.dart';
+import '../shared/data/services/sharedpref_service.dart';
 
-import 'domain/services/ia_service.dart';
-import '../features/auth/domain/usecases/usecase_auth.dart';
-import '../features/home/domain/repositories/repository_local_home.dart';
-import '../features/home/domain/usecase/usecase_configs.dart';
-import '../features/home/infra/repositories/repository_local_home_impl.dart';
 
 final getIt = GetIt.instance;
 
 void setupAppStart() {
   _setup();
   _setupHome();
+  _setupConfig();
   _setupAuth();
-  _setupExams();
+  _setupTestes();
   _setupAttendances();
   _setupDailypoints();
 }
 
 void _setup() {
-  getIt.registerSingleton<FedsLocal>(FedsLocalSharedPref());
-  getIt.registerSingleton<FedsRest>(FedsRestDio());
-  getIt.registerSingleton<IaService>(IaServiceOpenia(''));
+  getIt.registerSingleton(SharedPrefService());
+  getIt.registerSingleton(DioClientService());
+  getIt.registerSingleton(IaServiceOpenia(''));
 }
 
-void _setupHome() {
-  getIt.registerSingleton<RepositoryLocalHome>(
-    RepositoryLocalHomeImpl(getIt<FedsLocal>()),
-  );
+void _setupHome() {}
 
-  getIt.registerSingleton(
-    UsecaseConfigs(getIt<RepositoryLocalHome>()),
+void _setupConfig() {
+  getIt.registerSingleton<ConfigRepository>(
+    ConfigRepositoryLocal(dioClientService: getIt(), sharedPrefService: getIt()),
   );
 }
 
 void _setupAuth() {
-  getIt.registerSingleton<RepositoryLocalAuth>(
-    RepositoryLocalAuthImpl(getIt<FedsLocal>()),
-  );
-  getIt.registerSingleton<RepositoryRemoteAuth>(
-    RepositoryRemoteAuthImpl(getIt<FedsRest>()),
-  );
-
-  getIt.registerSingleton(
-    UsecaseAuth(
-      repositoryLocal: getIt<RepositoryLocalAuth>(),
-      repositoryRemote: getIt<RepositoryRemoteAuth>(),
-    ),
+  getIt.registerSingleton<AuthRepository>(
+    AuthRepositoryRemote(dioClientService:getIt() ,sharedPrefService: getIt()),
   );
 }
 
-void _setupExams() {
-  getIt.registerSingleton<RepositoryRemoteExams>(
-    RepositoryRemoteExamsImpl(getIt<FedsRest>()),
-  );
-
-  getIt.registerSingleton(
-    UsecaseExams(getIt<RepositoryRemoteExams>()),
-  );
-
-  getIt.registerSingleton(
-    UsecasePlayTeste(repositoryRemote: getIt<RepositoryRemoteExams>()),
-  );
-
-  getIt.registerSingleton(
-    UsecaseTestes(getIt<RepositoryRemoteExams>()),
+void _setupTestes() {
+  getIt.registerSingleton<TestesRepository>(
+    TestesRepositoryRemote(getIt()),
   );
 }
 
 void _setupAttendances() {
-  getIt.registerSingleton<RepositoryRemoteAttendances>(
-    RepositoryRemoteAttendancesImpl(getIt<FedsRest>()),
+  getIt.registerSingleton<AttendancesRepository>(
+    AttendancesRepositoryRemote(getIt()),
   );
 
-  getIt.registerSingleton(
-    UsecaseAttendances(getIt<RepositoryRemoteAttendances>()),
-  );
 }
 
 void _setupDailypoints() {
-  getIt.registerSingleton<RepositoryRemoteDailypoints>(
-    RepositoryRemoteDailypointsImpl(getIt<FedsRest>()),
+  getIt.registerSingleton<DailypointsRepository>(
+    DailypointsRepositoryRemote(getIt()),
   );
-
-  getIt.registerSingleton(
-    UsecaseDailypoints(getIt<RepositoryRemoteDailypoints>()),
-  );
-  
 }
