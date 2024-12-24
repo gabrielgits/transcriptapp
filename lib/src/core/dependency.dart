@@ -9,6 +9,7 @@ import 'package:transcriptapp/src/features/dailypoints/data/repositories/dailypo
 import 'package:transcriptapp/src/features/testes/data/repositories/testes_repository.dart';
 import 'package:transcriptapp/src/features/testes/data/repositories/testes_repository_remote.dart';
 
+import '../features/attendances/data/repositories/exams_repository.dart';
 import '../shared/data/services/dio_client_service.dart';
 import '../shared/data/services/ia_service_openia.dart';
 import '../shared/data/services/sharedpref_service.dart';
@@ -36,7 +37,7 @@ void _setupHome() {}
 
 void _setupConfig() {
   getIt.registerSingleton<ConfigRepository>(
-    ConfigRepositoryLocal(getIt()),
+    ConfigRepositoryLocal(dioClientService: getIt(), sharedPrefService: getIt()),
   );
 }
 
@@ -53,7 +54,7 @@ void _setupTestes() {
 }
 
 void _setupAttendances() {
-  getIt.registerSingleton<AttendancesRepositoryRemote>(
+  getIt.registerSingleton<AttendancesRepository>(
     AttendancesRepositoryRemote(getIt()),
   );
 

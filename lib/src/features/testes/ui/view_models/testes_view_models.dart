@@ -41,7 +41,7 @@ Future<TesteReportModel> getReportTestesViewModel(Ref ref) async {
 }
 
 @riverpod
-Future<List<QuestionModel>> startTesteViewModel(Ref ref, int testeId) async {
+Future<List<QuestionModel>> startTesteViewModel(Ref ref, {required int testeId}) async {
   final testesRepository = getIt<TestesRepository>();
   final result = await testesRepository.startTeste(testeId);
   switch (result) {
@@ -57,7 +57,7 @@ class TestesViewModel extends _$TestesViewModel {
   @override
   Future<void> build() async {}
 
-  Future<void> sendStudentAnswers({
+  Future<bool> sendStudentAnswers({
     required Map<int, int> selectedAnswers,
     required int testeId,
   }) async {
@@ -73,5 +73,6 @@ class TestesViewModel extends _$TestesViewModel {
         throw Exception(result.error);
       case Ok<TesteModel>():
     }
+    return true;
   }
 }

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/utils/responsive_helper.dart';
-import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
 import 'package:transcriptapp/src/shared/ui/widgets/loading_widget.dart';
 
 import '../view_models/auth_view_model.dart';
@@ -25,15 +24,9 @@ class LoginFormWidgets extends ConsumerWidget {
     return BformForm(
       width: ResponsiveHelper.isMobile(context) ? null : 400,
       border: Border.all(color: Theme.of(context).colorScheme.primary),
-      child: userNotifier.when(
-        loading: () => const Center(child: LoadingWidget()),
-        error: (error, _) => ShowErrorView(
-          title: 'Error on Login',
-          detail: error.toString(),
-          onPressed: () => {},
-        ),
-        data: (value) {
-          return Column(
+      child: switch (userNotifier) {
+        AsyncLoading() => const Center(child: LoadingWidget()),
+        _ => Column(
             children: [
               BformTextInput(
                 label: tr('login.phone'),
@@ -89,9 +82,8 @@ class LoginFormWidgets extends ConsumerWidget {
                 },
               ),
             ],
-          );
-        },
-      ),
+          ),
+      },
     );
   }
 }

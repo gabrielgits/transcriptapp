@@ -14,7 +14,7 @@ class NotificationsRepositoryRemote
     try {
       final data = await dioClientService.getNotifications();
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       List<NotificationModel> notifications = [];
       for (var notificationJson in data['data']) {
@@ -32,7 +32,7 @@ class NotificationsRepositoryRemote
     try {
       final data = await dioClientService.getNotification(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(NotificationModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -46,7 +46,7 @@ class NotificationsRepositoryRemote
     try {
       final data = await dioClientService.postNotification(jsonData);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(NotificationModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -60,7 +60,7 @@ class NotificationsRepositoryRemote
     try {
       final data = await dioClientService.deleteNotification(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(data['data']);
     } on Exception catch (e) {
@@ -76,7 +76,7 @@ class NotificationsRepositoryRemote
     try {
       final data = await dioClientService.putNotification(id: id, json: jsonData);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(NotificationModel.fromJson(data['data']));
     } on Exception catch (e) {

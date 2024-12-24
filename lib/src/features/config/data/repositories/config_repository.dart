@@ -28,5 +28,5 @@ abstract class ConfigRepository {
   /// 
   /// Returns a [Future] that completes with a [Result] containing the
   /// ID of the saved configuration, or an error if the operation fails.
-  Future<Result<int>> saveConfig(ConfigModel config);
+  Future<Result<ConfigModel>> saveConfig();
 }

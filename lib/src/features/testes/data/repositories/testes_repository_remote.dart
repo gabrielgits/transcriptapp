@@ -16,7 +16,7 @@ class TestesRepositoryRemote implements TestesRepository {
     try {
       final data = await dioClientService.getTeste(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(TesteModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -29,7 +29,7 @@ class TestesRepositoryRemote implements TestesRepository {
     try {
       final data = await dioClientService.getQuestions(examId);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       List<QuestionModel> questions = [];
       for (final questionJson in data['data']) {
@@ -52,7 +52,7 @@ class TestesRepositoryRemote implements TestesRepository {
         testeId: testeId,
       );
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       List<StudentAnswerModel> studentAnswers = [];
       for (final studentAnswerJson in data['data']) {
@@ -69,7 +69,7 @@ class TestesRepositoryRemote implements TestesRepository {
     try {
       final data = await dioClientService.getTestes(studentId);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       List<TesteModel> testes = [];
       for (final testeJson in data['data']) {
@@ -91,10 +91,10 @@ class TestesRepositoryRemote implements TestesRepository {
       final data = await dioClientService.postStudentAnswers(
         studentId: studentId,
         testeId: testeId,
-        selectedAnswers: selectedAnswers,
+        selectedAnswers: selectedAnswers.map((key, value) => MapEntry(key.toString(), value)),
       );
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(TesteModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -113,7 +113,7 @@ class TestesRepositoryRemote implements TestesRepository {
         testeId: testeId,
       );
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(TesteModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -129,7 +129,7 @@ class TestesRepositoryRemote implements TestesRepository {
     try {
       final data = await dioClientService.putTeste(id: id, json: json);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(TesteModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -146,7 +146,7 @@ class TestesRepositoryRemote implements TestesRepository {
         limit: 3,
       );
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(TesteReportModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -159,7 +159,7 @@ class TestesRepositoryRemote implements TestesRepository {
     try {
       final data = await dioClientService.startTeste(testeId);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       List<QuestionModel> questions = [];
       for (final questionJson in data['data']) {

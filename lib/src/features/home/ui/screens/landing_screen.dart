@@ -25,6 +25,7 @@ class LandingScreen extends StatelessWidget {
                   return _slideItem(
                     title: tr('landing.title$i'),
                     imagePath: "assets/images/landing/image$i.png",
+                    context: context,
                   );
                 },
               );
@@ -45,7 +46,7 @@ class LandingScreen extends StatelessWidget {
   }
 }
 
-_slideItem({required String title, required String imagePath}) {
+_slideItem({required String title, required String imagePath, required BuildContext context}) {
   return Container(
     margin: const EdgeInsets.all(16.0),
     decoration: BoxDecoration(
@@ -57,11 +58,15 @@ _slideItem({required String title, required String imagePath}) {
         Image.asset(imagePath, height: 350.0, width: 300.0),
         const SizedBox(height: 8.0),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(16.0),
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16.0, fontStyle: FontStyle.italic),
+            style: TextStyle(
+              fontSize: 16.0,
+              color: Theme.of(context).colorScheme.primary,
+              fontStyle: FontStyle.italic,
+            ),
           ),
         ),
       ],

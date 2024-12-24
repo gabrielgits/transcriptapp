@@ -26,7 +26,7 @@ class AuthRepositoryRemote implements AuthRepository {
         password: password,
       );
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
 
       final student = StudentModel.fromJson(data['data']['student']);
@@ -34,6 +34,7 @@ class AuthRepositoryRemote implements AuthRepository {
       final savedConfig = await sharedPrefService.updateLoginConfig(
         studentId: student.id,
         token: token,
+        name: student.name,
       );
       if (!savedConfig) {
         return Result.error(Exception('Failed to save item'));
@@ -50,7 +51,7 @@ class AuthRepositoryRemote implements AuthRepository {
     try {
       final data = await dioClientService.forgotPassword(phone);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(data['message']);
     } on Exception catch (e) {
@@ -71,7 +72,7 @@ class AuthRepositoryRemote implements AuthRepository {
         studentId: studentId,
       );
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(data['message']);
     } on Exception catch (e) {
@@ -84,7 +85,7 @@ class AuthRepositoryRemote implements AuthRepository {
     try {
       final data = await dioClientService.logout();
       if (data['status'] == false) {
-        return Result.error(data['message']);       
+        return Result.error(Exception(data['message']));
       }
       final savedConfig = await sharedPrefService.logout();
       if (!savedConfig) {
@@ -98,11 +99,11 @@ class AuthRepositoryRemote implements AuthRepository {
   }
 
   @override
- Future<Result<StudentModel>> signup(StudentModel newStudent) async {
+  Future<Result<StudentModel>> signup(StudentModel newStudent) async {
     try {
       final data = await dioClientService.signup(newStudent.toJson());
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
 
       final student = StudentModel.fromJson(data['data']['student']);
@@ -110,6 +111,7 @@ class AuthRepositoryRemote implements AuthRepository {
       final savedConfig = await sharedPrefService.updateLoginConfig(
         studentId: student.id,
         token: token,
+        name: student.name,
       );
       if (!savedConfig) {
         return Result.error(Exception('Failed to save item'));
@@ -126,7 +128,7 @@ class AuthRepositoryRemote implements AuthRepository {
     try {
       final data = await dioClientService.profile(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(StudentModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -135,11 +137,11 @@ class AuthRepositoryRemote implements AuthRepository {
   }
 
   @override
-   Future<Result<StudentModel>> updateProfile(StudentModel student) async {
+  Future<Result<StudentModel>> updateProfile(StudentModel student) async {
     try {
       final data = await dioClientService.updateProfile(student.toJson());
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(StudentModel.fromJson(data['data']));
     } on Exception catch (e) {
@@ -152,7 +154,7 @@ class AuthRepositoryRemote implements AuthRepository {
     try {
       final data = await dioClientService.getStudentScore(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(StudentScoreModel.fromJson(data['data']));
     } on Exception catch (e) {

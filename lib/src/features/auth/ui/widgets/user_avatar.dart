@@ -3,8 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:transcriptapp/src/features/config/ui/view_models/config_view_model.dart';
 import 'package:transcriptapp/src/features/config/ui/widgets/locales_widget.dart';
-import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
 
 import '../view_models/auth_view_model.dart';
 
@@ -67,57 +67,49 @@ _userInfo({
 }) {
   const double space = 15;
   return Consumer(builder: (context, ref, child) {
-    final controller = ref.watch(authViewModelProvider);
+    final config = ref.watch(configViewModelProvider).value!;
 
-    return controller.when(
-      loading: () => const Center(child: CircularProgressIndicator()),
-      error: (error, _) => ShowErrorView(
-        title: 'Error on Login',
-        detail: error.toString(),
-        onPressed: () => {},
-      ),
-      data: (student) => Column(
-        children: [
-          const CircleAvatar(
-            //backgroundImage: NetworkImage(student.imagePath),
-            backgroundImage: NetworkImage(
-              'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80',
+    return Column(
+      children: [
+        const CircleAvatar(
+          //backgroundImage: NetworkImage(student.imagePath),
+          backgroundImage: NetworkImage(
+            'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80',
+          ),
+          maxRadius: 50,
+        ),
+        const SizedBox(height: space),
+        Text(
+          config.name,
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        const SizedBox(height: space),
+        // locale change
+        const LocalesWidget(),
+        const SizedBox(height: space),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            BformButton(
+              colors: [
+                Theme.of(context).colorScheme.primaryContainer,
+              ],
+              label: tr('home.profile'),
+              onPressed: () {
+                context.pushNamed('profile');
+              },
             ),
-            maxRadius: 50,
-          ),
-          const SizedBox(height: space),
-          Text(
-            student.name,
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          const SizedBox(height: space),
-          // locale change
-          const LocalesWidget(),
-          const SizedBox(height: space),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              BformButton(
-                colors: [
-                  Theme.of(context).colorScheme.primaryContainer,
-                ],
-                label: tr('home.profile'),
-                onPressed: () {
-                  context.pushNamed('profile', extra: {'student': student});
-                },
-              ),
-              const SizedBox(width: space),
-              BformButton(
-                colors: [
-                  Theme.of(context).colorScheme.errorContainer,
-                ],
-                label: tr('home.signout'),
-                onPressed: onLogout,
-              ),
-            ],
-          ),
-        ],
-      ),
+            const SizedBox(width: space),
+            BformButton(
+              colors: [
+                Theme.of(context).colorScheme.errorContainer,
+              ],
+              label: tr('home.signout'),
+              onPressed: onLogout,
+            ),
+          ],
+        ),
+      ],
     );
   });
 }

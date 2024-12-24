@@ -34,22 +34,16 @@ class ConfigViewModel extends _$ConfigViewModel {
   Future<void> createConfig() async {
     state = const AsyncLoading();
     final repositoryConfig = getIt<ConfigRepository>();
-    const config = ConfigModel(
-      id: 1,
-      studentId: 0,
-      name: 'configs',
-      token: '',
-      language: 'en',
-    );
-    final resultConfig = await repositoryConfig.saveConfig(config);
+
+    final resultConfig = await repositoryConfig.saveConfig();
     switch (resultConfig) {
-      case Error<int>():
+      case Error<ConfigModel>():
         state = AsyncError(resultConfig.error, StackTrace.current);
         return;
 
-      case Ok<int>():
+      case Ok<ConfigModel>():
     }
-    state = const AsyncData(config);
+    state =  AsyncData(resultConfig.value);
   }
 
   Future<void> updateLocale(String language) async {

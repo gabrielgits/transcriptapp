@@ -46,13 +46,13 @@ class TestesListScreen extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: ListTile(
-                  leading: const CircleAvatar(
-                    backgroundImage:
-                        AssetImage('assets/images/icons/app_icon.png'),
-                  ),
+                  // leading: const CircleAvatar(
+                  //   backgroundImage:
+                  //       AssetImage('assets/images/icons/app_icon.png'),
+                  // ),
                   title: Text(teste.exam.name),
                   subtitle: Text(
-                      '${tr('testes.date')}: ${dateHelper(date: teste.createdAt.toString())} - ${tr('testes.score')}: ${teste.score}',
+                      '${tr('testes.date')}: ${dateHelper(date: teste.createdAt.toString())} - ${tr('testes.score')}: ${teste.score.toStringAsFixed(1)}',
                       style: Theme.of(context).textTheme.labelSmall),
                   trailing: Column(
                     children: [

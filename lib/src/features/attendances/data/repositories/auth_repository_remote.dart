@@ -15,7 +15,7 @@ class AttendancesRepositoryRemote implements AttendancesRepository {
     try {
       final data = await dioClientService.getAttendances(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       List<AttendanceModel> attendances = [];
       for (var attendanceJson in data['data']) {
@@ -33,7 +33,7 @@ class AttendancesRepositoryRemote implements AttendancesRepository {
     try {
       final data = await dioClientService.getAttendanceReport(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(AttendanceReportModel.fromJson(data['data']));
     } on Exception catch (e) {

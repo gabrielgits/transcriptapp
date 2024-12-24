@@ -109,11 +109,13 @@ class SharedPrefService {
   Future<bool> updateLoginConfig({
     required String token,
     required int studentId,
+    required String name,
   }) async {
     var config = await getConfig();
     config['token'] = token;
     config['studentId'] = studentId;
-    return await saveConfig(config);
+    config['name'] = name;
+    return await updateConfig(config);
   }
 
   Future<String> getToken() async {
@@ -125,6 +127,7 @@ class SharedPrefService {
     return await updateLoginConfig(
       token: '',
       studentId: 0,
+      name: '',
     );
   }
 }

@@ -27,7 +27,7 @@ class DioClientService {
       dio.options.headers["Authorization"] = "Bearer $_token";
     }
     try {
-      var response = await dio.get(url);
+      final response = await dio.get(url);
       return response.data;
     } catch (e) {
       rethrow;
@@ -42,17 +42,13 @@ class DioClientService {
     if (_token.isNotEmpty) {
       dio.options.headers["Authorization"] = "Bearer $_token";
     }
-    try {
-      var response = await dio.post(
-        url,
-        data: body,
-        options: Options(headers: _httpHeadersPost),
-        // body: json.encode(body),
-      );
-      return response.data;
-    } catch (e) {
-      rethrow;
-    }
+
+    final response = await dio.post(
+      url,
+      data: body,
+      options: Options(headers: _httpHeadersPost),
+    );
+    return response.data;
   }
 
   Future<Map<String, dynamic>> _put({
@@ -64,7 +60,7 @@ class DioClientService {
       dio.options.headers["Authorization"] = "Bearer $_token";
     }
     try {
-      var response = await dio.put(
+      final response = await dio.put(
         url,
         data: body,
         options: Options(headers: _httpHeadersPost),
@@ -82,7 +78,7 @@ class DioClientService {
       dio.options.headers["Authorization"] = "Bearer $_token";
     }
     try {
-      var response = await dio.delete(url);
+      final response = await dio.delete(url);
       return response.data;
     } catch (e) {
       rethrow;
@@ -152,7 +148,7 @@ class DioClientService {
   }
 
   Future<Map<String, dynamic>> profile(int id) async {
-    return await _get('${AppConstants.urlApi}/profile/$id');
+    return await _get('${AppConstants.urlApi}/profile');
   }
 
   Future<Map<String, dynamic>> updateProfile(Map<String, dynamic> json) async {
@@ -203,7 +199,7 @@ class DioClientService {
   Future<Map<String, dynamic>> postStudentAnswers({
     required int studentId,
     required int testeId,
-    required Map<int, int> selectedAnswers,
+    required Map<String, int> selectedAnswers,
   }) async {
     return await _post(
       url: '${AppConstants.urlApi}/studentsanswers',
@@ -215,23 +211,26 @@ class DioClientService {
     );
   }
 
-  Future<Map<String, dynamic>> postTeste({required int studentId, required int testeId})  async{
+  Future<Map<String, dynamic>> postTeste(
+      {required int studentId, required int testeId}) async {
     return await _post(
       url: '${AppConstants.urlApi}/testes',
       body: {'studentId': studentId, 'testeId': testeId},
     );
   }
 
-   Future<Map<String, dynamic>>  putTeste({required int id, required Map<String, dynamic> json})  async {
+  Future<Map<String, dynamic>> putTeste(
+      {required int id, required Map<String, dynamic> json}) async {
     return await _put(
       url: '${AppConstants.urlApi}/testes/$id',
       body: json,
     );
-   }
+  }
 
-  Future<Map<String, dynamic>>  getTesteReport({required int studentId, required int limit}) async {
+  Future<Map<String, dynamic>> getTesteReport(
+      {required int studentId, required int limit}) async {
     return await _get(
-      '${AppConstants.urlApi}/testes/$studentId/report?limit=$limit',
+      '${AppConstants.urlApi}/testes/student/$studentId/limit/$limit',
     );
   }
 
@@ -247,14 +246,16 @@ class DioClientService {
     return await _get('${AppConstants.urlApi}/notifications/$id');
   }
 
-  Future<Map<String, dynamic>> postNotification(Map<String, dynamic> json) async {
+  Future<Map<String, dynamic>> postNotification(
+      Map<String, dynamic> json) async {
     return await _post(
       url: '${AppConstants.urlApi}/notifications',
       body: json,
     );
   }
 
-  Future<Map<String, dynamic>> putNotification({required int id, required Map<String, dynamic> json}) async {
+  Future<Map<String, dynamic>> putNotification(
+      {required int id, required Map<String, dynamic> json}) async {
     return await _put(
       url: '${AppConstants.urlApi}/notifications/$id',
       body: json,
@@ -264,6 +265,4 @@ class DioClientService {
   Future<Map<String, dynamic>> deleteNotification(int id) async {
     return await _delete('${AppConstants.urlApi}/notifications/$id');
   }
-
-
 }

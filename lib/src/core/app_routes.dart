@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/features/attendances/ui/screens/attendances_list_screen.dart';
-import 'package:transcriptapp/src/features/auth/domain/models/student_model.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/change_password_view.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/edit_profile_view.dart';
 import 'package:transcriptapp/src/features/auth/ui/screens/login_screen.dart';
@@ -48,10 +47,7 @@ final GoRouter appRoutes = GoRouter(
         GoRoute(
           path: 'profile',
           name: 'profile',
-          builder: (context, state) {
-            final student = (state.extra as Map)['student'] as StudentModel;
-            return ProfileView(student: student);
-          },
+          builder: (context, state) => const ProfileView(),
           routes: [
             GoRoute(
               path: 'edit',

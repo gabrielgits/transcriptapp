@@ -1,3 +1,4 @@
+import 'package:transcriptapp/src/shared/data/services/dio_client_service.dart';
 import 'package:transcriptapp/src/shared/data/services/sharedpref_service.dart';
 import 'package:transcriptapp/src/utils/result.dart';
 
@@ -5,14 +6,17 @@ import '../../domain/models/config_model.dart';
 import 'config_repository.dart';
 
 class ConfigRepositoryLocal implements ConfigRepository {
-  final SharedPrefService _sharedPrefSservice;
+  final SharedPrefService sharedPrefService;
+  final DioClientService dioClientService;
 
-  ConfigRepositoryLocal(this._sharedPrefSservice);
+  ConfigRepositoryLocal(
+      {required this.sharedPrefService, required this.dioClientService});
 
   @override
   Future<Result<ConfigModel>> getConfig() async {
     try {
-      final data = await _sharedPrefSservice.getConfig();
+      final data = await sharedPrefService.getConfig();
+      dioClientService.setToken(data['token']);
       return Result.ok(ConfigModel.fromJson(data));
     } on Exception catch (e) {
       return Result.error(e);
@@ -20,10 +24,20 @@ class ConfigRepositoryLocal implements ConfigRepository {
   }
 
   @override
-  Future<Result<int>> saveConfig(ConfigModel config) async {
+  Future<Result<ConfigModel>> saveConfig() async {
     try {
-      final data = await _sharedPrefSservice.saveConfig(config.toJson());
-      return Result.ok(data ? config.id : 0);
+      const config = ConfigModel(
+        id: 1,
+        studentId: 0,
+        name: '',
+        token: '',
+        language: 'en',
+      );
+      final data = await sharedPrefService.saveConfig(config.toJson());
+      if (!data) {
+        return Result.error(Exception('Failed to save item'));
+      }
+      return const Result.ok(config);
     } on Exception catch (e) {
       return Result.error(e);
     }
@@ -32,7 +46,7 @@ class ConfigRepositoryLocal implements ConfigRepository {
   @override
   Future<Result<int>> updateConfig(ConfigModel config) async {
     try {
-      final data = await _sharedPrefSservice.updateConfig(config.toJson());
+      final data = await sharedPrefService.updateConfig(config.toJson());
       return Result.ok(data ? config.id : 0);
     } on Exception catch (e) {
       return Result.error(e);

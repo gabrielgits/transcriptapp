@@ -28,7 +28,7 @@ class TestePlayScreen extends ConsumerStatefulWidget {
 class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
   @override
   Widget build(BuildContext context) {
-    final controller = ref.watch(startTesteViewModelProvider(widget.testeId));
+    final controller = ref.watch(startTesteViewModelProvider(testeId: widget.testeId));
 
     return SafeArea(
       child: Scaffold(
@@ -57,13 +57,13 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                   const TitleWidget(),
                   const SizedBox(height: 10),
                   SizedBox(
-                    height: 400,
+                    height: 430,
                     child: Column(children: [
                       CarouselSlider(
                         items: itemsListSlider,
                         carouselController: _controller,
                         options: CarouselOptions(
-                            height: 350.0,
+                            height: 370.0,
                             autoPlay: false,
                             enlargeCenterPage: true,
                             enableInfiniteScroll: false,
@@ -141,14 +141,15 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                               context: context,
                             );
                             if (context.mounted && result) {
-                              await ref
+                              final resultSend = await ref
                                   .read(testesViewModelProvider.notifier)
                                   .sendStudentAnswers(
                                     selectedAnswers: _selectedAnswers,
                                     testeId: widget.testeId,
                                   );
 
-                              if (context.mounted) {
+                              if (context.mounted && resultSend) {
+                                alertshowSnackbar(context: context, message: tr('testePlay.success'));
                                 context.goNamed('home');
                               }
                             }
@@ -229,7 +230,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     return Column(
       children: [
         Container(
-          height: 50,
+          height: 60,
           width: double.infinity,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.primary,
@@ -246,8 +247,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
           ),
         ),
         const SizedBox(height: 5),
-        SizedBox(
-          height: 200,
+        Container(
+          decoration: const BoxDecoration(
+            color: Colors.black12,
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+          height: 250,
           child: ListView.builder(
             itemCount: widget.question.answers.length,
             itemBuilder: (context, index) {
@@ -255,7 +260,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               return RadioListTile<int>(
                 value: answer.id,
                 groupValue: selectedAnswerId,
-                title: Text("${answer.line} ) ${answer.answer}"),
+                title: Text("${answer.line} ) ${answer.answer}", style: const TextStyle(fontSize: 12)),
                 onChanged: (value) {
                   setState(() {
                     selectedAnswerId = value ?? 0;

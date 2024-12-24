@@ -14,7 +14,7 @@ class DailypointsRepositoryRemote implements DailypointsRepository {
     try {
       final data = await dioClientService.getDailypoints(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       List<DailypointModel> dailypoints = [];
       for (var dailypointJson in data['data']) {
@@ -32,7 +32,7 @@ class DailypointsRepositoryRemote implements DailypointsRepository {
     try {
       final data = await dioClientService.getDailypointReport(id);
       if (data['status'] == false) {
-        return Result.error(data['message']);
+        return Result.error(Exception(data['message']));
       }
       return Result.ok(DailypointReportModel.fromJson(data['data']));
     } on Exception catch (e) {

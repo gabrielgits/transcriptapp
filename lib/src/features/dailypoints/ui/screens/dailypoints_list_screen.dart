@@ -37,16 +37,16 @@ class DailypointsListScreen extends ConsumerWidget {
 
               var pointDescription = tr('dailypoints.veryBad');
               Color pointColor = Colors.red;
-              if(dailypoint.point == 2){
+              if (dailypoint.point == 2) {
                 pointDescription = tr('dailypoints.bad');
                 pointColor = Colors.orange;
-              }else if(dailypoint.point == 3){
+              } else if (dailypoint.point == 3) {
                 pointDescription = tr('dailypoints.normal');
                 pointColor = Colors.yellow;
-              }else if(dailypoint.point == 4){
+              } else if (dailypoint.point == 4) {
                 pointDescription = tr('dailypoints.good');
                 pointColor = Colors.blue;
-              }else if(dailypoint.point == 5){
+              } else if (dailypoint.point == 5) {
                 pointDescription = tr('dailypoints.veryGood');
                 pointColor = Colors.green;
               }
@@ -57,17 +57,27 @@ class DailypointsListScreen extends ConsumerWidget {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: ListTile(
-                
                   leading: const CircleAvatar(
                     backgroundImage:
                         AssetImage('assets/images/icons/app_icon.png'),
                   ),
                   title: Text(
-                      "${tr('dailypoints.classeNumber')} : ${dailypoint.classeId}"),
+                    "${tr('dailypoints.classeNumber')} : ${dailypoint.classeId}",
+                    style: TextStyle(
+                       color: Theme.of(context).colorScheme.surface,
+                    ),
+                  ),
                   subtitle: Text(
                       '${tr('dailypoints.date')}: ${dateHelper(date: dailypoint.createdAt.toString())}',
-                      style: Theme.of(context).textTheme.bodySmall),
-                  trailing: Text(pointDescription, style: TextStyle(color: pointColor),),
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.surface,
+                        fontSize: 10,
+                      ),
+                    ),
+                  trailing: Text(
+                    pointDescription,
+                    style: TextStyle(color: pointColor),
+                  ),
                 ),
               );
             },

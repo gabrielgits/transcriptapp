@@ -35,18 +35,19 @@ class AuthViewModel extends _$AuthViewModel {
     state = AsyncValue.data(result.value);
   }
 
-  Future<void> getProfile() async {
+  Future<StudentModel> getProfile() async {
     state = const AsyncLoading();
     final config = ref.watch(configViewModelProvider).value!;
     final result = await _authRepository.profile(config.studentId);
     switch (result) {
       case Error<StudentModel>():
         state = AsyncError(result.error, StackTrace.current);
-        return;
+        return StudentModel.init();
 
       case Ok<StudentModel>():
     }
     state = AsyncValue.data(result.value);
+    return result.value;
   }
 
   Future<String> logout() async {
@@ -81,6 +82,6 @@ class AuthViewModel extends _$AuthViewModel {
       case Ok<String>():
     } 
     state = tempState;
-    return result.value;
+    return 'changed';
   }
 }

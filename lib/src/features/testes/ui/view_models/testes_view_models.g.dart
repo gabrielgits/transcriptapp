@@ -47,7 +47,7 @@ final getReportTestesViewModelProvider =
 typedef GetReportTestesViewModelRef
     = AutoDisposeFutureProviderRef<TesteReportModel>;
 String _$startTesteViewModelHash() =>
-    r'2b3adad71afe710468c36eb4e4ecac05791c4b33';
+    r'81c9816bc3c724e07d8ae243ab22db5dea9245c8';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -81,11 +81,11 @@ class StartTesteViewModelFamily
   const StartTesteViewModelFamily();
 
   /// See also [startTesteViewModel].
-  StartTesteViewModelProvider call(
-    int testeId,
-  ) {
+  StartTesteViewModelProvider call({
+    required int testeId,
+  }) {
     return StartTesteViewModelProvider(
-      testeId,
+      testeId: testeId,
     );
   }
 
@@ -94,7 +94,7 @@ class StartTesteViewModelFamily
     covariant StartTesteViewModelProvider provider,
   ) {
     return call(
-      provider.testeId,
+      testeId: provider.testeId,
     );
   }
 
@@ -117,12 +117,12 @@ class StartTesteViewModelFamily
 class StartTesteViewModelProvider
     extends AutoDisposeFutureProvider<List<QuestionModel>> {
   /// See also [startTesteViewModel].
-  StartTesteViewModelProvider(
-    int testeId,
-  ) : this._internal(
+  StartTesteViewModelProvider({
+    required int testeId,
+  }) : this._internal(
           (ref) => startTesteViewModel(
             ref as StartTesteViewModelRef,
-            testeId,
+            testeId: testeId,
           ),
           from: startTesteViewModelProvider,
           name: r'startTesteViewModelProvider',
