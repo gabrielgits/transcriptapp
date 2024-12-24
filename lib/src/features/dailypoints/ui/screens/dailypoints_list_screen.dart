@@ -53,7 +53,7 @@ class DailypointsListScreen extends ConsumerWidget {
               return Container(
                 margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.tertiary,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: ListTile(

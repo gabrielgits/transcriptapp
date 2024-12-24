@@ -117,7 +117,7 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                             ? null
                             : BformButton(
                                 label: tr('testePlay.back'),
-                                colors: [Theme.of(context).primaryColor],
+                                colors: [Theme.of(context).colorScheme.primary],
                                 style: BformButtonStyle.outlined,
                                 onPressed: () {
                                   setState(() {
@@ -159,7 +159,7 @@ class _TestePlayScreenState extends ConsumerState<TestePlayScreen> {
                             ? null
                             : BformButton(
                                 label: tr('testePlay.next'),
-                                colors: [Theme.of(context).primaryColor],
+                                colors: [Theme.of(context).colorScheme.primary],
                                 style: BformButtonStyle.outlined,
                                 onPressed: () {
                                   setState(() {
@@ -193,7 +193,7 @@ class TitleWidget extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.primaryContainer,
-        //borderRadius: const BorderRadius.all(Radius.circular(20)),
+        borderRadius: const BorderRadius.all(Radius.circular(20)),
       ),
       child: Text(
         tr('testePlay.title'),
@@ -230,6 +230,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
     return Column(
       children: [
         Container(
+          height: 60,
           height: 60,
           width: double.infinity,
           decoration: BoxDecoration(
