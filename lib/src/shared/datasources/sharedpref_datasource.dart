@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefService {
-  Future<bool> _saveObject({
+class SharedPrefDatasource {
+  Future<bool> saveObject({
     required Map<String, dynamic> item,
     required String key,
   }) async {
@@ -14,14 +14,14 @@ class SharedPrefService {
     return await prefs.setString(key, encodedItem);
   }
 
-  Future<Map<String, dynamic>> _getObject(String key) async {
+  Future<Map<String, dynamic>> getObject(String key) async {
     final prefs = await SharedPreferences.getInstance();
     final encodedItem = prefs.getString(key);
     if (encodedItem == null) throw Exception('Item not found');
     return jsonDecode(encodedItem);
   }
 
-  Future<bool> _updateObject(
+  Future<bool> updateObject(
       {required Map<String, dynamic> item, required String key}) async {
     final encodedItem = jsonEncode(item);
     final prefs = await SharedPreferences.getInstance();
@@ -31,13 +31,12 @@ class SharedPrefService {
     return await prefs.setString(key, encodedItem);
   }
 
-  Future<bool> _deleteAll(String key) async {
+  Future<bool> deleteAll(String key) async {
     final prefs = await SharedPreferences.getInstance();
     return await prefs.remove(key);
   }
-  /*
 
-  Future<int> _saveItem({
+  Future<int> saveItem({
     required Map<String, dynamic> item,
     required String key,
   }) async {
@@ -53,7 +52,7 @@ class SharedPrefService {
         : 0;
   }
 
-  Future<Map<String, dynamic>> _getItem({
+  Future<Map<String, dynamic>> getItem({
     required int id,
     required String table,
   }) async {
@@ -70,7 +69,7 @@ class SharedPrefService {
     return item;
   }
 
-  Future<int> _updateItem(
+  Future<int> updateItem(
       {required Map<String, dynamic> item, required String table}) async {
     final encodedItem = jsonEncode(item);
     final prefs = await SharedPreferences.getInstance();
@@ -88,46 +87,5 @@ class SharedPrefService {
       }
     }
     return 0;
-  }
-  */
-
-  // #### Config ####
-
-  static const _keyConfig = 'config';
-
-  Future<bool> saveConfig(Map<String, dynamic> json) async =>
-      await _saveObject(item: json, key: _keyConfig);
-
-  Future<Map<String, dynamic>> getConfig() async =>
-      await _getObject(_keyConfig);
-
-  Future<bool> updateConfig(Map<String, dynamic> json) async =>
-      await _updateObject(item: json, key: _keyConfig);
-
-  Future<bool> removeConfig() async => await _deleteAll(_keyConfig);
-
-  Future<bool> updateLoginConfig({
-    required String token,
-    required int studentId,
-    required String name,
-  }) async {
-    var config = await getConfig();
-    config['token'] = token;
-    config['studentId'] = studentId;
-    config['name'] = name;
-    return await updateConfig(config);
-  }
-
-  Future<String> getToken() async {
-    final config = await getConfig();
-    return config['token'];
-  }
-
-  Future<bool> logout() async {
-    return await updateLoginConfig(
-      token: '',
-      studentId: 0,
-      name: '',
-    );
   }
 }

@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:transcriptapp/src/shared/ui/screens/no_data_view.dart';
-import 'package:transcriptapp/src/utils/date_helper.dart';
+import 'package:transcriptapp/src/shared/screens/no_data_view.dart';
+import 'package:transcriptapp/src/utils/helpers.dart';
 
 import '../view_models/testes_view_models.dart';
 import 'icon_status_widget.dart';

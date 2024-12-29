@@ -19,4 +19,7 @@ class AppConstants {
 
   // keys
   static const keyApi = 'binary';
+
+  static var updatedUserToken = '';
+  
 }

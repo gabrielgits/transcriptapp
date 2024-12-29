@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:transcriptapp/src/core/app_routes.dart';
 
-import 'shared/ui/theme/color_schemes.g.dart';
+import 'shared/theme/color_schemes.g.dart';
 import 'core/constants.dart';
 
 class AppWidget extends StatelessWidget {

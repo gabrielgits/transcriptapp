@@ -1,18 +1,19 @@
-import 'package:transcriptapp/src/shared/data/services/dio_client_service.dart';
+
 import 'package:transcriptapp/src/utils/result.dart';
 
 import '../../domain/models/notification_model.dart';
+import '../services/notifications_api_services.dart';
 import 'notifications_repository.dart';
 
 class NotificationsRepositoryRemote
     implements NotificationsRepository {
-  final DioClientService dioClientService;
-  const NotificationsRepositoryRemote(this.dioClientService);
+  final NotificationsApiServices _notificationsApiServices;
+  const NotificationsRepositoryRemote(this._notificationsApiServices);
 
   @override
   Future<Result<List<NotificationModel>>> getList() async {
     try {
-      final data = await dioClientService.getNotifications();
+      final data = await _notificationsApiServices.getNotifications();
       if (data['status'] == false) {
         return Result.error(Exception(data['message']));
       }
@@ -30,7 +31,7 @@ class NotificationsRepositoryRemote
   @override
   Future<Result<NotificationModel>> getItem(int id) async {
     try {
-      final data = await dioClientService.getNotification(id);
+      final data = await _notificationsApiServices.getNotification(id);
       if (data['status'] == false) {
         return Result.error(Exception(data['message']));
       }
@@ -44,7 +45,7 @@ class NotificationsRepositoryRemote
 
   Future<Result<NotificationModel>> saveItem(Map<String, dynamic> jsonData) async {
     try {
-      final data = await dioClientService.postNotification(jsonData);
+      final data = await _notificationsApiServices.postNotification(jsonData);
       if (data['status'] == false) {
         return Result.error(Exception(data['message']));
       }
@@ -58,7 +59,7 @@ class NotificationsRepositoryRemote
   @override
   Future<Result<int>> deleteItem(int id) async {
     try {
-      final data = await dioClientService.deleteNotification(id);
+      final data = await _notificationsApiServices.deleteNotification(id);
       if (data['status'] == false) {
         return Result.error(Exception(data['message']));
       }
@@ -74,7 +75,7 @@ class NotificationsRepositoryRemote
     required Map<String, dynamic> jsonData,
   }) async {
     try {
-      final data = await dioClientService.putNotification(id: id, json: jsonData);
+      final data = await _notificationsApiServices.putNotification(id: id, json: jsonData);
       if (data['status'] == false) {
         return Result.error(Exception(data['message']));
       }
