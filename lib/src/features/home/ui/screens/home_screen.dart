@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/core/constants.dart';
 import 'package:transcriptapp/src/features/config/ui/view_models/config_view_model.dart';
 import 'package:transcriptapp/src/shared/widgets/custom_appbar_widget.dart';
@@ -32,21 +33,25 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const DefaultTabController(
+    return DefaultTabController(
       length: 3,
       child: Scaffold(
         appBar: CustomAppbarWidget(
+          leading: IconButton(
+            onPressed: () => context.goNamed('notifications'),
+            icon: const Icon(Icons.notifications),
+          ),
           title: AppConstants.name,
-          actions: [UserAvatarWidget()],
+          actions: const [UserAvatarWidget()],
         ),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
             HomeView(),
             TestesListScreen(),
             AboutScreen(),
           ],
         ),
-        bottomNavigationBar: TabBar(
+        bottomNavigationBar: const TabBar(
           tabs: [
             Tab(icon: Icon(Icons.home)),
             Tab(icon: Icon(Icons.add_chart)),

@@ -33,8 +33,8 @@ class DioDatasource {
     }
   }
 
-  Future<Map<String, dynamic>> post({
-    required String url,
+  Future<Map<String, dynamic>> post(
+    String url, {
     required Map<String, dynamic> body,
   }) async {
     _dio.options.responseType = ResponseType.json;
@@ -50,8 +50,8 @@ class DioDatasource {
     return response.data;
   }
 
-  Future<Map<String, dynamic>> put({
-    required String url,
+  Future<Map<String, dynamic>> put(
+    String url, {
     required Map<String, dynamic> body,
   }) async {
     _dio.options.responseType = ResponseType.json;

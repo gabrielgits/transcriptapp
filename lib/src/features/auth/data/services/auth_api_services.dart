@@ -12,14 +12,14 @@ class AuthApiServices {
     required String password,
   }) async {
     return await _dioDatasorce.post(
-      url: '${AppConstants.urlApi}/login',
+      '${AppConstants.urlApi}/login',
       body: {'phone': phone, 'password': password},
     );
   }
 
   Future<Map<String, dynamic>> forgotPassword(String phone) async {
     return await _dioDatasorce.post(
-      url: '${AppConstants.urlApi}/forgotpassword',
+      '${AppConstants.urlApi}/forgotpassword',
       body: {'phone': phone},
     );
   }
@@ -30,7 +30,7 @@ class AuthApiServices {
     required int studentId,
   }) async {
     return await _dioDatasorce.put(
-      url: '${AppConstants.urlApi}/updatepassword',
+       '${AppConstants.urlApi}/updatepassword',
       body: {
         'oldPassword': oldPassword,
         'newPassword': newPassword,
@@ -45,7 +45,7 @@ class AuthApiServices {
 
   Future<Map<String, dynamic>> signup(Map<String, dynamic> json) async {
     return await _dioDatasorce.post(
-      url: '${AppConstants.urlApi}/signup',
+      '${AppConstants.urlApi}/signup',
       body: json,
     );
   }
@@ -56,7 +56,7 @@ class AuthApiServices {
 
   Future<Map<String, dynamic>> updateProfile(Map<String, dynamic> json) async {
     return await _dioDatasorce.put(
-      url: '${AppConstants.urlApi}/students/${json['id']}',
+      '${AppConstants.urlApi}/students/${json['id']}',
       body: json,
     );
   }

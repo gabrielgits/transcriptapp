@@ -76,4 +76,5 @@ void _setupDailypoints() {
   getIt.registerSingleton<DailypointsRepository>(
     DailypointsRepositoryRemote(getIt()),
   );
+
 }

@@ -26,6 +26,6 @@ class AuthCacheServices {
     config['token'] = token;
     config['studentId'] = studentId;
     config['name'] = name;
-    return await _sharedPrefDatasource.updateObject(item: config, key: _keyConfig);
+    return await _sharedPrefDatasource.updateObject(_keyConfig,item: config);
   }
 }

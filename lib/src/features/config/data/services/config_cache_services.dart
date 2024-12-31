@@ -8,13 +8,13 @@ class ConfigCacheServices {
     final String _keyConfig = 'config';
 
     Future<bool> saveConfig(Map<String, dynamic> json) async =>
-      await _sharedPrefDatasource.saveObject(item: json, key: _keyConfig);
+      await _sharedPrefDatasource.saveObject(_keyConfig,item: json);
 
   Future<Map<String, dynamic>> getConfig() async =>
       await _sharedPrefDatasource.getObject(_keyConfig);
 
   Future<bool> updateConfig(Map<String, dynamic> json) async =>
-      await _sharedPrefDatasource.updateObject(item: json, key: _keyConfig);
+      await _sharedPrefDatasource.updateObject(_keyConfig,item: json);
 
   Future<bool> removeConfig() async => await _sharedPrefDatasource.deleteAll(_keyConfig);
 

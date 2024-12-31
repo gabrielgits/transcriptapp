@@ -31,7 +31,7 @@ class TestesApiService {
     required Map<String, int> selectedAnswers,
   }) async {
     return await _dioDatasource.post(
-      url: '${AppConstants.urlApi}/studentsanswers',
+      '${AppConstants.urlApi}/studentsanswers',
       body: {
         'studentId': studentId,
         'testeId': testeId,
@@ -43,7 +43,7 @@ class TestesApiService {
   Future<Map<String, dynamic>> postTeste(
       {required int studentId, required int testeId}) async {
     return await _dioDatasource.post(
-      url: '${AppConstants.urlApi}/testes',
+      '${AppConstants.urlApi}/testes',
       body: {'studentId': studentId, 'testeId': testeId},
     );
   }
@@ -51,7 +51,7 @@ class TestesApiService {
   Future<Map<String, dynamic>> putTeste(
       {required int id, required Map<String, dynamic> json}) async {
     return await _dioDatasource.put(
-      url: '${AppConstants.urlApi}/testes/$id',
+      '${AppConstants.urlApi}/testes/$id',
       body: json,
     );
   }

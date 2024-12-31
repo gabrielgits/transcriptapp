@@ -12,8 +12,8 @@ class AppConstants {
   static const suporteLink = 'https://github.com/gabrielgits';
 
   //url
-  //static const url = 'http://10.0.2.2:8000';
-  static const url = 'https://stranscript.online';
+  static const url = 'http://10.0.2.2:8000';
+  //static const url = 'https://stranscript.online';
   static const urlStorage = '$url/storage/';
   static const urlApi = '$url/api/v1';
 
