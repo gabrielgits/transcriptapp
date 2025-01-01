@@ -38,7 +38,7 @@ class HomeScreenState extends ConsumerState<HomeScreen> {
       child: Scaffold(
         appBar: CustomAppbarWidget(
           leading: IconButton(
-            onPressed: () => context.goNamed('notifications'),
+            onPressed: () => context.pushNamed('notifications'),
             icon: const Icon(Icons.notifications),
           ),
           title: AppConstants.name,

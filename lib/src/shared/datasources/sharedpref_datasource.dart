@@ -72,6 +72,69 @@ class SharedPrefDatasource {
           };
   }
 
+  Future<Map<String, dynamic>> saveAllItems(
+    String key, {
+    required List<Map<String, dynamic>> items,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final newsEncodedItems = items.map((e) => jsonEncode(e)).toList();
+    return await prefs.setStringList(key, newsEncodedItems)
+        ? {
+            'status': true,
+            'message': 'Items saved successfully',
+            'data': items,
+          }
+        : {
+            'status': false,
+            'message': 'Error saving items',
+            'data': null,
+          };
+  }
+
+  Future<Map<String, dynamic>> replaceAllItems(
+    String key, {
+    required List<Map<String, dynamic>> items,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    final existingItems = prefs.getStringList(key)?.map((e) => jsonDecode(e)).toList() ?? [];
+
+    if (existingItems.isEmpty) {
+      return await prefs.setStringList(key, items.map((e) => jsonEncode(e)).toList())
+          ? {
+              'status': true,
+              'message': 'Items saved successfully',
+              'data': items,
+            }
+          : {
+              'status': false,
+              'message': 'Error saving items',
+              'data': null,
+            };
+    }
+
+    final updatedItems = existingItems.where((existingItem) {
+      return !items.any((newItem) {
+        return newItem['id'] == existingItem['id'];
+      });
+    }).toList();
+
+    updatedItems.addAll(items);
+
+    final encodedUpdatedItems = updatedItems.map((e) => jsonEncode(e)).toList();
+    return await prefs.setStringList(key, encodedUpdatedItems)
+        ? {
+            'status': true,
+            'message': 'Items replaced successfully',
+            'data': items,
+          }
+        : {
+            'status': false,
+            'message': 'Error replacing items',
+            'data': null,
+          };
+  }
+
+
   Future<Map<String, dynamic>> getItem(
     String table, {
     required dynamic id,
@@ -106,10 +169,10 @@ class SharedPrefDatasource {
     final items = prefs.getStringList(table);
     if (items == null) {
       return {
-      'status': false,
-      'message': 'Table not found',
-      'data': null,
-    };
+        'status': false,
+        'message': 'Table not found',
+        'data': null,
+      };
     }
     return {
       'status': true,
@@ -139,6 +202,46 @@ class SharedPrefDatasource {
         'status': false,
         'message': 'Item not found',
         'data': null,
+      };
+    }
+    encodedListGet[index] = jsonEncode(item);
+    final status = await prefs.setStringList(table, encodedListGet);
+    if (status) {
+      return {
+        'status': true,
+        'message': 'Item updated successfully',
+        'data': item,
+      };
+    }
+    return {
+      'status': false,
+      'message': 'Error updating item',
+      'data': null,
+    };
+  }
+
+  Future<Map<String, dynamic>> replaceItem(
+    String table, {
+    required Map<String, dynamic> item,
+  }) async {
+    final prefs = await SharedPreferences.getInstance();
+    if (!prefs.containsKey(table)) {
+      return {
+        'status': false,
+        'message': 'Table not found',
+        'data': null,
+      };
+    }
+    final encodedListGet = prefs.getStringList(table)!;
+    final index = encodedListGet.indexWhere(
+      (element) => jsonDecode(element)['id'] == item['id'],
+    );
+    if (index == -1) {
+      encodedListGet.add(jsonEncode(item));
+      return {
+        'status': true,
+        'message': 'Item added successfully',
+        'data': item,
       };
     }
     encodedListGet[index] = jsonEncode(item);

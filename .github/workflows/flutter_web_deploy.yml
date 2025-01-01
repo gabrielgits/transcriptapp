@@ -28,7 +28,7 @@ jobs:
         run: flutter pub get
           
       - name: Build WEB App
-        run: flutter build web --release
+        run: flutter build web --release --dart-define=DEBUG_MODE=true
 
       - name: Create a temporary folder and copy web build files
         run: |

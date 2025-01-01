@@ -83,7 +83,7 @@ class CrudRepositoryRemote<T> implements CrudRepository<T> {
   }
 
   @override
-  Future<Result<List<T>>> filterItems(Map<String, dynamic> filters) async {
+  Future<Result<List<T>>> customGetItems(Map<String, dynamic> filters) async {
     try {
       final urlParams =
           filters.entries.map((e) => '${e.key}/${e.value}').join('/');

@@ -27,7 +27,8 @@ class CrudRepositoryCached<T> implements CrudRepository<T> {
           await _remoteDatasource.get('${AppConstants.urlApi}/$_table/$idItem');
       if (remoteResponse['status'] == true) {
         final item = fromJson(remoteResponse['data']);
-        _localDatasource.updateItem(_table, item: remoteResponse['data']);
+        await _localDatasource.replaceItem(_table,
+            item: remoteResponse['data']);
         return Result.ok(item);
       }
     } catch (_) {
@@ -45,12 +46,13 @@ class CrudRepositoryCached<T> implements CrudRepository<T> {
     return Result.error(Exception('Item not found'));
   }
 
-    @override
+  @override
   Future<Result<List<T>>> getAllItems() async {
     try {
       final response =
           await _remoteDatasource.get('${AppConstants.urlApi}/$_table');
       if (response['status'] == true) {
+        await _localDatasource.saveAllItems(_table, items: response['data']);
         final List<T> items = (response['data'] as List).map<T>((json) {
           return fromJson(json);
         }).toList();
@@ -74,9 +76,9 @@ class CrudRepositoryCached<T> implements CrudRepository<T> {
     return Result.error(Exception('Items not found'));
   }
 
-    @override
   @override
-  Future<Result<List<T>>> filterItems(Map<String, dynamic> filters) async {
+  @override
+  Future<Result<List<T>>> customGetItems(Map<String, dynamic> filters) async {
     try {
       final urlParams =
           filters.entries.map((e) => '${e.key}/${e.value}').join('/');
@@ -84,22 +86,27 @@ class CrudRepositoryCached<T> implements CrudRepository<T> {
 
       final remoteResponse = await _remoteDatasource.get(url);
       if (remoteResponse['status'] == true) {
+        //List<Map<String, dynamic>> data = remoteResponse['data'].cast<Map<String, dynamic>>();
+        await _localDatasource.saveAllItems(
+          _table,
+          items: remoteResponse['data'],
+        );
         final List<T> items = (remoteResponse['data'] as List).map<T>((json) {
           return fromJson(json);
         }).toList();
+
         return Result.ok(items);
       }
-    } catch (_) {
-      // ignore
+    } catch (e) {
+      print(e);
     }
 
     try {
       final localResponse = await _localDatasource.getAllItems(_table);
       if (localResponse['status'] == true) {
-        final filteredItems = localResponse['data']
-          .where((item) => filters.entries.every((filter) => item[filter.key] == filter.value))
-          .toList();
-        final List<T> items = filteredItems.map<T>((json) => fromJson(json)).toList();
+        final List<T> items = (localResponse['data'] as List).map<T>((json) {
+          return fromJson(json);
+        }).toList();
         return Result.ok(items);
       }
     } on Exception catch (e) {
@@ -118,7 +125,7 @@ class CrudRepositoryCached<T> implements CrudRepository<T> {
       if (response['status'] == false) {
         return Result.error(Exception(response['message']));
       }
-      _localDatasource.updateItem(_table, item: response['data']);
+      await _localDatasource.updateItem(_table, item: response['data']);
       final newItem = fromJson(response['data']);
       return Result.ok(newItem);
     } on Exception catch (e) {
@@ -134,7 +141,7 @@ class CrudRepositoryCached<T> implements CrudRepository<T> {
       if (response['status'] == false) {
         return Result.error(Exception(response['message']));
       }
-      _localDatasource.deleteItem(_table, id: idItem);
+      await _localDatasource.deleteItem(_table, id: idItem);
       return Result.ok(fromJson(response['data']));
     } on Exception catch (e) {
       return Result.error(e);
@@ -154,15 +161,11 @@ class CrudRepositoryCached<T> implements CrudRepository<T> {
       if (response['status'] == false) {
         return Result.error(Exception(response['message']));
       }
-      _localDatasource.updateItem(_table, item: response['data']);
+      await _localDatasource.updateItem(_table, item: response['data']);
       final item = fromJson(response['data']);
       return Result.ok(item);
     } on Exception catch (e) {
       return Result.error(e);
     }
   }
-
-
-
-
 }

@@ -37,5 +37,5 @@ mixin CrudRepository<T> {
   ///
   /// Takes a [filters] map representing the criteria for filtering.
   /// Returns a [Future] containing a [Result] with a list of items of type [T] that match the filters.
-  Future<Result<List<T>>> filterItems(Map<String, dynamic> filters);
+  Future<Result<List<T>>> customGetItems(Map<String, dynamic> filters);
 }

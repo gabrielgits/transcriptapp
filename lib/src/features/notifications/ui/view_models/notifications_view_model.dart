@@ -26,9 +26,9 @@ class _NotificationsRepository
 Future<List<NotificationModel>> getAllNotificationsViewModel(Ref ref) async {
   final repository = _NotificationsRepository();
   final studentId = ref.watch(configViewModelProvider).value!.studentId;
-  final result = await repository.filterItems({
+  final result = await repository.customGetItems({
     'student': studentId,
-    'classe': 1,
+    'state': 'new',
   });
   ();
   switch (result) {

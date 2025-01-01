@@ -7,7 +7,7 @@ part of 'notifications_view_model.dart';
 // **************************************************************************
 
 String _$getAllNotificationsViewModelHash() =>
-    r'7727476ec0e8fb4bc5b189f21f2518293910ef94';
+    r'a3e2657036c60c48440c83d328200026db6d0922';
 
 /// See also [getAllNotificationsViewModel].
 @ProviderFor(getAllNotificationsViewModel)
@@ -27,7 +27,7 @@ final getAllNotificationsViewModelProvider =
 typedef GetAllNotificationsViewModelRef
     = AutoDisposeFutureProviderRef<List<NotificationModel>>;
 String _$getNotificationViewModelHash() =>
-    r'5c01ea2c30c875a036e26f3c6ddf39a4622af8a5';
+    r'90741c4fc516ea8554dbdccb0b58e71ef3a48269';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -184,7 +184,7 @@ class _GetNotificationViewModelProviderElement
 }
 
 String _$deleteNotificationViewModelHash() =>
-    r'767da25a711110fd9a563406961b4fd673ca6490';
+    r'7042d06bdd344115e0a1c81f831ead86f3eda8d6';
 
 /// See also [deleteNotificationViewModel].
 @ProviderFor(deleteNotificationViewModel)
@@ -321,7 +321,7 @@ class _DeleteNotificationViewModelProviderElement
 }
 
 String _$createNotificationViewModelHash() =>
-    r'1a544280e39d3f7536f954ddd9c956099c702905';
+    r'56f09b2990e6530a2eca75b7a2cf54a4f49a0216';
 
 /// See also [createNotificationViewModel].
 @ProviderFor(createNotificationViewModel)
@@ -460,7 +460,7 @@ class _CreateNotificationViewModelProviderElement
 }
 
 String _$updateNotificationViewModelHash() =>
-    r'e4cba9031a54fcb17fface44501ff0097eb8cfef';
+    r'9854868da94e7b74f1ab1df614a0c6a214fb3d8a';
 
 /// See also [updateNotificationViewModel].
 @ProviderFor(updateNotificationViewModel)
