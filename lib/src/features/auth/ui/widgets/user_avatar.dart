@@ -33,11 +33,9 @@ class UserAvatarWidget extends ConsumerWidget {
                   children: [
                     _userInfo(
                       context: context,
-                      onLogout: () async {
-                        await ref.read(authViewModelProvider.notifier).logout();
-
-                        if (!context.mounted) return;
+                      onLogout: () {
                         context.replaceNamed('login');
+                        ref.read(authViewModelProvider.notifier).logout();
                       },
                     ),
                     const Spacer(),

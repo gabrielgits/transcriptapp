@@ -13,7 +13,7 @@ import 'package:transcriptapp/src/features/testes/ui/screens/teste_view_screen.d
 import 'package:transcriptapp/src/features/testes/ui/screens/testes_screen.dart';
 import 'package:transcriptapp/src/features/home/ui/screens/app_init.dart';
 import 'package:transcriptapp/src/features/home/ui/screens/home_screen.dart';
-import 'package:transcriptapp/src/features/notifications/ui/views/notifications_view.dart';
+import 'package:transcriptapp/src/features/notifications/ui/screens/notifications_screen.dart';
 
 final GoRouter appRoutes = GoRouter(
   // initialLocation go to testesplay
@@ -59,7 +59,8 @@ final GoRouter appRoutes = GoRouter(
     ),
     GoRoute(
       path: '/notifications',
-      builder: (context, state) => const NotificationsView(),
+      name: 'notifications',
+      builder: (context, state) => const NotificationsScreen(),
     ),
     GoRoute(
       path: '/exam',

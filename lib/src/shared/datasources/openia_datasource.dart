@@ -1,10 +1,10 @@
 import 'package:dart_openai/dart_openai.dart';
 
-class IaServiceOpenia {
-  final String apiKey;
+class OpeniaDatasource {
+  final String _apiKey;
 
-  IaServiceOpenia(this.apiKey) {
-    OpenAI.apiKey = apiKey;
+  OpeniaDatasource(this._apiKey) {
+    OpenAI.apiKey = _apiKey;
   }
 
   Future<OpenAIChatCompletionChoiceMessageModel> getData(String request) async {

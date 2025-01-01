@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
+import 'package:transcriptapp/src/shared/screens/show_error_view.dart';
 
 import '../view_models/student_score_view_model.dart';
 

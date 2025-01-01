@@ -1,22 +1,24 @@
-import 'package:transcriptapp/src/shared/data/services/dio_client_service.dart';
-import 'package:transcriptapp/src/shared/data/services/sharedpref_service.dart';
+import 'package:transcriptapp/src/core/constants.dart';
+import 'package:transcriptapp/src/shared/datasources/dio_datasource.dart';
 import 'package:transcriptapp/src/utils/result.dart';
 
 import '../../domain/models/config_model.dart';
+import '../services/config_cache_services.dart';
 import 'config_repository.dart';
 
 class ConfigRepositoryLocal implements ConfigRepository {
-  final SharedPrefService sharedPrefService;
-  final DioClientService dioClientService;
+  final ConfigCacheServices _configCacheServices;
 
   ConfigRepositoryLocal(
-      {required this.sharedPrefService, required this.dioClientService});
+      {required ConfigCacheServices configCacheServices,
+      required DioDatasource dioClientService})
+      : _configCacheServices = configCacheServices;
 
   @override
   Future<Result<ConfigModel>> getConfig() async {
     try {
-      final data = await sharedPrefService.getConfig();
-      dioClientService.setToken(data['token']);
+      final data = await _configCacheServices.getConfig();
+      AppConstants.updatedUserToken = data['token'];
       return Result.ok(ConfigModel.fromJson(data));
     } on Exception catch (e) {
       return Result.error(e);
@@ -33,7 +35,7 @@ class ConfigRepositoryLocal implements ConfigRepository {
         token: '',
         language: 'en',
       );
-      final data = await sharedPrefService.saveConfig(config.toJson());
+      final data = await _configCacheServices.saveConfig(config.toJson());
       if (!data) {
         return Result.error(Exception('Failed to save item'));
       }
@@ -46,7 +48,7 @@ class ConfigRepositoryLocal implements ConfigRepository {
   @override
   Future<Result<int>> updateConfig(ConfigModel config) async {
     try {
-      final data = await sharedPrefService.updateConfig(config.toJson());
+      final data = await _configCacheServices.updateConfig(config.toJson());
       return Result.ok(data ? config.id : 0);
     } on Exception catch (e) {
       return Result.error(e);

@@ -2,7 +2,7 @@ import 'package:alertshow/alertshow.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:transcriptapp/src/shared/ui/widgets/loading_widget.dart';
+import 'package:transcriptapp/src/shared/widgets/loading_widget.dart';
 
 import '../view_models/config_view_model.dart';
 

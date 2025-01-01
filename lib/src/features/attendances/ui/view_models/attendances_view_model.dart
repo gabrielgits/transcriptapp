@@ -4,7 +4,7 @@ import 'package:transcriptapp/src/core/dependency.dart';
 import 'package:transcriptapp/src/features/config/ui/view_models/config_view_model.dart';
 import 'package:transcriptapp/src/utils/result.dart';
 
-import '../../data/repositories/exams_repository.dart';
+import '../../data/repositories/attendances_repository.dart';
 import '../../domain/models/attendance_model.dart';
 import '../../domain/models/attendance_report_model.dart';
 

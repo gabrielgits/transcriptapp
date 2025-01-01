@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class CustomAppbarWidget extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
+  final Widget? leading;
   final bool isBackButtonExist;
   final Function? onBackPressed;
   final bool showCart;
@@ -19,12 +20,13 @@ class CustomAppbarWidget extends StatelessWidget
     this.bgColor,
     this.onVegFilterTap,
     this.type,
-    this.actions,
+    this.actions, this.leading,
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      leading: leading,
       title: Text(title,
           style: TextStyle(
               fontSize: 16,

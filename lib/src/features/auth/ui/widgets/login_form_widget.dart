@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/utils/responsive_helper.dart';
-import 'package:transcriptapp/src/shared/ui/widgets/loading_widget.dart';
+import 'package:transcriptapp/src/shared/widgets/loading_widget.dart';
 
 import '../view_models/auth_view_model.dart';
 

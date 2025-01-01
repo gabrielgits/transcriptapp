@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:transcriptapp/src/features/auth/ui/view_models/auth_view_model.dart';
-import 'package:transcriptapp/src/shared/ui/screens/show_error_view.dart';
-import 'package:transcriptapp/src/shared/ui/widgets/loading_widget.dart';
+import 'package:transcriptapp/src/shared/screens/show_error_view.dart';
+import 'package:transcriptapp/src/shared/widgets/loading_widget.dart';
 
 import '../../../attendances/ui/widgets/numbers_widget.dart';
 import '../widgets/profile_widget.dart';

@@ -23,14 +23,7 @@ class _NotificationCardState extends State<NotificationCard> {
     return Icons.device_unknown;
   }
 
-  NotificationModel notification = NotificationModel(
-    id: 1,
-    title: '',
-    text: '',
-    state: '',
-    type: '',
-    date: DateTime.now(),
-  );
+  NotificationModel notification = NotificationModel.init();
 
   @override
   void initState() {

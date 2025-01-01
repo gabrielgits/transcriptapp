@@ -1,10 +1,9 @@
 class AppConstants {
   //app
-  static const debug = false;
+  static const debug =  bool.fromEnvironment('DEBUG_MODE', defaultValue: true);
   static const name = 'Transcript';
   static const schoolName = 'Instituto Superior Politecnico Lusíada de Benguela';
-  static const version = '0.9';
-  static const versionCode = 9;
+  static const version = '1.1';
   static const copyrith = 'Copyright © 2024 GV. All Rights Reserved.';
   static const dev = 'GV';
   static const suporteContacto = '+244943962996';
@@ -12,11 +11,13 @@ class AppConstants {
   static const suporteLink = 'https://github.com/gabrielgits';
 
   //url
-  //static const url = 'http://10.0.2.2:8000';
-  static const url = 'https://stranscript.online';
+  static const url = debug ?  'http://10.0.2.2:8000' : 'https://stranscript.online';
   static const urlStorage = '$url/storage/';
   static const urlApi = '$url/api/v1';
 
   // keys
   static const keyApi = 'binary';
+
+  static var updatedUserToken = '';
+  
 }

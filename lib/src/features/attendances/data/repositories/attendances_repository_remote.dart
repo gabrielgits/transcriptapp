@@ -1,19 +1,19 @@
 
-import 'package:transcriptapp/src/shared/data/services/dio_client_service.dart';
 import 'package:transcriptapp/src/utils/result.dart';
 
 import '../../domain/models/attendance_model.dart';
 import '../../domain/models/attendance_report_model.dart';
-import 'exams_repository.dart';
+import '../services/attendances_api_services.dart';
+import 'attendances_repository.dart';
 
 class AttendancesRepositoryRemote implements AttendancesRepository {
-  final DioClientService dioClientService;
-  const AttendancesRepositoryRemote(this.dioClientService);
+  final AttendancesApiServices _attendancesApiServices;
+  const AttendancesRepositoryRemote(this._attendancesApiServices);
 
   @override
   Future<Result<List<AttendanceModel>>> getListAttendances(int id) async {
     try {
-      final data = await dioClientService.getAttendances(id);
+      final data = await _attendancesApiServices.getAttendances(id);
       if (data['status'] == false) {
         return Result.error(Exception(data['message']));
       }
@@ -31,7 +31,7 @@ class AttendancesRepositoryRemote implements AttendancesRepository {
   @override
   Future<Result<AttendanceReportModel>> getAttendanceReport(int id) async {
     try {
-      final data = await dioClientService.getAttendanceReport(id);
+      final data = await _attendancesApiServices.getAttendanceReport(id);
       if (data['status'] == false) {
         return Result.error(Exception(data['message']));
       }
