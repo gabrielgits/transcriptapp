@@ -27,12 +27,12 @@ class ShowErrorView extends ConsumerWidget {
         Text(title, style: Theme.of(context).textTheme.titleLarge),
         const SizedBox(height: 16),
         FtcontrolView(
-          text: tr('messages.logoutMsn'),
+          text: tr('msn.logoutMsn'),
           type: FtcontrolType.warning,
         ),
         const SizedBox(height: 16),
         BformButton(
-          label: tr('messages.logoutBtn'),
+          label: tr('msn.logoutBtn'),
           fontSize: 16,
           colors: [Theme.of(context).primaryColor],
           onPressed: () {
