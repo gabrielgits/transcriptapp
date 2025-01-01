@@ -3,6 +3,8 @@
     "welcome": "Transcript é um sistema de avaliação estudantil tudo-em-um para escolas e universidades.",
     "error": "Houston, temos um problema.",
     "welcomeBack": "Bem-vindo de volta {student}",
+    "logoutMsn": "O App foi atualizado. Por favor, faca login novamente.",
+    "logoutBtn": "Terminar Sessão",
     "noData": "Não há dados para mostrar"
   },
   "home": {
