@@ -9,6 +9,7 @@ class NumbersWidget extends ConsumerWidget {
   const NumbersWidget({super.key});
 
   @override
+
   Widget build(BuildContext context, WidgetRef ref) {
     final controller = ref.watch(getReportAttendancesViewModelProvider);
     return controller.when(
