@@ -48,11 +48,11 @@ class LastTestesWidget extends ConsumerWidget {
                     ],
                   ),
                 ),
-              const SizedBox(height: space / 2),
-              Text(
-                "${tr('testes.average')} : ${testeReport.average.toStringAsFixed(1)} ${tr('testes.score')}",
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
+              // const SizedBox(height: space / 2),
+              // Text(
+              //   "${tr('testes.average')} : ${testeReport.average.toStringAsFixed(1)} ${tr('testes.score')}",
+              //   style: Theme.of(context).textTheme.titleSmall,
+              // ),
               const Spacer(),
               Text(
                 tr('home.touch'),

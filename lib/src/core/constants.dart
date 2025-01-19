@@ -1,9 +1,9 @@
 class AppConstants {
   //app
-  static const debug =  bool.fromEnvironment('DEBUG_MODE', defaultValue: true);
+  static const debug = bool.fromEnvironment('DEBUG_MODE', defaultValue: false);
   static const name = 'Transcript';
   static const schoolName = 'Instituto Superior Politecnico Lusíada de Benguela';
-  static const version = '1.1';
+  static const version = '1.2';
   static const copyrith = 'Copyright © 2024 GV. All Rights Reserved.';
   static const dev = 'GV';
   static const suporteContacto = '+244943962996';
