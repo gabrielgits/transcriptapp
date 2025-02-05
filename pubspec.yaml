@@ -1,7 +1,7 @@
 name: transcriptapp
 description: Transcript is an all-in-one student evaluation system for schools and universities.
 publish_to: 'none'
-version: 1.2.0+12
+version: 1.2.1+12
 
 
 environment:
